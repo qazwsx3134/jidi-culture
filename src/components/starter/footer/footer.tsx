@@ -1,7 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 
 export default component$(() => {
-
   return (
     <footer class="footer p-10 bg-bgWhite-700 flex items-center justify-evenly">
       <div>
