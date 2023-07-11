@@ -1,10 +1,17 @@
-import { component$, Slot, useStyles$ } from "@builder.io/qwik";
+import {
+  component$,
+  Slot,
+  useStyles$,
+  useSignal,
+  useVisibleTask$,
+} from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
 
 import styles from "./styles.css?inline";
+import PageBackground from "~/components/loader/background/pageBackground";
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
@@ -20,13 +27,34 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 export default component$(() => {
   useStyles$(styles);
 
+  const onDone = useSignal(false);
+
+  useVisibleTask$(() => {
+    setTimeout(() => {
+      onDone.value = true;
+    }, 100);
+  });
+
   return (
     <>
-      <Header />
-      <main class="min-h-screen">
-        <Slot />
-      </main>
-      <Footer />
+      <PageBackground onDone={onDone}>
+        <img
+          q:slot="icon"
+          src="/images/jidiLogo.webp"
+          alt=""
+          width={200}
+          class="w-[200px] aspect-square"
+        />
+      </PageBackground>
+      {onDone.value && (
+        <>
+          <Header />
+          <main class="min-h-screen">
+            <Slot />
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   );
 });
