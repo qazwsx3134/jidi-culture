@@ -32,7 +32,7 @@ export default component$(() => {
   useVisibleTask$(() => {
     setTimeout(() => {
       onDone.value = true;
-    }, 100);
+    }, 3500);
   });
 
   return (
@@ -40,10 +40,10 @@ export default component$(() => {
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
-          src="/images/jidiLogo.webp"
+          src="/images/jidi-logo-blob.webp"
           alt=""
           width={200}
-          class="w-[200px] aspect-square"
+          class="w-[200px] aspect-square z-1"
         />
       </PageBackground>
       {onDone.value && (
