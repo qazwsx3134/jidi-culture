@@ -71,7 +71,7 @@ export default component$<Props>((props) => {
   return (
     <div
       id="loaderLayer"
-      class="loader min-h-screen h-full w-full absolute z-50 flex overflow-hidden"
+      class="loader min-h-screen h-full w-full fixed top-0 z-50 flex overflow-hidden "
     >
       <div class="absolute top-0 w-full flex items-center justify-center z-10">
         <WindAnimation />

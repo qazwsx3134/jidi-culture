@@ -32,6 +32,7 @@ export default component$(() => {
   useVisibleTask$(() => {
     setTimeout(() => {
       onDone.value = true;
+      window.lenis.scrollTo(0, 0)
     }, 3500);
   });
 
@@ -46,15 +47,13 @@ export default component$(() => {
           class="w-[200px] aspect-square z-1"
         />
       </PageBackground>
-      {onDone.value && (
-        <>
-          <Header />
-          <main class="min-h-screen">
-            <Slot />
-          </main>
-          <Footer />
-        </>
-      )}
+      <>
+        <Header />
+        <main class={"min-h-screen"}>
+          <Slot />
+        </main>
+        <Footer />
+      </>
     </>
   );
 });
