@@ -78,8 +78,8 @@ export default component$<Props>((props) => {
       </div>
 
       <div class="binderContainer absolute top-0 w-full flex">
-        <div class="flex blinderBG bg-bgWhite-700 h-screen grow w-full absolute "></div>
-        <div class="flex blinder bg-bgWhite-500 h-screen grow w-full absolute "></div>
+        <div class="flex blinderBG bg-bgGray-700 h-screen grow w-full absolute "></div>
+        <div class="flex blinder bg-bgGray-500 h-screen grow w-full absolute "></div>
       </div>
       <div
         id="icon"

@@ -13,24 +13,30 @@ export default component$(() => {
         <ul class="menu menu-horizontal px-1">
           <li>
             <a
-              // href="https://qwik.builder.io/docs/components/overview/"
-              // target="_blank"
+              onClick$={() => {
+                if (window.lenis) {
+                  window.lenis.scrollTo("#bookSection");
+                }
+              }}
             >
-              Docs
+              繪本創作
             </a>
           </li>
           <li>
             <a
-              // href="https://qwik.builder.io/examples/introduction/hello-world/"
-              // target="_blank"
+              onClick$={() => {
+                if (window.lenis) {
+                  window.lenis.scrollTo("#showCaseSection");
+                }
+              }}
             >
-              Examples
+              作品展示
             </a>
           </li>
           <li>
             <a
-              // href="https://qwik.builder.io/tutorial/welcome/overview/"
-              // target="_blank"
+            // href="https://qwik.builder.io/tutorial/welcome/overview/"
+            // target="_blank"
             >
               Tutorials
             </a>

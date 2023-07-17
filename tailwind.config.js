@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  mode: "jit",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
@@ -26,7 +27,22 @@ module.exports = {
           800: "#5d5c5c",
           900: "#2f2e2e",
         },
+        bgRed: {
+          100: "#f1e7e1",
+          200: "#e4cfc3",
+          300: "#d6b6a5",
+          400: "#c99e87",
+          500: "#bb8669",
+          600: "#966b54",
+          700: "#70503f",
+          800: "#4b362a",
+          900: "#251b15",
+        },
       },
+      translate: {
+        "14": "3.5rem",
+        "18": "4.5rem",
+      }
     },
   },
   plugins: [require("daisyui")],
