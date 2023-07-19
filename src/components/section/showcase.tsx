@@ -1,37 +1,79 @@
 import { component$ } from "@builder.io/qwik";
+import { v4 as uuidv4 } from "uuid";
 
-const showCase = [
+const showcaseDimentions = [
   {
-    id: 1,
-    key: "showcase1-1",
-    alt: "showcase1-1",
-    src: "/images/showcase/showcase1-1.webp",
-    height: 353,
-    width: 250,
+    height: 400,
+    width: 342,
   },
   {
-    id: 2,
-    key: "showcase1-2",
-    alt: "showcase1-2",
-    src: "/images/showcase/showcase1-1.webp",
-    height: 353,
-    width: 250,
+    height: 242,
+    width: 342,
   },
   {
-    id: 3,
-    key: "showcase1-3",
-    alt: "showcase1-3",
-    src: "/images/showcase/showcase1-1.webp",
-    height: 353,
-    width: 250,
+    height: 400,
+    width: 283,
   },
   {
-    id: 4,
-    key: "showcase1-4",
-    alt: "showcase1-4",
-    src: "/images/showcase/showcase1-1.webp",
-    height: 353,
-    width: 250,
+    height: 242,
+    width: 342,
+  },
+];
+
+const showcaseTopArray = showcaseDimentions
+  .slice(0, 4)
+  .map((item, outerIndex) => {
+    return Array(4)
+      .fill(0)
+      .map((_, innerIndex) => ({
+        id: `${outerIndex + 1}-${innerIndex + 1}`,
+        key: `${outerIndex + 1}-${innerIndex + 1}`,
+        alt: `${outerIndex + 1}-${innerIndex + 1}`,
+        src: `/images/showcase/${outerIndex + 1}/${innerIndex + 1}.webp`,
+        height: item.height,
+        width: item.width,
+      }))
+      .reverse();
+  });
+
+const showcaseTop = [
+  showcaseTopArray[2],
+  ...showcaseTopArray,
+  ...showcaseTopArray.slice(0, 1),
+];
+
+const showCaseBottom = [
+  {
+    id: "1-1",
+    key: "1-1",
+    alt: "1-1",
+    src: "/images/showcase/1/1.webp",
+    height: 400,
+    width: 342,
+  },
+  {
+    id: "1-2",
+    key: "1-2",
+    alt: "1-2",
+    src: "/images/showcase/1/2.webp",
+    height: 400,
+    width: 342,
+  },
+  {
+    id: "1-3",
+    key: "1-3",
+    alt: "1-3",
+    src: "/images/showcase/1/3.webp",
+    height: 400,
+    width: 342,
+  },
+  {
+    id: "1-4",
+    key: "1-4",
+    alt: "1-4",
+    src: "/images/showcase/1/4.webp",
+    height: 400,
+    width: 342,
   },
 ];
 const imageTranslateClass = [
@@ -45,26 +87,36 @@ export default component$(() => {
   return (
     <div class="flex flex-col ">
       <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px]">
-        <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg.png')] bg-contain rounded-lg shadow-lg -translate-x-[400px] mb-32">
-          <div class="h-full w-[385px] flex justify-center items-center">
-            <div class="">
-              <img
-                src="/images/showcase/showcase1-1.webp"
-                alt=""
-                height={353}
-                width={250}
-              />
+        <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg-blue.png')] bg-contain rounded-lg shadow-lg -translate-x-[400px] mb-32 flex">
+          {showcaseTop.map((item) => (
+            <div key={uuidv4()} class="h-full w-[342px]">
+              <div class="relative w-full h-full flex justify-end items-center group">
+                {item.map((innerItem, innerIndex) => (
+                  <div
+                    key={innerItem.key}
+                    class={imageTranslateClass[innerIndex]}
+                  >
+                    <img
+                      class="rounded-lg shadow-md max-w-[300px]"
+                      src={innerItem.src}
+                      alt={innerItem.alt}
+                      height={innerItem.height}
+                      width={innerItem.width}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
         <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg.png')] flex bg-contain rounded-lg shadow-lg translate-x-[100px]">
           <div class="h-full w-[342px]">
-            <div class="relative w-full h-full flex justify-center items-center group">
-              {showCase.map((item, index) => {
+            <div class="relative w-full h-full flex justify-end items-center group">
+              {showCaseBottom.map((item, index) => {
                 return (
                   <div key={item.key} class={imageTranslateClass[index]}>
                     <img
-                      class="rounded-lg shadow-md max-w-[340px]"
+                      class="rounded-lg shadow-md max-w-[300px]"
                       src={item.src}
                       alt={item.alt}
                       height={item.height}
