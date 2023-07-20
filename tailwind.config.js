@@ -28,21 +28,40 @@ module.exports = {
           900: "#2f2e2e",
         },
         bgRed: {
-          100: "#f1e7e1",
-          200: "#e4cfc3",
-          300: "#d6b6a5",
-          400: "#c99e87",
-          500: "#bb8669",
-          600: "#966b54",
-          700: "#70503f",
-          800: "#4b362a",
-          900: "#251b15",
+          100: "#f0deda",
+          200: "#e0bcb5",
+          300: "#d19b91",
+          400: "#c1796c",
+          500: "#b25847",
+          600: "#8e4639",
+          700: "#6b352b",
+          800: "#47231c",
+          900: "#24120e",
         },
       },
       translate: {
-        "14": "3.5rem",
-        "18": "4.5rem",
-      }
+        14: "3.5rem",
+        18: "4.5rem",
+      },
+      boxShadow: {
+        "card-hover":
+          "rgba(255, 255, 255, 0.4) -5px 5px, rgba(255, 255, 255, 0.3) -10px 10px, rgba(255, 255, 255, 0.2) -15px 15px, rgba(255, 255, 255, 0.1) -20px 20px, rgba(255, 255, 255, 0.05) -25px 25px",
+      },
+      animation: {
+        simplePulse: "simplePulse 2s cubic-bezier(0.4, 0, 0.6, 1)  infinite",
+      },
+      keyframes: {
+        simplePulse: {
+          "0%, 100%": {
+            transform: "scale(1)",
+            opacity: 1,
+          },
+          "50%": {
+            transform: "scale(1.08)",
+            opacity: 0.85,
+          },
+        },
+      },
     },
   },
   plugins: [require("daisyui")],
@@ -52,7 +71,7 @@ module.exports = {
         mytheme: {
           primary: "#1D1D1F",
           secondary: "#4A4A4A",
-          accent: "9D4515",
+          accent: "#b25847",
           neutral: "#191D24",
           "base-100": "#F5F5F7",
           info: "#3ABFF8",
