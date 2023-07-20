@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { v4 as uuidv4 } from "uuid";
+import { ArrowDownIcon } from "../icon/arrowDown";
 
 const showcaseDimentions = [
   {
@@ -16,6 +17,22 @@ const showcaseDimentions = [
   },
   {
     height: 242,
+    width: 342,
+  },
+  {
+    height: 287,
+    width: 342,
+  },
+  {
+    height: 400,
+    width: 240,
+  },
+  {
+    height: 242,
+    width: 342,
+  },
+  {
+    height: 234,
     width: 342,
   },
 ];
@@ -36,6 +53,22 @@ const showcaseTopArray = showcaseDimentions
       .reverse();
   });
 
+const showcaseBottomArray = showcaseDimentions
+  .slice(4, 8)
+  .map((item, outerIndex) => {
+    return Array(4)
+      .fill(0)
+      .map((_, innerIndex) => ({
+        id: `${outerIndex + 5}-${innerIndex + 1}`,
+        key: `${outerIndex + 5}-${innerIndex + 1}`,
+        alt: `${outerIndex + 5}-${innerIndex + 1}`,
+        src: `/images/showcase/${outerIndex + 5}/${innerIndex + 1}.webp`,
+        height: item.height,
+        width: item.width,
+      }))
+      .reverse();
+  });
+
 const showcaseTop = [
   showcaseTopArray[2],
   ...showcaseTopArray,
@@ -43,39 +76,10 @@ const showcaseTop = [
 ];
 
 const showCaseBottom = [
-  {
-    id: "1-1",
-    key: "1-1",
-    alt: "1-1",
-    src: "/images/showcase/1/1.webp",
-    height: 400,
-    width: 342,
-  },
-  {
-    id: "1-2",
-    key: "1-2",
-    alt: "1-2",
-    src: "/images/showcase/1/2.webp",
-    height: 400,
-    width: 342,
-  },
-  {
-    id: "1-3",
-    key: "1-3",
-    alt: "1-3",
-    src: "/images/showcase/1/3.webp",
-    height: 400,
-    width: 342,
-  },
-  {
-    id: "1-4",
-    key: "1-4",
-    alt: "1-4",
-    src: "/images/showcase/1/4.webp",
-    height: 400,
-    width: 342,
-  },
+  ...showcaseBottomArray,
+  ...showcaseBottomArray.slice(0, 1),
 ];
+
 const imageTranslateClass = [
   "absolute z-[1]",
   "absolute z-[2] group-hover:-translate-y-6 group-hover:-translate-x-3 transition-transform ease-in-out",
@@ -86,11 +90,19 @@ const imageTranslateClass = [
 export default component$(() => {
   return (
     <div class="flex flex-col ">
-      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px]">
+      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px] flex items-center justify-center text-4xl">
+        <div class="animate-bounce flex">
+          <ArrowDownIcon />
+          <p>點擊下方作品，立即開始您的旅程</p>
+          <ArrowDownIcon />
+        </div>
+      </div>
+      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px] ">
+        {/* First Row */}
         <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg-blue.png')] bg-contain rounded-lg shadow-lg -translate-x-[400px] mb-32 flex">
           {showcaseTop.map((item) => (
-            <div key={uuidv4()} class="h-full w-[342px]">
-              <div class="relative w-full h-full flex justify-end items-center group">
+            <div key={uuidv4()} class="h-full w-[342px] cursor-pointer">
+              <div class="relative w-full h-full flex justify-end items-center group hover:animate-simplePulse">
                 {item.map((innerItem, innerIndex) => (
                   <div
                     key={innerItem.key}
@@ -109,24 +121,28 @@ export default component$(() => {
             </div>
           ))}
         </div>
+        {/* Second Row */}
         <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg.png')] flex bg-contain rounded-lg shadow-lg translate-x-[100px]">
-          <div class="h-full w-[342px]">
-            <div class="relative w-full h-full flex justify-end items-center group">
-              {showCaseBottom.map((item, index) => {
-                return (
-                  <div key={item.key} class={imageTranslateClass[index]}>
+          {showCaseBottom.map((item) => (
+            <div key={uuidv4()} class="h-full w-[342px] cursor-pointer">
+              <div class="relative w-full h-full flex justify-end items-center group hover:animate-simplePulse">
+                {item.map((innerItem, innerIndex) => (
+                  <div
+                    key={innerItem.key}
+                    class={imageTranslateClass[innerIndex]}
+                  >
                     <img
                       class="rounded-lg shadow-md max-w-[300px]"
-                      src={item.src}
-                      alt={item.alt}
-                      height={item.height}
-                      width={item.width}
+                      src={innerItem.src}
+                      alt={innerItem.alt}
+                      height={innerItem.height}
+                      width={innerItem.width}
                     />
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
