@@ -12,6 +12,7 @@ import Book from "~/components/section/book";
 import Hero from "~/components/section/hero";
 import Parallax from "~/components/section/parallax";
 import Showcase from "~/components/section/showcase";
+import Team from "~/components/section/team";
 
 export default component$(() => {
   useVisibleTask$(() => {
@@ -56,7 +57,9 @@ export default component$(() => {
         <Showcase />
       </div>
       <WhiteBGCurveDown bgColor="bg-bgRed-500" />
-      <div id="teamSection" class="bg-bgRed-500 h-[1200px]"></div>
+      <div id="teamSection" class="bg-bgRed-500 h-full">
+        <Team />
+      </div>
       <RedBGCurveDown bgColor="bg-bgGray-500" />
     </>
   );
