@@ -1,9 +1,11 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+
+import PageBackground from "~/components/loader/background/pageBackground";
 import GrayBGCurveUp from "~/components/curveDivider/grayBGCurveUp";
 import RedBGCurveDown from "~/components/curveDivider/redBGCurveDown";
 import WhiteBGCurveDown from "~/components/curveDivider/whiteBGCurveDown";
@@ -15,6 +17,7 @@ import Showcase from "~/components/section/showcase";
 import Team from "~/components/section/team";
 
 export default component$(() => {
+  const onDone = useSignal(false);
   useVisibleTask$(() => {
     // initialize Lenis and register it as a global variable
     const lenis = new Lenis({
@@ -38,9 +41,23 @@ export default component$(() => {
     });
 
     gsap.ticker.lagSmoothing(0);
+
+    setTimeout(() => {
+      onDone.value = true;
+      window.lenis.scrollTo(0, 0);
+    }, 3500);
   });
   return (
     <>
+      <PageBackground onDone={onDone}>
+        <img
+          q:slot="icon"
+          src="/images/jidi-logo-blob.webp"
+          alt=""
+          width={200}
+          class="w-[200px] aspect-square z-1"
+        />
+      </PageBackground>
       <div class=" bg-bgGray-500 w-screen">
         <Parallax />
         <Hero />

@@ -4,7 +4,7 @@ import Card from "../team/card";
 export default component$(() => {
   return (
     <div class="flex flex-col">
-      <div class="text-7xl flex items-center justify-center text-bgWhite-500 my-8">
+      <div class="text-6xl flex items-center justify-center text-bgWhite-500 mb-12 my-24">
         基地夥伴
       </div>
       <div class="flex mx-auto max-w-[1080px] w-full mt-24">
