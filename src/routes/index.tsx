@@ -15,6 +15,7 @@ import Hero from "~/components/section/hero";
 import Parallax from "~/components/section/parallax";
 import Showcase from "~/components/section/showcase";
 import Team from "~/components/section/team";
+import imagesLoaded from "imagesloaded";
 
 export default component$(() => {
   const onDone = useSignal(false);
@@ -42,13 +43,17 @@ export default component$(() => {
 
     gsap.ticker.lagSmoothing(0);
 
-    setTimeout(() => {
-      onDone.value = true;
-      window.lenis.scrollTo(0, 0);
-    }, 3500);
+    const imgLoad = imagesLoaded("#bodyContainer", { background: true });
+
+
+    imgLoad.on("always", function () {
+      // onDone.value = true;
+      // window.lenis.scrollTo(0, 0);
+    });
+
   });
   return (
-    <>
+    <div id="bodyContainer">
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
@@ -78,7 +83,7 @@ export default component$(() => {
         <Team />
       </div>
       <RedBGCurveDown bgColor="bg-bgGray-500" />
-    </>
+    </div>
   );
 });
 

@@ -1,6 +1,6 @@
 import type { QwikIntrinsicElements } from "@builder.io/qwik";
 
-export function WindSvg(props: QwikIntrinsicElements["svg"], key: string) {
+export function WindSvgLg(props: QwikIntrinsicElements["svg"], key: string) {
   return (
     <svg
       width="1624"

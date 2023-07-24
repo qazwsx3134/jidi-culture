@@ -28,7 +28,7 @@ export default component$(() => {
     <>
       <>
         <Header />
-        <main class={"min-h-screen"}>
+        <main class="min-h-screen flex flex-col">
           <Slot />
         </main>
         <Footer />
