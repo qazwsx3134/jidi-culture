@@ -16,6 +16,7 @@ import Parallax from "~/components/section/parallax";
 import Showcase from "~/components/section/showcase";
 import Team from "~/components/section/team";
 import imagesLoaded from "imagesloaded";
+import BookMobile from "~/components/section/bookMobile";
 
 export default component$(() => {
   const onDone = useSignal(false);
@@ -45,15 +46,19 @@ export default component$(() => {
 
     const imgLoad = imagesLoaded("#bodyContainer", { background: true });
 
-
+    const start = Date.now();
     imgLoad.on("always", function () {
-      // onDone.value = true;
-      // window.lenis.scrollTo(0, 0);
+      const end = Date.now();
+      const duration = end - start;
+      const delay = duration < 2000 ? 2000 - duration : 0;
+      setTimeout(() => {
+        onDone.value = true;
+        window.lenis.scrollTo(0, 0);
+      }, delay);
     });
-
   });
   return (
-    <div id="bodyContainer">
+    <div id="bodyContainer" class="overflow-hidden lg:overflow-auto">
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
@@ -70,9 +75,12 @@ export default component$(() => {
       <GrayBGCurveUp bgColor="bg-bgWhite-500" />
       <div
         id="bookSection"
-        class="bg-bgGray-500 flex items-center justify-center py-20 w-full"
+        class="bg-bgGray-500 py-20 w-full hidden lg:flex items-center justify-center"
       >
         <Book />
+      </div>
+      <div id="bookSectionMobile" class="block bg-bgGray-500 py-24 lg:hidden">
+        <BookMobile />
       </div>
       <WhiteBGCurveUp bgColor="bg-bgGray-500" />
       <div id="showCaseSection" class="bg-bgWhite-500 h-[1200px] my-20">

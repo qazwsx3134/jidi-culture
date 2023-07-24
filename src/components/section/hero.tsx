@@ -43,15 +43,19 @@ export default component$(() => {
   return (
     <div class="flex flex-col mb-10">
       <div id="s2Wrapper" class="relative overflow-hidden">
-        <img
-          src="/images/section2-bg.webp"
-          alt=""
-          height={950}
-          class="relative z-0 aspect-video w-full h-[950px]"
-        />
+        <div class="relative z-0 w-full h-[1280px] lg:w-full lg:aspect-video overflow-hidden">
+          <img
+            src="/images/section2-bg.webp"
+            alt=""
+            width={1920}
+            height={1280}
+            class="w-[1920px] h-[1280px] lg:w-full lg:aspect-video object-cover"
+          />
+        </div>
+
         <div
           id="s2Blob"
-          class="absolute top-0 left-1/2 -translate-x-1/2 w-[50vw] mix-blend-color h-full flex justify-center z-[0]"
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] lg:w-[50vw] mix-blend-color h-full flex justify-center z-[0]"
         >
           <img
             src="/images/section2-blob.webp"
@@ -63,9 +67,9 @@ export default component$(() => {
         </div>
         <div
           id="s2Text"
-          class="absolute top-0 left-1/2 -translate-x-1/2 w-[50vw] h-full flex justify-center z-[1] text-black"
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-full lg:w-[50vw] h-full flex justify-center z-[1] text-black"
         >
-          <div class="absolute top-0 h-[830px] w-[900px] flex flex-col items-center text-center text-bgWhite-500 py-12 gap-10">
+          <div class="absolute top-0 w-full p-4 lg:p-0 lg:h-[830px] lg:w-[900px] flex flex-col items-center text-center text-bgWhite-500 py-12 gap-10">
             <div class="overflow-hidden my-12">
               <h2 class="text-6xl text-Title">基地</h2>
             </div>
