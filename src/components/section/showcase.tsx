@@ -89,15 +89,63 @@ const imageTranslateClass = [
 ];
 export default component$(() => {
   return (
-    <div class="flex flex-col ">
-      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px] flex items-center justify-center text-4xl">
+    <div class="flex flex-col md:pb-60">
+      {/* Mobile */}
+      <div class="relative z-10 flex md:hidden items-center justify-center text-4xl p-6">
+        <ArrowDownIcon />
+        <div
+          class="flex flex-col items-center justify-center text-3xl gap-1"
+          style={{
+            textShadow: "2px 2px rgba(0, 0, 0, 0.1);",
+          }}
+        >
+          <p>點擊下方作品</p>
+          <p>觀看合作案例</p>
+        </div>
+        <ArrowDownIcon />
+      </div>
+      <div class="flex md:hidden flex-col gap-12">
+        {showcaseTopArray.map((item) => (
+          <div key={uuidv4()} class="stack mx-4">
+            {[...item].reverse().map((innerItem) => (
+              <div key={innerItem.key} class="flex items-center justify-center">
+                <img
+                  class="rounded"
+                  src={innerItem.src}
+                  width={innerItem.width}
+                  height={innerItem.height}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+        {showcaseBottomArray.map((item) => (
+          <div key={uuidv4()} class="stack mx-4">
+            {[...item].reverse().map((innerItem) => (
+              <div key={innerItem.key} class="flex items-center justify-center">
+                <img
+                  class="rounded"
+                  src={innerItem.src}
+                  width={innerItem.width}
+                  height={innerItem.height}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Bigger screen */}
+      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px] md:flex hidden items-center justify-center text-4xl">
         <div class="animate-bounce flex">
           <ArrowDownIcon />
           <p>點擊下方作品，立即開始您的旅程</p>
           <ArrowDownIcon />
         </div>
       </div>
-      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px] ">
+      <div class="relative z-10 rotate-[30deg] -skew-y-[22deg] translate-y-[200px] hidden md:block">
         {/* First Row */}
         <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg-blue.png')] bg-contain rounded-lg shadow-lg -translate-x-[400px] mb-32 flex">
           {showcaseTop.map((item) => (

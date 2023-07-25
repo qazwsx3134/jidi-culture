@@ -15,9 +15,9 @@ interface Props {
 
 export default component$<Props>((props) => {
   return (
-    <div class="card w-96 bg-base-100 group hover:shadow-card-hover">
+    <div class="card w-full max-w-[384px] bg-base-100 group md:hover:shadow-card-hover">
       <figure class="bg-[url('/images/team-card/card-bg.png')] bg-contain bg-no-repeat">
-        <div class="h-[400px] w-96 group-hover:scale-110 group-hover:rotate-12 transition-transform  overflow-hidden">
+        <div class="h-[400px] w-96 md:group-hover:scale-110 md:group-hover:rotate-12 transition-transform  overflow-hidden">
           <img
             src={props.image.src}
             alt={props.image.alt}

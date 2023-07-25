@@ -58,7 +58,7 @@ export default component$(() => {
     });
   });
   return (
-    <div id="bodyContainer" class="overflow-hidden lg:overflow-auto">
+    <div id="bodyContainer" class="overflow-hidden md:overflow-auto">
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
@@ -83,7 +83,7 @@ export default component$(() => {
         <BookMobile />
       </div>
       <WhiteBGCurveUp bgColor="bg-bgGray-500" />
-      <div id="showCaseSection" class="bg-bgWhite-500 h-[1200px] my-20">
+      <div id="showCaseSection" class="bg-bgWhite-500 h-full my-20">
         <Showcase />
       </div>
       <WhiteBGCurveDown bgColor="bg-bgRed-500" />

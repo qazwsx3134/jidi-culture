@@ -1,6 +1,7 @@
 import {
   component$,
   Slot,
+  useSignal,
   useStyles$,
 } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";

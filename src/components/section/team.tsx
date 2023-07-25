@@ -7,9 +7,9 @@ export default component$(() => {
       <div class="text-6xl flex items-center justify-center text-bgWhite-500 mb-12 my-24">
         基地夥伴
       </div>
-      <div class="flex mx-auto max-w-[1080px] w-full mt-24">
+      <div class="flex flex-col px-4 md:flex-row md:max-w-[1080px] md:mx-auto w-full mt-24">
         {/* Left */}
-        <div class="flex flex-1 flex-col items-center justify-start gap-32">
+        <div class="flex flex-1 flex-col items-center justify-start gap-6 md:gap-32">
           <Card
             image={{
               src: "/images/showcase/1/1.webp",
