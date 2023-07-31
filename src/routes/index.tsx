@@ -8,7 +8,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import PageBackground from "~/components/loader/background/pageBackground";
 import GrayBGCurveUp from "~/components/curveDivider/grayBGCurveUp";
 import RedBGCurveDown from "~/components/curveDivider/redBGCurveDown";
-import WhiteBGCurveDown from "~/components/curveDivider/whiteBGCurveDown";
+import RedBGCurveUp from "~/components/curveDivider/redBGCurveUp";
 import WhiteBGCurveUp from "~/components/curveDivider/whiteBGCurveUp";
 import Book from "~/components/section/book";
 import Hero from "~/components/section/hero";
@@ -58,7 +58,7 @@ export default component$(() => {
     });
   });
   return (
-    <div id="bodyContainer" class="overflow-hidden md:overflow-auto">
+    <div id="bodyContainer" class="">
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
@@ -68,7 +68,7 @@ export default component$(() => {
           class="w-[200px] aspect-square z-1"
         />
       </PageBackground>
-      <div class=" bg-bgGray-500 w-screen">
+      <div class=" bg-black w-screen">
         <Parallax />
         <Hero />
       </div>
@@ -86,7 +86,7 @@ export default component$(() => {
       <div id="showCaseSection" class="bg-bgWhite-500 h-full my-20">
         <Showcase />
       </div>
-      <WhiteBGCurveDown bgColor="bg-bgRed-500" />
+      <RedBGCurveUp bgColor="bg-bgWhite-500" />
       <div id="teamSection" class="bg-bgRed-500 h-full">
         <Team />
       </div>

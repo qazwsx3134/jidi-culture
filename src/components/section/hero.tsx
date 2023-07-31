@@ -41,7 +41,7 @@ export default component$(() => {
     );
   });
   return (
-    <div class="flex flex-col mb-10">
+    <div class="flex flex-col mb-10 sticky z-[2] top-0">
       <div id="s2Wrapper" class="relative overflow-hidden">
         <div class="relative z-0 w-full h-[1280px] lg:w-full lg:aspect-video overflow-hidden">
           <img

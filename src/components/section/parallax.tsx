@@ -95,7 +95,7 @@ export default component$(() => {
     );
   });
   return (
-    <div class=" flex-col bg-bgGray-500 sticky top-0 hidden lg:flex">
+    <div class="flex-col bg-bgGray-500 sticky top-0 hidden lg:block z-[1]">
       <div class="wrapper w-screen h-[950px] mx-auto my-0 overflow-hidden shadow-2xl relative z-0 aspect-video bg-[url('/images/background.webp')] bg-[size:110%] bg-no-repeat">
         <h1 class="absolute w-full z-10 text-6xl text-center m-0 p-0 top-1/2 -translate-y-1/2 overflow-hidden mix-blend-color-burn">
           <span class="text-mask block font-bold text-red-900">

@@ -8,7 +8,14 @@ export default component$<Props>((props) => {
   return (
     <>
       <img
-        class={["w-screen", "h-[162px]", "-mb-2", props.bgColor]}
+        class={[
+          "object-contain",
+          "object-bottom",
+          "lg:object-fill",
+          "lg:w-screen",
+          "-mb-2",
+          props.bgColor,
+        ]}
         src="/images/bg-curves/white-bg-curve-up.png"
         alt=""
         width={1440}

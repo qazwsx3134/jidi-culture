@@ -11,15 +11,15 @@ export default component$<Props>((props) => {
         class={[
           "relative",
           "-z-[1]",
+          "-bottom-[1px]",
           "object-contain",
-          "object-top",
+          "object-bottom",
           "lg:object-fill",
           "lg:w-screen",
           "h-[162px]",
-          "-mt-2",
           props.bgColor,
         ]}
-        src="/images/bg-curves/red-bg-curve-down.png"
+        src="/images/bg-curves/red-bg-curve-up.png"
         alt=""
         width={1440}
         height={162}
