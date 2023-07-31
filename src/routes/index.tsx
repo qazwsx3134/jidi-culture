@@ -1,5 +1,5 @@
 import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
@@ -17,9 +17,22 @@ import Showcase from "~/components/section/showcase";
 import Team from "~/components/section/team";
 import imagesLoaded from "imagesloaded";
 import BookMobile from "~/components/section/bookMobile";
+import { getProducts } from "~/api";
+import FrontPageCarousel from "~/components/section/carousel/frontPageCarousel";
+
+export const useProductLoader = routeLoader$(async (requestEvent) => {
+  const res = await getProducts();
+  if ("error" in res) {
+    return requestEvent.fail(res.error.status, {
+      errorMessage: res.error.message,
+    });
+  }
+  return res.data;
+});
 
 export default component$(() => {
   const onDone = useSignal(false);
+
   useVisibleTask$(() => {
     // initialize Lenis and register it as a global variable
     const lenis = new Lenis({
@@ -83,6 +96,9 @@ export default component$(() => {
         <BookMobile />
       </div>
       <WhiteBGCurveUp bgColor="bg-bgGray-500" />
+      <div id="shopSection" class="bg-bgWhite-500 h-full my-20">
+        <FrontPageCarousel />
+      </div>
       <div id="showCaseSection" class="bg-bgWhite-500 h-full my-20">
         <Showcase />
       </div>
