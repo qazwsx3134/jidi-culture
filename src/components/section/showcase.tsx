@@ -89,7 +89,7 @@ const imageTranslateClass = [
 ];
 export default component$(() => {
   return (
-    <div class="flex flex-col md:pb-60">
+    <div class="flex flex-col md:pb-60 overflow-hidden">
       {/* Mobile */}
       <div class="relative z-10 flex md:hidden items-center justify-center text-4xl p-6">
         <ArrowDownIcon />
