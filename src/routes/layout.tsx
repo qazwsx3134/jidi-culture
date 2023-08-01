@@ -1,14 +1,23 @@
-import {
-  component$,
-  Slot,
-  useStyles$,
-} from "@builder.io/qwik";
+import { component$, Slot, useStyles$ } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
+import { routeLoader$ } from "@builder.io/qwik-city";
 
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
 
+import { getProducts } from "~/api";
+
 import styles from "./styles.css?inline";
+
+export const useProductLoader = routeLoader$(async (requestEvent) => {
+  const res = await getProducts();
+  if ("error" in res) {
+    return requestEvent.fail(res.error.status, {
+      errorMessage: res.error.message,
+    });
+  }
+  return res.data;
+});
 
 export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
