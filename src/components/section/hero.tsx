@@ -55,14 +55,14 @@ export default component$(() => {
 
         <div
           id="s2Blob"
-          class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] lg:w-[50vw] mix-blend-color h-full flex justify-center z-[0]"
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] lg:w-[50vw] lg:mix-blend-color h-full flex justify-center z-[0]"
         >
           <img
             src="/images/section2-blob.webp"
             alt=""
             height={1120}
             width={1024}
-            class="absolute top-0 w-[900px]"
+            class="absolute top-0 w-[900px] opacity-50 lg:opacity-100"
           />
         </div>
         <div
