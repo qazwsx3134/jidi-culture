@@ -69,6 +69,7 @@ export default component$(() => {
           src="/images/jidi-logo-blob.webp"
           alt=""
           width={200}
+          height={200}
           class="w-[200px] aspect-square z-1"
         />
       </PageBackground>
