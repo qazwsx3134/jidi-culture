@@ -16,7 +16,7 @@ export default component$(() => {
   useVisibleTask$(() => {
     // init Swiper:
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const swiper = initSwiper(".swiper", {
+    const swiper = initSwiper(".shopSwiper", {
       // Optional parameters
 
       height: 600,
@@ -62,7 +62,7 @@ export default component$(() => {
         </div>
       </div>
       {/* Slider main container */}
-      <div class="swiper container h-[600px]">
+      <div class="shopSwiper swiper container h-[600px]">
         {/* Additional required wrapper */}
         <div class="swiper-wrapper rounded-md h-full">
           {/* Slides */}
