@@ -1,9 +1,13 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$, useContext, useSignal } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
+import { CartIcon } from "~/components/icon/cartIcon";
 import { CrossIcon } from "~/components/icon/crossIcon";
+import { cartContextId } from "~/routes/layout";
 
 export default component$(() => {
   const drawerRef = useSignal<HTMLElement>();
+  const cartCtx = useContext(cartContextId);
+
   return (
     <header
       class={[
@@ -55,6 +59,16 @@ export default component$(() => {
             <li>
               <Link href="/products">繪本商店</Link>
             </li>
+            <li>
+              <div class="indicator p-1">
+                <span class="indicator-item badge badge-accent">
+                  {cartCtx.items.length}
+                </span>
+                <a>
+                  <CartIcon />
+                </a>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
@@ -76,9 +90,6 @@ export default component$(() => {
             >
               繪本商店
             </Link>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
           </li>
         </ul>
       </div>

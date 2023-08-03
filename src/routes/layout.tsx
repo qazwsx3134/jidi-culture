@@ -1,4 +1,11 @@
-import { component$, Slot, useStyles$ } from "@builder.io/qwik";
+import {
+  component$,
+  Slot,
+  useStyles$,
+  useContextProvider,
+  createContextId,
+  useStore,
+} from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
 
@@ -8,11 +15,14 @@ import Footer from "~/components/starter/footer/footer";
 import { getProducts } from "~/api";
 
 import styles from "./styles.css?inline";
+import type { Cart } from "~/types/cart";
+
+export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
   const res = await getProducts();
   if ("error" in res) {
-    return requestEvent.fail(res.error.status, {
+    return requestEvent.fail(404, {
       errorMessage: res.error.message,
     });
   }
@@ -32,16 +42,18 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 
 export default component$(() => {
   useStyles$(styles);
+  const cart = useStore<Cart>({
+    items: [],
+  });
+  useContextProvider(cartContextId, cart);
 
   return (
     <>
-      <>
-        <Header />
-        <main class="min-h-screen flex flex-col">
-          <Slot />
-        </main>
-        <Footer />
-      </>
+      <Header />
+      <main class="min-h-screen flex flex-col">
+        <Slot />
+      </main>
+      <Footer />
     </>
   );
 });
