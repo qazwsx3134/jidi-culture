@@ -13,4 +13,5 @@ export interface CartItem {
     width?: number;
     height?: number;
   };
+  availableQuantity: number;
 }

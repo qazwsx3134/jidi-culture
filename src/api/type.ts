@@ -25,6 +25,9 @@ export interface ProductAttributes {
   image?: {
     data: Image;
   };
+  images?: {
+    data?: Image[];
+  };
 }
 
 export interface timestamp {
@@ -53,6 +56,7 @@ export interface ImageAttributes extends ImageFormat {
   name: string;
   alternativeText?: string;
   caption?: string;
+  hash: string;
 
   formats?: {
     thumbnail?: ImageFormat;
@@ -63,7 +67,7 @@ export interface ImageAttributes extends ImageFormat {
 }
 
 export interface Product {
-  id: number;
+  id: string;
   attributes: ProductAttributes & timestamp;
 }
 
@@ -72,4 +76,9 @@ export interface ProductsAPI {
   meta: {
     pagination: Pagination;
   };
+}
+
+export interface ProductAPI {
+  data: Product | null;
+  meta: {};
 }
