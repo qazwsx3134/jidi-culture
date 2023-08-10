@@ -1,0 +1,40 @@
+
+
+span.swiper-pagination-bullet-active {
+  background-color: black;
+}
+
+.productSubSwiper > div > .swiper-slide {
+  opacity: 0.4;
+}
+
+.productSubSwiper > div > .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+/* Add bar under */
+.productSubSwiper > div > .swiper-slide-thumb-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  border-radius: 20px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 4px;
+  background-color: #4a4a4a;
+  opacity: 1;
+  animation-name: barOpacity;
+  animation-duration: 800ms;
+}
+
+@keyframes barOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

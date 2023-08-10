@@ -8,8 +8,8 @@ export default component$<ProductAttributes>((props) => {
       <Link href={`products/${props.slug}`}>
         <figure>
           <img
-            class="h-72 object-cover"
-            src={props.image?.data.attributes.formats?.small?.url}
+            class="h-72 object-cover rounded-2xl"
+            src={props.image?.data.attributes.formats?.small?.url || props.image?.data.attributes.url}
             width={320}
             height={288}
             alt="Shoes"

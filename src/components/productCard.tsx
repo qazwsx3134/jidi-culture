@@ -11,6 +11,7 @@ export default component$<ProductAttributes>((props) => {
             class="object-contain object-center w-full h-full block"
             src={
               props.image?.data.attributes.formats?.small?.url ||
+              props.image?.data.attributes.url ||
               "https://dummyimage.com/600x260"
             }
             width={320}
