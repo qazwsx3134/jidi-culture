@@ -1,6 +1,6 @@
 import { component$, useContext, useSignal } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
-import { CartIcon } from "~/components/icon/cartIcon";
+import { ShoppingIcon } from "~/components/icon/shoppingIcon";
 import { CrossIcon } from "~/components/icon/crossIcon";
 import { cartContextId } from "~/routes/layout";
 
@@ -55,19 +55,19 @@ export default component$(() => {
           </label>
         </div>
         <div class="flex-none hidden md:flex">
-          <ul class="menu menu-horizontal px-1">
+          <ul class="menu menu-horizontal px-1 items-center">
             <li>
               <Link href="/products">繪本商店</Link>
             </li>
             <li>
-              <div class="indicator p-1">
-                <span class="indicator-item badge badge-accent">
-                  {cartCtx.items.length}
-                </span>
-                <a>
-                  <CartIcon />
-                </a>
-              </div>
+              <Link href="/checkout">
+                <div class="indicator p-1">
+                  <span class="indicator-item badge badge-accent">
+                    {cartCtx.items.length}
+                  </span>
+                  <ShoppingIcon class="w-6" />
+                </div>
+              </Link>
             </li>
           </ul>
         </div>
@@ -76,9 +76,11 @@ export default component$(() => {
       <div class="drawer-side">
         <ul class="menu p-4 w-full h-full bg-bgWhite-800 text-bgWhite-500 z-40 gap-2">
           <li class="flex items-end p-4 mb-4">
-            <label for="my-drawer" class="text-2xl">
-              <CrossIcon />
-            </label>
+            <Link href="/checkout">
+              <label for="my-drawer" class="text-2xl">
+                <CrossIcon />
+              </label>
+            </Link>
           </li>
 
           <li class="text-2xl">
