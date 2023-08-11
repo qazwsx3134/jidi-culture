@@ -8,6 +8,17 @@
 
 ---
 
+## TODO
+
+1. 申請Domain 然後把前後端都上上去 連上
+2. 把order使用LinePay做好
+3. Checkout page的 email phone address
+4. Check RWD
+5. 首頁 carousel 放四個product
+6. 新增 category product page home page carousel done
+7. 後端的備份系統
+8. 手機版的Header
+
 ## Project Structure
 
 This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.

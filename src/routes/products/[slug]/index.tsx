@@ -81,10 +81,10 @@ export default component$(() => {
     const productId = product.value.id;
 
     const item = cartCtx.items.find((item) => item.id === productId);
-      if (!item) {
-        return 0;
-      }
-      return item.quantity;
+    if (!item) {
+      return 0;
+    }
+    return item.quantity;
   });
 
   const outOfStock = useComputed$(() => {
@@ -128,13 +128,13 @@ export default component$(() => {
     attributes: {
       slug,
       name,
-      tag,
       price,
       availableQuantity,
       description,
       detail,
       image,
       images,
+      categories,
     },
   } = product.value;
 
@@ -193,7 +193,7 @@ export default component$(() => {
         });
       }
 
-      inputSignal.value = '0';
+      inputSignal.value = "0";
     }
   });
 
@@ -314,8 +314,15 @@ export default component$(() => {
               </div>
 
               <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-4 lg:mt-0">
-                <h2 class="text-sm title-font text-gray-400 tracking-widest mb-2">
-                  {tag}
+                <h2 class="text-base mb-4">
+                  {categories?.data?.map((category) => (
+                    <div
+                      key={category.attributes.slug}
+                      class="badge badge-outline badge-accent badge-lg mr-2"
+                    >
+                      {category.attributes.name}
+                    </div>
+                  ))}
                 </h2>
                 <h1 class="text-gray-900 text-4xl title-font font-bold mb-3 tracking-widest">
                   {name}
@@ -385,7 +392,9 @@ export default component$(() => {
 
                     {/* Error */}
                     {outOfStock.value && "庫存不足"}
-                    {noInputNumber.value && addToCartState.value === "idle" && "請輸入數量"}
+                    {noInputNumber.value &&
+                      addToCartState.value === "idle" &&
+                      "請輸入數量"}
 
                     {/* Idle */}
                     {!outOfStock.value &&

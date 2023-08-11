@@ -1,9 +1,21 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
-import type { ProductAttributes } from "~/api/type";
+import type { ProductAttributes } from "~/api/type/product";
+
 export default component$<ProductAttributes>((props) => {
   return (
-    <div class="lg:w-[23%] md:w-[48%] p-4 w-full bg-bgWhite-500 rounded-lg hover:shadow-lg group cursor-pointer">
+    <div class="lg:w-[23%] md:w-[48%] p-4 w-full bg-bgWhite-500 rounded-lg hover:shadow-lg group cursor-pointer indicator">
+      <div class="indicator-item top-2 right-1 translate-x-0 translate-y-0 flex flex-col gap-2">
+        {props.categories?.data?.map((category) => (
+          <span
+            key={category.attributes.slug}
+            class="badge badge-lg badge-accent mr-2"
+          >
+            {category.attributes.name}
+          </span>
+        ))}
+      </div>
+
       <Link href={`/products/${props.slug}`}>
         <div class="block relative h-96 rounded overflow-hidden">
           <img
@@ -20,16 +32,13 @@ export default component$<ProductAttributes>((props) => {
         </div>
         <div class="divider m-0 rounded"></div>
         <div class="mt-4 text-center">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-            {props.tag}
-          </h3>
-          <h2 class="text-gray-900 group-hover:text-bgRed-500 title-font text-xl font-medium my-2">
+          <h2 class="text-gray-900 group-hover:text-bgRed-500 title-font text-2xl font-medium my-4">
             {props.name}
           </h2>
-          <p class="my-1 line-clamp-2 break-words text-gray-400">
+          <p class="line-clamp-2 break-words text-gray-400 text-base font-light">
             {props.description}
           </p>
-          <p class="my-4">NT${props.price}</p>
+          <p class="my-4 tracking-wider text-gray-500 text-lg">NT${props.price}</p>
         </div>
       </Link>
     </div>
