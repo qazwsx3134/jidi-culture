@@ -20,10 +20,13 @@ export default component$(() => {
     <QwikCityProvider>
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="height=device-height,
+        <meta
+          name="viewport"
+          content="height=device-height,
                       width=device-width, initial-scale=1.0,
                       minimum-scale=1.0, maximum-scale=1.0,
-                      user-scalable=no, target-densitydpi=device-dpi"/>
+                      "
+        />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
         <ServiceWorkerRegister />

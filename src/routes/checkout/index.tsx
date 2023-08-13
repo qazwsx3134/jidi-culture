@@ -5,7 +5,15 @@ import {
   useContext,
   useSignal,
 } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { Link, routeLoader$ } from "@builder.io/qwik-city";
+import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
+
+import {
+  orderSchema,
+  type OrderFormType,
+} from "~/api/validatation/order";
+
+import Checkout from "~/components/checkout";
 import { AddIcon } from "~/components/icon/addIcon";
 import { CartIcon } from "~/components/icon/cartIcon";
 import { MinusIcon } from "~/components/icon/minusIcon";
@@ -13,14 +21,50 @@ import { TrashBinIcon } from "~/components/icon/trashBinIcon";
 
 import { cartContextId } from "~/routes/layout";
 
-const PaymentMethod = {
+export const PaymentMethod = {
   creditCard: "creditCard",
   linePay: "linePay",
 } as const;
 
+export const useEnvLoader = routeLoader$(async (requestEvent) => {
+  return { domain: requestEvent.env.get("DOMAIN_URL") };
+});
+
+export const validateOrderForm = zodForm$(orderSchema);
+
+export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
+  () => ({
+    amount: 0,
+    redirectUrls: {
+      confirmUrl: "",
+      cancelUrl: "",
+    },
+    packages: [],
+    address: {
+      country: "",
+      city: "",
+      postalCode: "",
+      state: "",
+      detail: "",
+      optional: "",
+      recipient: {
+        lastName: "",
+        firstName: "",
+        email: "",
+        phoneNo: "",
+      },
+    },
+  })
+);
+
+export const useFormAction = formAction$<OrderFormType>(async (values) => {
+  console.log("submit from server");
+  console.log(values);
+}, zodForm$(orderSchema));
+
 export default component$(() => {
   const alertState = useSignal<string | null>(null);
-  const paymentMethod = useSignal<string>(PaymentMethod.linePay);
+
   const cartCtx = useContext(cartContextId);
   // taxFee and shippingFee will fetch from the server
   const taxFee = 0.05;
@@ -195,61 +239,12 @@ export default component$(() => {
                 </div>
               </div>
               <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                <h1 class="text-2xl font-medium my-2">購物明細</h1>
-                <div class="bg-bgWhite-500 rounded-lg p-6">
-                  <div class="flex flex-col justify-end gap-4 text-lg font-light text-gray-500">
-                    <p class="mb-2 text-right">商品總計價格 : ${sum}</p>
-                    <p class="mb-2 text-right">稅金 : ${totalTaxFee}</p>
-                    <p class="mb-2 text-right">運費 : ${shippingFee}</p>
-                    <p class="mb-2 text-right font-medium text-gray-700">
-                      總計 : ${totalPrice}
-                    </p>
-                  </div>
-
-                  <div class="divider"></div>
-                  <p class="mb-8 leading-relaxed text-base font-light text-gray-400">
-                    {/* 總計的算是以及警語由server設定 */}
-                    謝謝您的購買，您的支持是我們前進的動力。
-                  </p>
-                </div>
-
-                <div class="flex flex-col w-full justify-start md:items-start items-center my-8">
-                  <p class="text-2xl font-medium my-6">付款方式</p>
-                  <div class="flex lg:flex-row md:flex-col">
-                    <button
-                      class={[
-                        "bg-gray-100",
-                        "inline-flex",
-                        "py-3",
-                        "px-5",
-                        "rounded-lg",
-                        "items-center",
-                        "hover:bg-gray-200",
-                        "focus:outline-none",
-                        paymentMethod.value === "linePay" &&
-                          "border-2 border-gray-900",
-                      ]}
-                    >
-                      <img
-                        src="/images/line-pay.png"
-                        alt=""
-                        width={98}
-                        height={98}
-                        class="w-12"
-                      />
-                      <span class="ml-4 flex items-start flex-col leading-none">
-                        <span class="text-xl font-medium">Line Pay</span>
-                      </span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="flex flex-col w-full max-w-[240px] justify-start  items-start">
-                  <button class="btn btn-block rounded-full bg-bgGray-900 hover:bg-bgWhite-700">
-                    <p class="text-bgGray-100 text-base font-light">結帳去</p>
-                    <CartIcon class="text-bgGray-100 text-xl"/>
-                  </button>
-                </div>
+                <Checkout
+                  sum={sum.value}
+                  totalTaxFee={totalTaxFee.value}
+                  shippingFee={shippingFee}
+                  totalPrice={totalPrice.value}
+                />
               </div>
             </div>
           )}
