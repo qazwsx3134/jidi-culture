@@ -4,6 +4,7 @@ export type OrderFormType = z.infer<typeof orderSchema>;
 
 export const orderSchema = z.object({
   amount: z.number(),
+  feeAmount: z.number().optional(),
   redirectUrls: z.object({
     confirmUrl: z.string(),
     cancelUrl: z.string(),
@@ -12,7 +13,7 @@ export const orderSchema = z.object({
     z.object({
       id: z.string(),
       amount: z.number(),
-      useFee: z.number().optional(), // 手續費
+      userFee: z.number().optional(), // 手續費
       products: z.array(
         z.object({
           id: z.string(),

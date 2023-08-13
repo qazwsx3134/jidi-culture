@@ -48,6 +48,7 @@ export default component$<Props>((props) => {
 
   useTask$(async () => {
     setValue(orderForm, "amount", props.totalPrice);
+    setValue(orderForm, "feeAmount", props.shippingFee);
     setValue(
       orderForm,
       "redirectUrls.cancelUrl",
@@ -60,7 +61,7 @@ export default component$<Props>((props) => {
     );
     setValue(orderForm, "packages.0.id", uuidv4());
     setValue(orderForm, "packages.0.amount", props.totalPrice);
-    setValue(orderForm, "packages.0.useFee", props.totalTaxFee);
+    setValue(orderForm, "packages.0.userFee", props.totalTaxFee);
 
     cartCtx.items.forEach((product, index) => {
       setValue(orderForm, `packages.0.products.${index}.id`, `${product.id}`);
@@ -117,6 +118,11 @@ export default component$<Props>((props) => {
                   {() => <input id="amount" type="hidden" />}
                 </Field>
 
+                {/* feeAmount */}
+                <Field name="feeAmount" type="number">
+                  {() => <input id="feeAmount" type="hidden" />}
+                </Field>
+
                 {/* redirectUrls */}
                 <Field name="redirectUrls.cancelUrl" type="string">
                   {() => <input id="redirectUrls.cancelUrl" type="hidden" />}
@@ -132,8 +138,8 @@ export default component$<Props>((props) => {
                 <Field name="packages.0.amount" type="number">
                   {() => <input id="packages.0.amount" type="hidden" />}
                 </Field>
-                <Field name="packages.0.useFee" type="number">
-                  {() => <input id="packages.0.useFee" type="hidden" />}
+                <Field name="packages.0.userFee" type="number">
+                  {() => <input id="packages.0.userFee" type="hidden" />}
                 </Field>
                 {cartCtx.items.map((_, index) => (
                   <>

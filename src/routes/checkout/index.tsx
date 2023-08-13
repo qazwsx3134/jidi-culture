@@ -7,11 +7,9 @@ import {
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
 import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
+import { createLinePayOrder } from "~/api/linePay";
 
-import {
-  orderSchema,
-  type OrderFormType,
-} from "~/api/validatation/order";
+import { orderSchema, type OrderFormType } from "~/api/validatation/order";
 
 import Checkout from "~/components/checkout";
 import { AddIcon } from "~/components/icon/addIcon";
@@ -35,6 +33,7 @@ export const validateOrderForm = zodForm$(orderSchema);
 export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
   () => ({
     amount: 0,
+    feeAmount: 0,
     redirectUrls: {
       confirmUrl: "",
       cancelUrl: "",
@@ -57,17 +56,21 @@ export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
   })
 );
 
-export const useFormAction = formAction$<OrderFormType>(async (values) => {
-  console.log("submit from server");
-  console.log(values);
-}, zodForm$(orderSchema));
+export const useFormAction = formAction$<OrderFormType>(
+  async (values, requestEvent) => {
+
+    const res = await createLinePayOrder(values);
+    console.log(res);
+  },
+  zodForm$(orderSchema)
+);
 
 export default component$(() => {
   const alertState = useSignal<string | null>(null);
 
   const cartCtx = useContext(cartContextId);
   // taxFee and shippingFee will fetch from the server
-  const taxFee = 0.05;
+  const taxFee = 0;
   const shippingFee = 0;
 
   // Calculate the total price of the items in the cart
@@ -81,11 +84,11 @@ export default component$(() => {
   });
 
   const totalTaxFee = useComputed$(() => {
-    return sum.value * taxFee;
+    return Number((sum.value * taxFee).toFixed(0));
   });
 
   const totalPrice = useComputed$(() => {
-    return sum.value + totalTaxFee.value + shippingFee;
+    return Number((sum.value + totalTaxFee.value + shippingFee).toFixed(0));
   });
 
   // Increase the quantity of the item in the cart
