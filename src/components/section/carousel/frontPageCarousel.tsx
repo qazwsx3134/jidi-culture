@@ -33,6 +33,11 @@ export default component$(() => {
       // breakpoints
       breakpoints: {
         // mobile
+        300:{
+          slidesPerView: 1.2,
+          spaceBetween: 10,
+          centeredSlides: true,
+        },
         768: {
           slidesPerView: 2.2,
           spaceBetween: 40,
