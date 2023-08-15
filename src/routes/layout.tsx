@@ -22,12 +22,12 @@ import { ProductsAPI } from "~/api/type";
 export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
-  const axiosConfig = {
-    headers: {
-      Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
-    },
-    withCredentials: true,
-  };
+  // const axiosConfig = {
+  //   headers: {
+  //     Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
+  //   },
+  //   withCredentials: true,
+  // };
   // const res = await getProducts(
   //   requestEvent.env.get("API_URL") || "",
   //   axiosConfig
@@ -41,11 +41,17 @@ export const useProductLoader = routeLoader$(async (requestEvent) => {
   // return res.data;
 
   try {
-    const res = await axios.get<ProductsAPI>(
-      `${requestEvent.env.get("API_URL")}/api/products`,
-      axiosConfig
-    );
-    return res.data.data;
+    const res = await fetch(`${requestEvent.env.get("API_URL")}/api/products`, {
+      method: "GET",
+      headers: {
+        Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => data as ProductsAPI);
+
+    return res.data;
   } catch (error: any) {
     return {
       error: error,
