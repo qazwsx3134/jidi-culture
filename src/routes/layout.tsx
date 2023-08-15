@@ -12,7 +12,7 @@ import { routeLoader$ } from "@builder.io/qwik-city";
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
 
-import { axiosInstance, getProducts } from "~/api";
+import { getProducts } from "~/api";
 
 import styles from "./styles.css?inline";
 import type { Cart } from "~/types/cart";
@@ -29,7 +29,7 @@ export const useProductLoader = routeLoader$(async (requestEvent) => {
   return res.data;
 });
 
-export const onGet: RequestHandler = async ({ cacheControl, env }) => {
+export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
   // https://qwik.builder.io/docs/caching/
   cacheControl({
