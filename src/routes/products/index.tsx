@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+
 import ProductCard from "~/components/productCard";
 import StylingTitle from "~/components/stylingTitle";
 
@@ -14,6 +15,7 @@ export default component$(() => {
         <div class="bg-bgWhite-500">
           <div class="container px-5 py-12 mx-auto">
             <StylingTitle title="繪本商店" />
+            {products.value.errorMessage}
           </div>
         </div>
       </section>

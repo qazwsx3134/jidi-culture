@@ -3,13 +3,7 @@ import axios from "axios";
 import type { ApiError, ProductsAPI, ProductAPI } from "./type";
 
 export const axiosInstance = axios.create({
-  baseURL: process.env["API_URL"],
   withCredentials: true,
-  headers: {
-    common: {
-      Authorization: `Bearer ${process.env["PRODUCTION_TOKEN"]}`,
-    },
-  },
 });
 
 // Get
