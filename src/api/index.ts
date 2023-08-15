@@ -1,16 +1,13 @@
 import axios from "axios";
-import env from "dotenv";
 
 import type { ApiError, ProductsAPI, ProductAPI } from "./type";
 
-env.config();
-
 export const axiosInstance = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env["API_URL"],
   withCredentials: true,
   headers: {
     common: {
-      Authorization: `Bearer ${process.env.PRODUCTION_TOKEN}`,
+      Authorization: `Bearer ${process.env["PRODUCTION_TOKEN"]}`,
     },
   },
 });
