@@ -46,11 +46,9 @@ export const useProductLoader = routeLoader$(async (requestEvent) => {
       headers: {
         Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
       },
-      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => data as ProductsAPI);
-
 
     console.log(res);
 
