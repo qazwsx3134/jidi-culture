@@ -1,8 +1,18 @@
 import axios from "axios";
+import env from "dotenv";
+
 import type { ApiError, ProductsAPI, ProductAPI } from "./type";
 
+env.config();
+
 export const axiosInstance = axios.create({
+  baseURL: process.env.API_URL,
   withCredentials: true,
+  headers: {
+    common: {
+      Authorization: `Bearer ${process.env.PRODUCTION_TOKEN}`,
+    },
+  },
 });
 
 // Get
@@ -10,7 +20,9 @@ export const axiosInstance = axios.create({
 // Get all products
 export const getProducts = async (): Promise<ProductsAPI | ApiError> => {
   try {
-    const { data } = await axiosInstance.get<ProductsAPI>("/api/products?populate=*");
+    const { data } = await axiosInstance.get<ProductsAPI>(
+      "/api/products?populate=*"
+    );
     return data;
   } catch (error: any) {
     return {
@@ -25,9 +37,13 @@ export const getProducts = async (): Promise<ProductsAPI | ApiError> => {
 
 // Get a product by slug (id)
 
-export const getProductBySlug = async (slug: string): Promise<ProductAPI | ApiError> => {
+export const getProductBySlug = async (
+  slug: string
+): Promise<ProductAPI | ApiError> => {
   try {
-    const { data } = await axiosInstance.get<ProductAPI>(`/api/products/${slug}`);
+    const { data } = await axiosInstance.get<ProductAPI>(
+      `/api/products/${slug}`
+    );
     return data;
   } catch (error: any) {
     return {

@@ -63,8 +63,6 @@ export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
 export const useFormAction = formAction$<OrderFormType>(
   async (values) => {
     const res = await createLinePayOrder(values);
-    console.log(res);
-
     if (res?.paymentUrl) {
       // requestEvent.headers.set("method", "GET");
       // requestEvent.headers.set("Location", res.paymentUrl.web);
