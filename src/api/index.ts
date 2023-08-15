@@ -1,4 +1,4 @@
-import { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 import type { ApiError, ProductsAPI, ProductAPI } from "./type";
 
@@ -6,10 +6,13 @@ import type { ApiError, ProductsAPI, ProductAPI } from "./type";
 
 // Get all products
 export const getProducts = async (
-  axios: AxiosInstance
+  config: AxiosRequestConfig
 ): Promise<ProductsAPI | ApiError> => {
   try {
-    const { data } = await axios.get<ProductsAPI>("/api/products?populate=*");
+    const { data } = await axios.get<ProductsAPI>(
+      "/api/products?populate=*",
+      config
+    );
     return data;
   } catch (error: any) {
     return {

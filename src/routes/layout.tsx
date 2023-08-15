@@ -21,14 +21,14 @@ import type { Cart } from "~/types/cart";
 export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
-  const axiosInstance = axios.create({
+  const axiosConfig = {
     baseURL: requestEvent.env.get("API_URL"),
     headers: {
       Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
     },
     withCredentials: true,
-  });
-  const res = await getProducts(axiosInstance);
+  };
+  const res = await getProducts(axiosConfig);
   if ("error" in res) {
     return requestEvent.fail(404, {
       errorMessage: res.error.message,
