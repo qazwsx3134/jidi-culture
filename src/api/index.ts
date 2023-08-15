@@ -11,9 +11,7 @@ export const axiosInstance = axios.create({
 // Get all products
 export const getProducts = async (): Promise<ProductsAPI | ApiError> => {
   try {
-    const { data } = await axiosInstance.get<ProductsAPI>(
-      "/api/products?populate=*"
-    );
+    const { data } = await axios.get<ProductsAPI>("/api/products?populate=*");
     return data;
   } catch (error: any) {
     return {
@@ -32,9 +30,7 @@ export const getProductBySlug = async (
   slug: string
 ): Promise<ProductAPI | ApiError> => {
   try {
-    const { data } = await axiosInstance.get<ProductAPI>(
-      `/api/products/${slug}`
-    );
+    const { data } = await axios.get<ProductAPI>(`/api/products/${slug}`);
     return data;
   } catch (error: any) {
     return {

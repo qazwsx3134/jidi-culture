@@ -1,9 +1,9 @@
-import { axiosInstance } from ".";
+import axios from "axios";
 import type { LinePayConfirmPayload, LinePayPayload } from "./type/linePay";
 
 // Post to backend to get line pay url
 export const createLinePayOrder = async (data: LinePayPayload) => {
-  const res = await axiosInstance.post("/api/orders/linepay/checkout", data);
+  const res = await axios.post("/api/orders/linepay/checkout", data);
   return res.data;
 };
 
@@ -16,7 +16,6 @@ export const confirmLinePayOrder = async (
   transactionId: string;
   status: string;
 }> => {
-  const res = await axiosInstance.post("/api/orders/linepay/confirm", data);
-  console.log('api data',res.data);
+  const res = await axios.post("/api/orders/linepay/confirm", data);
   return res.data;
 };

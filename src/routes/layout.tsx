@@ -8,11 +8,12 @@ import {
 } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
+import axios from "axios";
 
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
 
-import { axiosInstance, getProducts } from "~/api";
+import { getProducts } from "~/api";
 
 import styles from "./styles.css?inline";
 import type { Cart } from "~/types/cart";
@@ -38,8 +39,8 @@ export const onGet: RequestHandler = async ({ cacheControl, env }) => {
     // Max once every 5 seconds, revalidate on the server to get a fresh version of this page
     maxAge: 5,
   });
-  axiosInstance.defaults.baseURL = env.get("API_URL");
-  axiosInstance.defaults.headers.common["Authorization"] = `bearer ${env.get(
+  axios.defaults.baseURL = env.get("API_URL");
+  axios.defaults.headers.common["Authorization"] = `bearer ${env.get(
     "PRODUCTION_TOKEN"
   )}`;
 };
