@@ -21,8 +21,14 @@ import type { Cart } from "~/types/cart";
 export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
-  const axios = requestEvent.sharedMap.get("axios") as AxiosInstance;
-  const res = await getProducts(axios);
+  const axiosInstance = axios.create({
+    baseURL: requestEvent.env.get("API_URL"),
+    headers: {
+      Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
+    },
+    withCredentials: true,
+  });
+  const res = await getProducts(axiosInstance);
   if ("error" in res) {
     return requestEvent.fail(404, {
       errorMessage: res.error.message,
