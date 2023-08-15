@@ -47,8 +47,6 @@ export default component$<Props>((props) => {
   });
 
   useTask$(async () => {
-    setValue(orderForm, "amount", props.totalPrice);
-    setValue(orderForm, "feeAmount", props.shippingFee);
     setValue(
       orderForm,
       "redirectUrls.cancelUrl",
@@ -60,9 +58,24 @@ export default component$<Props>((props) => {
       `${env.value.domain}/checkout/confirm`
     );
     setValue(orderForm, "packages.0.id", uuidv4());
+  });
+
+  // track cart items change
+  useTask$(async ({ track }) => {
+    track(() => [props.totalPrice, props.shippingFee, props.totalTaxFee]);
+
+    // track cart items change
+    cartCtx.items.forEach((product) => {
+      track(() => product);
+    });
+
+    setValue(orderForm, "amount", props.totalPrice);
+    setValue(orderForm, "feeAmount", props.shippingFee);
+
     setValue(orderForm, "packages.0.amount", props.totalPrice);
     setValue(orderForm, "packages.0.userFee", props.totalTaxFee);
 
+    // update order form
     cartCtx.items.forEach((product, index) => {
       setValue(orderForm, `packages.0.products.${index}.id`, `${product.id}`);
       setValue(orderForm, `packages.0.products.${index}.name`, product.name);
@@ -80,11 +93,27 @@ export default component$<Props>((props) => {
     });
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSubmit = $<SubmitHandler<OrderFormType>>((values, event) => {
-    // Runs on client
-    // show user success message or error message
+  useTask$(async ({ track }) => {
+    track(() => orderForm.response.data);
+
+    if (orderForm.response.data) {
+      console.log(orderForm.response.data);
+      const redirectUrl = orderForm.response.data as string;
+      console.log(redirectUrl);
+      window.location.href = redirectUrl;
+    }
   });
+
+  const handleSubmit = $<SubmitHandler<OrderFormType>>(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async (values, event) => {
+      // Runs on client
+      // show user success message or error message
+      // const res = await createLinePayOrder(values);
+      // console.log(res);
+      // redirect to line pay
+    }
+  );
 
   const checkFormErrorOnSubmit = $(() => {
     const errors = getErrors(orderForm);

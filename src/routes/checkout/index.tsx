@@ -6,7 +6,11 @@ import {
   useSignal,
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
-import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
+import {
+  formAction$,
+  type InitialValues,
+  zodForm$,
+} from "@modular-forms/qwik";
 import { createLinePayOrder } from "~/api/linePay";
 
 import { orderSchema, type OrderFormType } from "~/api/validatation/order";
@@ -57,18 +61,36 @@ export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
 );
 
 export const useFormAction = formAction$<OrderFormType>(
-  async (values, requestEvent) => {
-
+  async (values) => {
     const res = await createLinePayOrder(values);
     console.log(res);
+
+    if (res?.paymentUrl) {
+      // requestEvent.headers.set("method", "GET");
+      // requestEvent.headers.set("Location", res.paymentUrl.web);
+      // requestEvent.send(307, res.paymentUrl.web);
+      // window.location.href = res.paymentUrl.web;
+      return {
+        status: "success",
+        message: "Order created successfully.",
+        data: res.paymentUrl.web,
+      };
+    }
+
+    return {
+      status: "error",
+      message: "An error occurred while creating the order.",
+      data: undefined,
+    };
   },
   zodForm$(orderSchema)
 );
 
 export default component$(() => {
+  const cartCtx = useContext(cartContextId);
+
   const alertState = useSignal<string | null>(null);
 
-  const cartCtx = useContext(cartContextId);
   // taxFee and shippingFee will fetch from the server
   const taxFee = 0;
   const shippingFee = 0;
