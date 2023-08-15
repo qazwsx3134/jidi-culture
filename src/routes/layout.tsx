@@ -23,12 +23,12 @@ export const cartContextId = createContextId<Cart>("shop.cart");
 export const useProductLoader = routeLoader$(async (requestEvent) => {
   const axiosConfig = {
     headers: {
-      Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
+      Authorization: `bearer ${requestEvent.platform.env["PRODUCTION_TOKEN"]}`,
     },
     withCredentials: true,
   };
   const res = await getProducts(
-    requestEvent.env.get("API_URL") || "",
+    requestEvent.platform.env["API_URL"] || "",
     axiosConfig
   );
   console.log(res);

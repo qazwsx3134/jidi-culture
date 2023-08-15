@@ -28,9 +28,9 @@ export const PaymentMethod = {
 
 export const useEnvLoader = routeLoader$(async (requestEvent) => {
   return {
-    domain: requestEvent.env.get("DOMAIN_URL"),
-    api: requestEvent.env.get("API_URL"),
-    token: requestEvent.env.get("PRODUCTION_TOKEN"),
+    domain: requestEvent.platform.env["DOMAIN_URL"],
+    api: requestEvent.platform.env["API_URL"],
+    token: requestEvent.platform.env["PRODUCTION_TOKEN"],
   };
 });
 
