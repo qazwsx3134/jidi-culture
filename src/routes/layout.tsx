@@ -51,6 +51,8 @@ export const useProductLoader = routeLoader$(async (requestEvent) => {
       .then((res) => res.json())
       .then((data) => data as ProductsAPI);
 
+    console.log(res);
+
     return res.data;
   } catch (error: any) {
     return {
