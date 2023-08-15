@@ -28,9 +28,9 @@ export const PaymentMethod = {
 
 export const useEnvLoader = routeLoader$(async (requestEvent) => {
   return {
-    domain: requestEvent.platform.env["DOMAIN_URL"],
-    api: requestEvent.platform.env["API_URL"],
-    token: requestEvent.platform.env["PRODUCTION_TOKEN"],
+    domain: requestEvent.env.get("DOMAIN_URL"),
+    api: requestEvent.env.get("API_URL"),
+    token: requestEvent.env.get("PRODUCTION_TOKEN"),
   };
 });
 
@@ -157,14 +157,14 @@ export default component$(() => {
       cartCtx.items = cartCtx.items.filter((item) => item.id !== id);
     });
 
-  useVisibleTask$(async () => {
-    const res = await axios.get(`${env.value.api}/api/products`, {
+  useVisibleTask$(async() => {
+    const res = await axios.get(`${env.value.api}/api/products`,{
       headers: {
         Authorization: `Bearer ${env.value.token}`,
       },
       withCredentials: true,
-    });
-    console.log(res);
+    })
+    console.log(res)
   });
 
   return (

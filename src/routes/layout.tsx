@@ -13,31 +13,46 @@ import axios from "axios";
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
 
-import { getProducts } from "~/api";
+// import { getProducts } from "~/api";
 
 import styles from "./styles.css?inline";
 import type { Cart } from "~/types/cart";
+import { ProductsAPI } from "~/api/type";
 
 export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
   const axiosConfig = {
     headers: {
-      Authorization: `bearer ${requestEvent.platform.env["PRODUCTION_TOKEN"]}`,
+      Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
     },
     withCredentials: true,
   };
-  const res = await getProducts(
-    requestEvent.platform.env["API_URL"] || "",
-    axiosConfig
-  );
-  console.log(res);
-  if ("error" in res) {
-    return requestEvent.fail(404, {
-      errorMessage: res.error.message,
-    });
+  // const res = await getProducts(
+  //   requestEvent.env.get("API_URL") || "",
+  //   axiosConfig
+  // );
+  // console.log(res);
+  // if ("error" in res) {
+  //   return requestEvent.fail(404, {
+  //     errorMessage: res.error.message,
+  //   });
+  // }
+  // return res.data;
+
+  try {
+    const res = await axios.get<ProductsAPI>(
+      `${requestEvent.env.get("API_URL")}/api/products`,
+      axiosConfig
+    );
+    return res.data.data;
+  } catch (error: any) {
+    return {
+      status: error?.response?.data?.error?.status,
+      name: error?.response?.data?.error?.name,
+      errorMessage: error?.response?.data?.error?.message,
+    };
   }
-  return res.data;
 });
 
 export const onRequest: RequestHandler = async ({ next, sharedMap, env }) => {
