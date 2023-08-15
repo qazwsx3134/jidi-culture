@@ -48,6 +48,7 @@ export const useProductLoader = routeLoader$(async (requestEvent) => {
     return res.data.data;
   } catch (error: any) {
     return {
+      error: error,
       status: error?.response?.data?.error?.status,
       name: error?.response?.data?.error?.name,
       errorMessage: error?.response?.data?.error?.message,
