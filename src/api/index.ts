@@ -1,15 +1,13 @@
-import axios from "axios";
+import { AxiosInstance } from "axios";
 
 import type { ApiError, ProductsAPI, ProductAPI } from "./type";
-
-export const axiosInstance = axios.create({
-  withCredentials: true,
-});
 
 // Get
 
 // Get all products
-export const getProducts = async (): Promise<ProductsAPI | ApiError> => {
+export const getProducts = async (
+  axios: AxiosInstance
+): Promise<ProductsAPI | ApiError> => {
   try {
     const { data } = await axios.get<ProductsAPI>("/api/products?populate=*");
     return data;
@@ -27,6 +25,7 @@ export const getProducts = async (): Promise<ProductsAPI | ApiError> => {
 // Get a product by slug (id)
 
 export const getProductBySlug = async (
+  axios: AxiosInstance,
   slug: string
 ): Promise<ProductAPI | ApiError> => {
   try {

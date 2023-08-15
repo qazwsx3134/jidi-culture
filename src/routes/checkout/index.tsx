@@ -6,11 +6,8 @@ import {
   useSignal,
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
-import {
-  formAction$,
-  type InitialValues,
-  zodForm$,
-} from "@modular-forms/qwik";
+import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
+import { AxiosInstance } from "axios";
 import { createLinePayOrder } from "~/api/linePay";
 
 import { orderSchema, type OrderFormType } from "~/api/validatation/order";
@@ -61,8 +58,9 @@ export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
 );
 
 export const useFormAction = formAction$<OrderFormType>(
-  async (values) => {
-    const res = await createLinePayOrder(values);
+  async (values, requestEvent) => {
+    const axios = requestEvent.sharedMap.get("axios") as AxiosInstance;
+    const res = await createLinePayOrder(axios, values);
     if (res?.paymentUrl) {
       // requestEvent.headers.set("method", "GET");
       // requestEvent.headers.set("Location", res.paymentUrl.web);

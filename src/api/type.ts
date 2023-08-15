@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from "axios";
 import { Product } from "./type/product";
 
 export interface ApiError {
@@ -25,4 +26,10 @@ export interface ProductsAPI {
 export interface ProductAPI {
   data: Product | null;
   meta: {};
+}
+
+export interface AxiosConfig extends AxiosRequestConfig {
+  options?: {
+    [key: string]: any;
+  }
 }

@@ -8,7 +8,7 @@ import {
 } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
@@ -21,7 +21,8 @@ import type { Cart } from "~/types/cart";
 export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
-  const res = await getProducts();
+  const axios = requestEvent.sharedMap.get("axios") as AxiosInstance;
+  const res = await getProducts(axios);
   if ("error" in res) {
     return requestEvent.fail(404, {
       errorMessage: res.error.message,
@@ -30,7 +31,19 @@ export const useProductLoader = routeLoader$(async (requestEvent) => {
   return res.data;
 });
 
-export const onGet: RequestHandler = async ({ cacheControl, env }) => {
+export const onRequest: RequestHandler = async ({ next, sharedMap, env }) => {
+  const axiosInstance = axios.create({
+    baseURL: env.get("API_URL"),
+    headers: {
+      Authorization: `bearer ${env.get("PRODUCTION_TOKEN")}`,
+    },
+    withCredentials: true,
+  });
+  sharedMap.set("axios", axiosInstance);
+  await next();
+};
+
+export const onGet: RequestHandler = async ({ cacheControl }) => {
   // Control caching for this request for best performance and to reduce hosting costs:
   // https://qwik.builder.io/docs/caching/
   cacheControl({
@@ -39,10 +52,6 @@ export const onGet: RequestHandler = async ({ cacheControl, env }) => {
     // Max once every 5 seconds, revalidate on the server to get a fresh version of this page
     maxAge: 5,
   });
-  axios.defaults.baseURL = env.get("API_URL");
-  axios.defaults.headers.common["Authorization"] = `bearer ${env.get(
-    "PRODUCTION_TOKEN"
-  )}`;
 };
 
 export default component$(() => {

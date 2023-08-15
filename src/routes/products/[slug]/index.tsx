@@ -18,17 +18,18 @@ import { cartContextId } from "~/routes/layout";
 
 import Swiper from "swiper";
 import { Pagination, Thumbs } from "swiper/modules";
-
+import { AxiosInstance } from "axios";
 // import Swiper and modules styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "~/components/carousel/productCarousel.css";
 
 export const useProductLoader = routeLoader$(
-  async ({ params, status, fail }) => {
+  async ({ params, status, fail, sharedMap }) => {
+    const axios = sharedMap.get("axios") as AxiosInstance;
     // Example database call using the id param
     // The database could return null if the product is not found
-    const res = await getProductBySlug(params.slug);
+    const res = await getProductBySlug(axios, params.slug);
 
     if ("error" in res) {
       return fail(res.error.status, {

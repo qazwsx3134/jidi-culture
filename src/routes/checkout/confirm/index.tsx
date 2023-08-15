@@ -1,8 +1,11 @@
 import { component$ } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
+import { AxiosInstance } from "axios";
 import { confirmLinePayOrder } from "~/api/linePay";
 
-export const useConfirmLoader = routeLoader$(async ({ query }) => {
+export const useConfirmLoader = routeLoader$(async ({ query, sharedMap }) => {
+  const axios = sharedMap.get("axios") as AxiosInstance;
+
   const transactionId = query.get("transactionId");
   const orderId = query.get("orderId");
 
@@ -10,7 +13,7 @@ export const useConfirmLoader = routeLoader$(async ({ query }) => {
     return { error: "transactionId or orderId is missing" };
   }
 
-  const res = await confirmLinePayOrder({
+  const res = await confirmLinePayOrder(axios, {
     transactionId,
     orderId,
   });
