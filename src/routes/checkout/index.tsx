@@ -8,7 +8,7 @@ import {
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
 import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
-import { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
 import { createLinePayOrder } from "~/api/linePay";
 
 import { orderSchema, type OrderFormType } from "~/api/validatation/order";
@@ -157,8 +157,14 @@ export default component$(() => {
       cartCtx.items = cartCtx.items.filter((item) => item.id !== id);
     });
 
-  useVisibleTask$(() => {
-    console.log("env", env.value);
+  useVisibleTask$(async () => {
+    const res = await axios.get(`${env.value.api}/api/products`, {
+      headers: {
+        Authorization: `Bearer ${env.value.token}`,
+      },
+      withCredentials: true,
+    });
+    console.log(res);
   });
 
   return (

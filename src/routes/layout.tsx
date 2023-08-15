@@ -22,13 +22,16 @@ export const cartContextId = createContextId<Cart>("shop.cart");
 
 export const useProductLoader = routeLoader$(async (requestEvent) => {
   const axiosConfig = {
-    baseURL: requestEvent.env.get("API_URL"),
     headers: {
       Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
     },
     withCredentials: true,
   };
-  const res = await getProducts(axiosConfig);
+  const res = await getProducts(
+    requestEvent.env.get("API_URL") || "",
+    axiosConfig
+  );
+  console.log(res);
   if ("error" in res) {
     return requestEvent.fail(404, {
       errorMessage: res.error.message,
