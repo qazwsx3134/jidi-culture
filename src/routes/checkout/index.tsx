@@ -4,6 +4,7 @@ import {
   useComputed$,
   useContext,
   useSignal,
+  useVisibleTask$,
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
 import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
@@ -26,7 +27,11 @@ export const PaymentMethod = {
 } as const;
 
 export const useEnvLoader = routeLoader$(async (requestEvent) => {
-  return { domain: requestEvent.env.get("DOMAIN_URL") };
+  return {
+    domain: requestEvent.env.get("DOMAIN_URL"),
+    api: requestEvent.env.get("API_URL"),
+    token: requestEvent.env.get("PRODUCTION_TOKEN"),
+  };
 });
 
 export const validateOrderForm = zodForm$(orderSchema);
@@ -84,6 +89,8 @@ export const useFormAction = formAction$<OrderFormType>(
 
 export default component$(() => {
   const cartCtx = useContext(cartContextId);
+
+  const env = useEnvLoader();
 
   const alertState = useSignal<string | null>(null);
 
@@ -149,6 +156,10 @@ export default component$(() => {
     $(() => {
       cartCtx.items = cartCtx.items.filter((item) => item.id !== id);
     });
+
+  useVisibleTask$(() => {
+    console.log("env", env.value);
+  });
 
   return (
     <section>
