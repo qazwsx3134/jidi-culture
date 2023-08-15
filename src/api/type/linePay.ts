@@ -32,3 +32,8 @@ export interface LinePayPayload {
     };
   };
 }
+
+export interface LinePayConfirmPayload {
+  transactionId: string;
+  orderId: string;
+}
