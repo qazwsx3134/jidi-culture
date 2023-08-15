@@ -38,7 +38,10 @@ export const onGet: RequestHandler = async ({ cacheControl, env }) => {
     // Max once every 5 seconds, revalidate on the server to get a fresh version of this page
     maxAge: 5,
   });
-  axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${env.get('BACKEND_TOKEN')}`;
+  axiosInstance.defaults.baseURL = env.get("API_URL");
+  axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${env.get(
+    "BACKEND_TOKEN"
+  )}`;
 };
 
 export default component$(() => {

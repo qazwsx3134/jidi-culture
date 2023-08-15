@@ -203,7 +203,6 @@ export default component$(() => {
       spaceBetween: 20,
       slidesPerView: 4,
       freeMode: true,
-      watchSlidesVisibility: true,
       watchSlidesProgress: true,
     });
 

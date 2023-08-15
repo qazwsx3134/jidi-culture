@@ -2,7 +2,6 @@ import axios from "axios";
 import type { ApiError, ProductsAPI, ProductAPI } from "./type";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:1337",
   withCredentials: true,
 });
 
