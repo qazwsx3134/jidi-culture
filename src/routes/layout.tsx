@@ -8,7 +8,7 @@ import {
 } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { routeLoader$ } from "@builder.io/qwik-city";
-import axios, { AxiosInstance } from "axios";
+import axios from "axios";
 
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
