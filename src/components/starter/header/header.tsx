@@ -76,11 +76,9 @@ export default component$(() => {
       <div class="drawer-side">
         <ul class="menu p-4 w-full h-full bg-bgWhite-800 text-bgWhite-500 z-40 gap-2">
           <li class="flex items-end p-4 mb-4">
-            <Link href="/checkout">
-              <label for="my-drawer" class="text-2xl">
-                <CrossIcon />
-              </label>
-            </Link>
+            <label for="my-drawer" class="text-2xl">
+              <CrossIcon />
+            </label>
           </li>
 
           <li class="text-2xl">

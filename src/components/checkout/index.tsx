@@ -97,9 +97,7 @@ export default component$<Props>((props) => {
     track(() => orderForm.response.data);
 
     if (orderForm.response.data) {
-      console.log(orderForm.response.data);
       const redirectUrl = orderForm.response.data as string;
-      console.log(redirectUrl);
       window.location.href = redirectUrl;
     }
   });

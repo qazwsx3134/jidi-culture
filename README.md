@@ -11,13 +11,35 @@
 ## TODO
 
 1. 申請Domain 然後把前後端都上上去 連上
-2. 把order使用LinePay做好
-3. Checkout page的 email phone address
+2. footer api
+3. SEO
 4. Check RWD
 5. 首頁 carousel 放四個product
-6. 新增 category product page home page carousel done
+6. Project page API
 7. 後端的備份系統
-8. 手機版的Header
+8. 手機版的Header + 手機checkout 按鈕
+9. 首頁的parallax
+
+## Done
+
+1. 首頁 Hero Image PC, Mobile, Tablet
+2. 繪本展示頁面 PC, Mobile, Tablet
+3. 繪本商店carousel PC, Mobile, Tablet => 連到product page
+4. project page
+5. 團隊介紹頁面 PC, Mobile, Tablet
+6. Loading animation
+7. Product page, product detail page PC, Mobile, Tablet
+8. checkout page PC, Mobile, Tablet
+9. checkout confirm page PC, Mobile, Tablet
+10. product page dynamic html renderer
+
+API
+
+1. products api
+2. product api
+3. checkout linepay api
+4. checkout confirm api
+5. sending email api
 
 ## Project Structure
 
