@@ -4,7 +4,7 @@ import type { ProductAttributes } from "~/api/type/product";
 
 export default component$<ProductAttributes>((props) => {
   return (
-    <div class="lg:w-[23%] md:w-[48%] p-4 w-full bg-bgWhite-500 rounded-lg hover:shadow-lg group cursor-pointer indicator">
+    <div class="lg:w-[23%] md:w-[48%] sm:w-[70%] w-[90%] p-2 bg-bgWhite-500 rounded-lg hover:shadow-lg group cursor-pointer indicator">
       <div class="indicator-item top-2 right-1 translate-x-0 translate-y-0 flex flex-col gap-2">
         {props.categories?.data?.map((category) => (
           <span
@@ -16,8 +16,8 @@ export default component$<ProductAttributes>((props) => {
         ))}
       </div>
 
-      <Link href={`/products/${props.slug}`}>
-        <div class="block relative h-96 rounded overflow-hidden">
+      <Link href={`/products/${props.slug}`} class="w-full flex-grow">
+        <div class="block relative h-96 rounded overflow-hidden ">
           <img
             alt="ecommerce"
             class="object-contain object-center w-full h-full block"

@@ -59,7 +59,7 @@ export default component$(() => {
           </div>
         </div>
         <div class="divider"></div>
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap gap-4 md:justify-start justify-center">
           {products.value.map((product) => (
             <ProductCard {...product.attributes} key={product.id} />
           ))}
