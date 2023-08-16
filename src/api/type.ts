@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from "axios";
 import { Product } from "./type/product";
 
 export interface ApiError {
@@ -28,8 +27,17 @@ export interface ProductAPI {
   meta: {};
 }
 
-export interface AxiosConfig extends AxiosRequestConfig {
-  options?: {
-    [key: string]: any;
-  }
+export interface LinePayCreateOrderCallback {
+  paymentUrl: {
+    web: string;
+    app: string;
+  };
+}
+
+export interface LinePayConfirmOrderAPI {
+  email: string;
+  buyerName: string;
+  orderId: string;
+  transactionId: string;
+  status: string;
 }

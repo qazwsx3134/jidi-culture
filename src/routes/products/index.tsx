@@ -1,4 +1,4 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 import ProductCard from "~/components/productCard";
@@ -8,10 +8,6 @@ import { useProductLoader } from "~/routes/layout";
 
 export default component$(() => {
   const products = useProductLoader();
-
-  useVisibleTask$(() => {
-    console.log(products.value);
-  });
 
   if ("errorMessage" in products.value) {
     return (

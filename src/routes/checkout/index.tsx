@@ -4,12 +4,12 @@ import {
   useComputed$,
   useContext,
   useSignal,
-  useVisibleTask$,
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
 import { formAction$, type InitialValues, zodForm$ } from "@modular-forms/qwik";
-import axios, { AxiosInstance } from "axios";
-import { createLinePayOrder } from "~/api/linePay";
+
+import { api } from "~/api";
+import type { LinePayCreateOrderCallback } from "~/api/type";
 
 import { orderSchema, type OrderFormType } from "~/api/validatation/order";
 
@@ -29,8 +29,6 @@ export const PaymentMethod = {
 export const useEnvLoader = routeLoader$(async (requestEvent) => {
   return {
     domain: requestEvent.env.get("DOMAIN_URL"),
-    api: requestEvent.env.get("API_URL"),
-    token: requestEvent.env.get("PRODUCTION_TOKEN"),
   };
 });
 
@@ -62,35 +60,50 @@ export const useOrderFormLoader = routeLoader$<InitialValues<OrderFormType>>(
   })
 );
 
-export const useFormAction = formAction$<OrderFormType>(
+type ResponseData = {
+  web: string;
+};
+
+export const useFormAction = formAction$<OrderFormType, ResponseData>(
   async (values, requestEvent) => {
-    const axios = requestEvent.sharedMap.get("axios") as AxiosInstance;
-    const res = await createLinePayOrder(axios, values);
-    if (res?.paymentUrl) {
-      // requestEvent.headers.set("method", "GET");
-      // requestEvent.headers.set("Location", res.paymentUrl.web);
-      // requestEvent.send(307, res.paymentUrl.web);
-      // window.location.href = res.paymentUrl.web;
+    const res = await api<LinePayCreateOrderCallback>(
+      `${requestEvent.env.get("API_URL")}/api/orders/linepay/checkout`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `bearer ${requestEvent.env.get("PRODUCTION_TOKEN")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    ).catch((error) => {
+      return {
+        error: error,
+        status: error?.response?.data?.error?.status,
+        name: error?.response?.data?.error?.name,
+        errorMessage: error?.response?.data?.error?.message,
+      };
+    });
+
+    if ("error" in res) {
+      return {
+        status: "error",
+        message: res.errorMessage,
+        data: undefined,
+      };
+    } else {
       return {
         status: "success",
         message: "Order created successfully.",
-        data: res.paymentUrl.web,
+        data: { web: res.paymentUrl.web },
       };
     }
-
-    return {
-      status: "error",
-      message: "An error occurred while creating the order.",
-      data: undefined,
-    };
   },
   zodForm$(orderSchema)
 );
 
 export default component$(() => {
   const cartCtx = useContext(cartContextId);
-
-  const env = useEnvLoader();
 
   const alertState = useSignal<string | null>(null);
 
@@ -156,16 +169,6 @@ export default component$(() => {
     $(() => {
       cartCtx.items = cartCtx.items.filter((item) => item.id !== id);
     });
-
-  useVisibleTask$(async() => {
-    const res = await axios.get(`${env.value.api}/api/products`,{
-      headers: {
-        Authorization: `Bearer ${env.value.token}`,
-      },
-      withCredentials: true,
-    })
-    console.log(res)
-  });
 
   return (
     <section>

@@ -8,7 +8,9 @@ import {
 } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
 
-import { getProductBySlug } from "~/api";
+import Swiper from "swiper";
+import { Pagination, Thumbs } from "swiper/modules";
+
 import Ckeditor from "~/components/ckeditor";
 import { ArrowDownIcon } from "~/components/icon/arrowDown";
 import { FacebookIcon } from "~/components/icon/facebookIcon";
@@ -16,20 +18,35 @@ import { MessageIcon } from "~/components/icon/MessageIcon";
 import { LoadingIcon } from "~/components/icon/loadingIcon";
 import { cartContextId } from "~/routes/layout";
 
-import Swiper from "swiper";
-import { Pagination, Thumbs } from "swiper/modules";
-import { AxiosInstance } from "axios";
+import { api } from "~/api";
+import type { ProductAPI } from "~/api/type";
+
 // import Swiper and modules styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "~/components/carousel/productCarousel.css";
 
 export const useProductLoader = routeLoader$(
-  async ({ params, status, fail, sharedMap }) => {
-    const axios = sharedMap.get("axios") as AxiosInstance;
+  async ({ params, status, fail, env }) => {
     // Example database call using the id param
     // The database could return null if the product is not found
-    const res = await getProductBySlug(axios, params.slug);
+
+    const res = await api<ProductAPI>(
+      `${env.get("API_URL")}/api/products/${params.slug}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `bearer ${env.get("PRODUCTION_TOKEN")}`,
+        },
+      }
+    ).catch((error: any) => {
+      return {
+        error: error,
+        status: error?.response?.data?.error?.status,
+        name: error?.response?.data?.error?.name,
+        errorMessage: error?.response?.data?.error?.message,
+      };
+    });
 
     if ("error" in res) {
       return fail(res.error.status, {

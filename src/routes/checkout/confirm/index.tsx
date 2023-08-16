@@ -1,11 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 import { Link, routeLoader$ } from "@builder.io/qwik-city";
-import { AxiosInstance } from "axios";
-import { confirmLinePayOrder } from "~/api/linePay";
 
-export const useConfirmLoader = routeLoader$(async ({ query, sharedMap }) => {
-  const axios = sharedMap.get("axios") as AxiosInstance;
+import { api } from "~/api";
+import type { LinePayConfirmOrderAPI } from "~/api/type";
 
+export const useConfirmLoader = routeLoader$(async ({ query, env }) => {
   const transactionId = query.get("transactionId");
   const orderId = query.get("orderId");
 
@@ -13,10 +12,21 @@ export const useConfirmLoader = routeLoader$(async ({ query, sharedMap }) => {
     return { error: "transactionId or orderId is missing" };
   }
 
-  const res = await confirmLinePayOrder(axios, {
-    transactionId,
-    orderId,
-  });
+  const res = await api<LinePayConfirmOrderAPI>(
+    `${env.get("API_URL")}/api/orders/linepay/confirm`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `bearer ${env.get("PRODUCTION_TOKEN")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        transactionId,
+        orderId,
+      }),
+    }
+  );
+
   return res;
 });
 
@@ -31,7 +41,7 @@ export default component$(() => {
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-col text-center w-full mb-12">
             <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-              Ooops, 好像有些對勁
+              Ooops, 好像有些不對勁
             </h1>
             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
               或許您是從其他地方進入此頁面，請重新回到商店選購．
@@ -55,12 +65,10 @@ export default component$(() => {
       <div class="container px-5 py-24 mx-auto">
         <div class="flex flex-col text-center w-full mb-12">
           <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-            Master Cleanse Reliac Heirloom
+            基地文化
           </h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            haven't heard of them man bun deep.
+            測試文字
           </p>
         </div>
         <div class="flex flex-col text-left lg:w-2/3 mx-auto justify-center mb-12 bg-bgWhite-600 rounded-md p-4">

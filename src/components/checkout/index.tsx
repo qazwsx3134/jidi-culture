@@ -42,6 +42,7 @@ export default component$<Props>((props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [orderForm, { Form, Field }] = useForm<OrderFormType>({
     loader: useOrderFormLoader(), // initialize the form with the data from the server
+    // @ts-ignore
     action: useFormAction(),
     validate: validateOrderForm,
   });
@@ -96,8 +97,9 @@ export default component$<Props>((props) => {
   useTask$(async ({ track }) => {
     track(() => orderForm.response.data);
 
-    if (orderForm.response.data) {
-      const redirectUrl = orderForm.response.data as string;
+    if (orderForm.response?.data) {
+      // @ts-ignore
+      const redirectUrl = orderForm.response.data.web as string;
       window.location.href = redirectUrl;
     }
   });
