@@ -1,4 +1,5 @@
-import { Product } from "./type/product";
+import type { Product } from "./type/product";
+import type { Project } from "./type/project";
 
 export interface ApiError {
   error: {
@@ -24,6 +25,11 @@ export interface ProductsAPI {
 
 export interface ProductAPI {
   data: Product | null;
+  meta: {};
+}
+
+export interface ProjectAPI {
+  data: Project | null;
   meta: {};
 }
 
