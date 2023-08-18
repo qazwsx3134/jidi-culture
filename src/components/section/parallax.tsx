@@ -99,7 +99,7 @@ export default component$(() => {
       <div class="wrapper w-screen h-[950px] mx-auto my-0 overflow-hidden shadow-2xl relative z-0 aspect-video bg-[url('/images/background.webp')] bg-[size:110%] bg-no-repeat">
         <h1 class="absolute w-full z-10 text-6xl text-center m-0 p-0 top-1/2 -translate-y-1/2 overflow-hidden mix-blend-color-burn">
           <span class="text-mask block font-bold text-red-900">
-            成為兩個世界的橋樑
+            歡迎來到Alang edaan 故事部落
           </span>
         </h1>
         {/* background image */}

@@ -30,10 +30,12 @@ export default component$(() => {
         ref={drawerRef}
       />
       <div class="mx-auto container">
-        <div class="flex-1 ">
-          <a class="btn btn-ghost normal-case text-xl" href="/" title="qwik">
-            {/* <QwikLogo height={50} width={143} /> */}
-            基地文化
+        <div class="flex-1">
+          <a class="btn btn-ghost normal-case" href="/" title="qwik">
+            <div class="flex flex-col items-start justify-start font-semibold">
+              <p class="text-2xl">基地文化</p>
+              <p class="text-sm text-gray-500">出版有限公司</p>
+            </div>
           </a>
         </div>
         <div class="flex-none md:hidden">
