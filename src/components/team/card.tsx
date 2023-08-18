@@ -27,7 +27,7 @@ export default component$<Props>((props) => {
         </div>
       </figure>
       <div class="card-body px-6 py-4 gap-2">
-        <div class="flex font-sans items-baseline gap-3 text-bgRed-700">
+        <div class="flex items-baseline gap-3 text-bgRed-700">
           <h2 class="card-title text-5xl ">{props.name}</h2>
           <h4 class="text-2x align-bottom">{props.title}</h4>
         </div>

@@ -47,7 +47,7 @@ export default component$(() => {
 
   if (!project.value || "errorMessage" in project.value) {
     return (
-      <div class="w-full font-sans bg-bgWhite-500">
+      <div class="w-full bg-bgWhite-500">
         <div class="w-full flex flex-col items-center justify-center gap-4 p-12">
           <h1 class="text-6xl tracking-widest font-bold my-6">404</h1>
           <h2 class="text-4xl tracking-widest font-bold my-6">
@@ -75,7 +75,7 @@ export default component$(() => {
   } = project.value;
 
   return (
-    <div class="w-full font-sans bg-bgWhite-500">
+    <div class="w-full bg-bgWhite-500">
       <div class="w-full flex flex-col items-center justify-center gap-4 p-12">
         <h1 class="text-6xl tracking-widest font-bold my-6">{title}</h1>
         <h2 class="text-4xl font-light my-2">{subTitle}</h2>
