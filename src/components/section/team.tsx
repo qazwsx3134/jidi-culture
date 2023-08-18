@@ -18,6 +18,7 @@ export default component$(() => {
               height: 400,
             }}
             name={"柯哲瑜"}
+            subName="Yuri Yuko"
             title={"政大民族所博士生"}
             badges={["音樂人", "原住民健康研究"]}
             experience={[
@@ -34,6 +35,7 @@ export default component$(() => {
               height: 400,
             }}
             name={"林俊儒"}
+            subName="Lowking Lin"
             title={"政大法學博士候選人"}
             badges={["執業律師", "原住民族司法研究"]}
             experience={["法律倡議工作者", "點亮教育創辦人"]}
@@ -49,6 +51,7 @@ export default component$(() => {
               height: 400,
             }}
             name={"黃楚甯"}
+            subName="Away Huang"
             title={"政大民族所碩士生"}
             badges={["藝術家", "原住民美學"]}
             experience={["原住民美學研究領域", "美術教育工作者"]}
@@ -62,6 +65,7 @@ export default component$(() => {
               height: 400,
             }}
             name={"郭劉承昊"}
+            subName="Walis Jiyung"
             title={"政大歷史系學士"}
             badges={["太魯閣族文史研究者"]}
             experience={["太魯閣族文史研究者", "慶豐sdagan部落太魯閣族人"]}

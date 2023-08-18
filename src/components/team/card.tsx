@@ -8,6 +8,7 @@ interface Props {
     height: number;
   };
   name: string;
+  subName: string;
   title: string;
   badges?: string[];
   experience: string[];
@@ -27,9 +28,13 @@ export default component$<Props>((props) => {
         </div>
       </figure>
       <div class="card-body px-6 py-4 gap-2">
-        <div class="flex items-baseline gap-3 text-bgRed-700">
-          <h2 class="card-title text-5xl ">{props.name}</h2>
-          <h4 class="text-2x align-bottom">{props.title}</h4>
+        <div class="flex items-end  gap-3 text-bgRed-700">
+          <div class="whitespace-nowrap">
+            <p class="card-title text-4xl">{props.name}</p>
+            <p class="text-lg text-bgRed-400">{props.subName}</p>
+          </div>
+
+          <p class="align-bottom text-bgRed-300">{props.title}</p>
         </div>
         <div class="card-actions justify-end">
           {props.badges?.map((badge) => (
@@ -38,7 +43,7 @@ export default component$<Props>((props) => {
             </div>
           ))}
         </div>
-        <div class="flex flex-col gap-1 my-3 text-lg text-bgRed-400 font-normal">
+        <div class="flex flex-col my-3 text-base text-bgRed-900 font-light">
           {props.experience.map((exp) => (
             <p key={exp}>{exp}</p>
           ))}
