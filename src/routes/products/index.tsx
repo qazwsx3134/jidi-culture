@@ -14,7 +14,7 @@ export default component$(() => {
       <section class="h-full bg-bgGray-500">
         <div class="bg-bgWhite-500">
           <div class="container px-5 py-12 mx-auto">
-            <StylingTitle title="繪本商店" />
+            <StylingTitle title="故事商店" />
             {products.value.errorMessage}
           </div>
         </div>
@@ -25,7 +25,7 @@ export default component$(() => {
     <section class="h-full bg-bgGray-400">
       <div class="bg-bgWhite-500">
         <div class="container px-5 py-12 mx-auto">
-          <StylingTitle title="繪本商店" />
+          <StylingTitle title="故事商店" />
         </div>
       </div>
       <div class="container px-5 py-24 mx-auto">

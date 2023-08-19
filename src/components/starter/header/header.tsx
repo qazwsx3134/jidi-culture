@@ -38,6 +38,16 @@ export default component$(() => {
             </div>
           </a>
         </div>
+        <div class="mr-2 flex-none md:hidden">
+          <Link href="/checkout">
+            <div class="indicator p-1">
+              <span class="indicator-item badge badge-accent">
+                {cartCtx.items.length}
+              </span>
+              <ShoppingIcon class="w-6" />
+            </div>
+          </Link>
+        </div>
         <div class="flex-none md:hidden">
           <label for="my-drawer" class="btn btn-ghost btn-circle">
             <svg
@@ -59,7 +69,7 @@ export default component$(() => {
         <div class="flex-none hidden md:flex">
           <ul class="menu menu-horizontal px-1 items-center">
             <li>
-              <Link href="/products">繪本商店</Link>
+              <Link href="/products">故事商店</Link>
             </li>
             <li>
               <Link href="/checkout">
@@ -90,7 +100,18 @@ export default component$(() => {
                 drawerRef.value?.click();
               }}
             >
-              繪本商店
+              故事商店
+            </Link>
+          </li>
+
+          <li class="text-2xl">
+            <Link
+              href="/checkout"
+              onClick$={() => {
+                drawerRef.value?.click();
+              }}
+            >
+              購物車
             </Link>
           </li>
         </ul>
