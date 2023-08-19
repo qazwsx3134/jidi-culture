@@ -25,7 +25,9 @@ export const cartContextId = createContextId<Cart>("shop.cart");
 export const useProductLoader = routeLoader$(async (requestEvent) => {
   try {
     const res = await api<ProductsAPI>(
-      `${requestEvent.env.get("API_URL")}/api/products?populate=*`,
+      `${requestEvent.env.get(
+        "API_URL"
+      )}/api/products?populate=*&sort[0]=createdAt:desc`,
       {
         method: "GET",
         headers: {
