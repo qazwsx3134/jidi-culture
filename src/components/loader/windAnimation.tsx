@@ -102,7 +102,7 @@ export default component$(() => {
         rotate: 360,
         visibility: "visible",
         duration: 2,
-        opacity: 0.1,
+        opacity: 0,
         ease: "power1.inOut",
         motionPath: {
           path: "#wind1",
@@ -116,7 +116,7 @@ export default component$(() => {
           rotate: 360,
           visibility: "visible",
           duration: 2,
-          opacity: 0.1,
+          opacity: 0,
           ease: "power1.inOut",
           motionPath: {
             path: "#wind2",
@@ -150,7 +150,7 @@ export default component$(() => {
           rotate: 360,
           visibility: "visible",
           duration: 2,
-          opacity: 0.1,
+          opacity: 0,
           ease: "power1.inOut",
           motionPath: {
             path: "#wind4",
@@ -167,7 +167,7 @@ export default component$(() => {
           rotate: 360,
           visibility: "visible",
           duration: 2,
-          opacity: 0.1,
+          opacity: 0,
           ease: "power1.inOut",
           motionPath: {
             path: "#wind5",
