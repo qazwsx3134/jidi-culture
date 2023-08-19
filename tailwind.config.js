@@ -49,6 +49,7 @@ module.exports = {
       },
       animation: {
         simplePulse: "simplePulse 2s cubic-bezier(0.4, 0, 0.6, 1)  infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
       },
       keyframes: {
         simplePulse: {
@@ -60,6 +61,24 @@ module.exports = {
             transform: "scale(1.08)",
             opacity: 0.85,
           },
+        },
+        wiggle: {
+          "20%, 80%": {
+            transform: "translateY(-25%)",
+            animationTimingFunction: "cubic-bezier(0.8, 0, 1, 1)",
+          },
+          "50%": {
+            transform: "translateY(0)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
+          },
+          "0%, 100%": {
+            transform: "translateY(-25%) rotate(9deg)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.8, 1)",
+          },
+          "10%, 90%": {
+            transform: "translateY(-25%) rotate(-9deg)",
+            animationTimingFunction: "cubic-bezier(0, 0, 0.8, 1)",
+          }
         },
       },
     },

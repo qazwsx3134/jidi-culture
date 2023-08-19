@@ -1,5 +1,5 @@
 import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
-import type{ DocumentHead } from "@builder.io/qwik-city";
+import type { DocumentHead } from "@builder.io/qwik-city";
 
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
@@ -19,7 +19,6 @@ import imagesLoaded from "imagesloaded";
 import BookMobile from "~/components/section/bookMobile";
 
 import FrontPageCarousel from "~/components/section/carousel/frontPageCarousel";
-
 
 export default component$(() => {
   const onDone = useSignal(false);
@@ -66,11 +65,11 @@ export default component$(() => {
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
-          src="/images/jidi-logo-blob.webp"
+          src="/images/jidiLogo.webp"
           alt=""
           width={200}
           height={200}
-          class="w-[200px] aspect-square z-1"
+          class="w-[200px] aspect-square z-1 bg-white mask mask-squircle animate-wiggle"
         />
       </PageBackground>
       <div class=" bg-black w-screen">

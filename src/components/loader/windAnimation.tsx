@@ -1,7 +1,7 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import gsap from "gsap";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
-import { FallenLeaf } from "./leafIcon";
+
 import { WindSvgLg } from "./windSvgLg";
 import { WindSvgSmall } from "./windSvgSmall";
 
@@ -12,16 +12,6 @@ export default component$(() => {
 
     const matchMedia = gsap.matchMedia();
     const leafTL = gsap.timeline({ repeat: -1, repeatDelay: 0.2 });
-
-    gsap.to("#icon", {
-      rotate: 45,
-      delay: 0.5,
-      duration: 1.5,
-      yoyo: true,
-      ease: "power1.inOut",
-      repeat: -1,
-      transformOrigin: "bottom right",
-    });
 
     // Mobile
     matchMedia.add("(max-width: 767px)", () => {
@@ -112,7 +102,7 @@ export default component$(() => {
         rotate: 360,
         visibility: "visible",
         duration: 2,
-        opacity: 0,
+        opacity: 0.1,
         ease: "power1.inOut",
         motionPath: {
           path: "#wind1",
@@ -126,7 +116,7 @@ export default component$(() => {
           rotate: 360,
           visibility: "visible",
           duration: 2,
-          opacity: 0,
+          opacity: 0.1,
           ease: "power1.inOut",
           motionPath: {
             path: "#wind2",
@@ -160,7 +150,7 @@ export default component$(() => {
           rotate: 360,
           visibility: "visible",
           duration: 2,
-          opacity: 0,
+          opacity: 0.1,
           ease: "power1.inOut",
           motionPath: {
             path: "#wind4",
@@ -177,7 +167,7 @@ export default component$(() => {
           rotate: 360,
           visibility: "visible",
           duration: 2,
-          opacity: 0,
+          opacity: 0.1,
           ease: "power1.inOut",
           motionPath: {
             path: "#wind5",
@@ -192,11 +182,42 @@ export default component$(() => {
   });
   return (
     <>
-      <FallenLeaf id="leaf1" class="text-4xl invisible" />
-      <FallenLeaf id="leaf2" class="text-4xl invisible" />
-      <FallenLeaf id="leaf3" class="text-4xl invisible" />
-      <FallenLeaf id="leaf4" class="text-4xl invisible" />
-      <FallenLeaf id="leaf5" class="text-4xl invisible" />
+      <img
+        id="leaf1"
+        src="/images/leaf.webp"
+        alt=""
+        class="invisible"
+        width={80}
+      />
+      <img
+        id="leaf2"
+        src="/images/leaf.webp"
+        alt=""
+        class="invisible"
+        width={80}
+      />
+      <img
+        id="leaf3"
+        src="/images/leaf.webp"
+        alt=""
+        class="invisible"
+        width={80}
+      />
+      <img
+        id="leaf4"
+        src="/images/leaf.webp"
+        alt=""
+        class="invisible"
+        width={80}
+      />
+      <img
+        id="leaf5"
+        src="/images/leaf.webp"
+        alt=""
+        class="invisible"
+        width={80}
+      />
+
       <WindSvgLg class="absolute top-0 h-[100vh] hidden md:block" />
       <WindSvgSmall class="absolute top-0 h-[100vh] md:hidden" />
     </>
