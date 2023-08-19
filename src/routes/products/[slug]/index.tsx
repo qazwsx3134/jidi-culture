@@ -82,7 +82,7 @@ export const useProductLoader = routeLoader$(
 export default component$(() => {
   const product = useProductLoader();
 
-  const inputSignal = useSignal<string | undefined>(undefined);
+  const inputSignal = useSignal<string | undefined>("1");
   const addToCartState = useSignal<"idle" | "loading" | "added">("idle");
 
   const cartCtx = useContext(cartContextId);
@@ -211,7 +211,7 @@ export default component$(() => {
         });
       }
 
-      inputSignal.value = "0";
+      inputSignal.value = "1";
     }
   });
 
@@ -369,11 +369,11 @@ export default component$(() => {
                 </div>
 
                 <p class="leading-relaxed break-all">{description}</p>
-                <div class="flex flex-col mt-6 items-start gap-8 pb-5 my-5">
-                  <div class="flex flex-1 form-control w-full max-w-xs">
+                <div class="flex flex-col mt-6 items-start gap-8 pb-5 my-5 ">
+                  <div class="flex flex-1 form-control w-full md:max-w-xs">
                     <label class="label">
-                      <span class="label-text text-gray-500">數量</span>
-                      <span class="label-text-alt text-red-500">
+                      <span class="label-text text-gray-500 text-lg">數量</span>
+                      <span class="label-text-alt text-red-500 text-lg">
                         {outOfStock.value && "庫存不足"}
                         {noInputNumber.value && "請輸入數量"}
                       </span>
@@ -382,7 +382,7 @@ export default component$(() => {
                       min={0}
                       type="number"
                       placeholder="1"
-                      class="input input-bordered w-full max-w-[240px] bg-white focus:outline-gray-500"
+                      class="input input-bordered w-full bg-white focus:outline-gray-500"
                       value={inputSignal.value}
                       onChange$={(event) => {
                         inputSignal.value = event.target.value;
@@ -390,7 +390,7 @@ export default component$(() => {
                     />
                   </div>
                   <button
-                    class="flex flex-1 my-2 btn btn-outline border-2 text-bgRed-600 bg-white rounded-full max-w-md hover:bg-bgRed-700 btn-block disabled:bg-gray-700 disabled:text-white disabled:cursor-not-allowed "
+                    class="flex flex-1 my-2 btn btn-outline border-2 text-bgRed-600 bg-white rounded-full md:max-w-xs hover:bg-bgRed-700 hover:text-white btn-block disabled:bg-gray-700 disabled:text-white disabled:cursor-not-allowed"
                     onClick$={addToCartOnClick}
                     disabled={
                       Number(inputSignal.value) <= 0 ||
@@ -398,26 +398,29 @@ export default component$(() => {
                       outOfStock.value
                     }
                   >
-                    {/* Loading */}
                     {addToCartState.value !== "idle" &&
                       !outOfStock.value &&
                       !noInputNumber.value && (
                         <LoadingIcon class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
                       )}
-                    {addToCartState.value === "loading" && "加入中..."}
-                    {addToCartState.value === "added" && "已加入購物車"}
+                    <p class="text-xl font-black">
+                      {/* Loading */}
 
-                    {/* Error */}
-                    {outOfStock.value && "庫存不足"}
-                    {noInputNumber.value &&
-                      addToCartState.value === "idle" &&
-                      "請輸入數量"}
+                      {addToCartState.value === "loading" && "加入中..."}
+                      {addToCartState.value === "added" && "已加入購物車"}
 
-                    {/* Idle */}
-                    {!outOfStock.value &&
-                      !noInputNumber.value &&
-                      addToCartState.value === "idle" &&
-                      "加入購物車"}
+                      {/* Error */}
+                      {outOfStock.value && "庫存不足"}
+                      {noInputNumber.value &&
+                        addToCartState.value === "idle" &&
+                        "請輸入數量"}
+
+                      {/* Idle */}
+                      {!outOfStock.value &&
+                        !noInputNumber.value &&
+                        addToCartState.value === "idle" &&
+                        "加入購物車"}
+                    </p>
                   </button>
                 </div>
 

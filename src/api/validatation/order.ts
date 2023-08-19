@@ -36,7 +36,7 @@ export const orderSchema = z.object({
       firstName: z.string().nonempty("請輸入姓氏"),
       lastName: z.string().nonempty("請輸入名字"),
       email: z.string().min(1, "請輸入 Email").email("Email 部分格式錯誤"),
-      phoneNo: z.string().min(10).nonempty("請輸入電話"),
+      phoneNo: z.string().min(10, "請輸入正確格式的電話號碼").nonempty("請輸入電話"),
     }),
   }),
 });

@@ -236,7 +236,7 @@ export default component$(() => {
                           class="object-cover object-center rounded"
                         />
                       </div>
-                      <div class="flex-grow flex flex-col justify-between mx-4">
+                      <div class="flex-grow flex flex-col justify-between my-4 md:mx-4 md:my-0">
                         <div class="flex flex-col gap-2">
                           <p class="text-2xl text-gray-900 font-medium tracking-widest">
                             {item.name}

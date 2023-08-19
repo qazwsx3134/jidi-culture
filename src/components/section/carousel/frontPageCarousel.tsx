@@ -57,7 +57,7 @@ export default component$(() => {
     <section class="h-full overflow-hidden">
       <div class="container px-5 py-12 mx-auto">
         <div class="flex flex-wrap w-full mb-20">
-          <StylingTitle title="繪本商店" />
+          <StylingTitle title="故事商店" />
           <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">
             Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
             gentrify, subway tile poke farm-to-table. Franzen you probably
