@@ -69,15 +69,23 @@ const showcaseBottomArray = showcaseDimentions
       .reverse();
   });
 
+// Move the first item to the last
+const moveElement = (arr: any[], from: number, to: number) => {
+  const copy = [...arr];
+  const [removed] = copy.splice(from, 1);
+  copy.splice(to, 0, removed);
+  return copy;
+};
+
 const showcaseTop = [
   showcaseTopArray[2],
   ...showcaseTopArray,
-  ...showcaseTopArray.slice(0, 1),
+  moveElement(showcaseTopArray[0], 2, 3),
 ];
 
 const showCaseBottom = [
   ...showcaseBottomArray,
-  ...showcaseBottomArray.slice(0, 1),
+  moveElement(showcaseBottomArray[0], 2, 3),
 ];
 
 const imageTranslateClass = [

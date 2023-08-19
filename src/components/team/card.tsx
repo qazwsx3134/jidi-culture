@@ -34,7 +34,7 @@ export default component$<Props>((props) => {
             <p class="text-lg text-bgRed-400">{props.subName}</p>
           </div>
 
-          <p class="align-bottom text-bgRed-300">{props.title}</p>
+          <p class="align-bottom text-right text-bgRed-300">{props.title}</p>
         </div>
         <div class="card-actions justify-end">
           {props.badges?.map((badge) => (
