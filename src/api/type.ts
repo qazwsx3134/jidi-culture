@@ -1,5 +1,8 @@
+import type { Footer } from "./type/footer";
+import type { HomePage } from "./type/homePage";
 import type { Product } from "./type/product";
 import type { Project } from "./type/project";
+import type { ShopPage } from "./type/shopPage";
 
 export interface ApiError {
   error: {
@@ -46,4 +49,16 @@ export interface LinePayConfirmOrderAPI {
   orderId: string;
   transactionId: string;
   status: string;
+}
+
+export interface HomePageAPI {
+  data: HomePage;
+}
+
+export interface ShopPageAPI {
+  data: ShopPage;
+}
+
+export interface FooterAPI {
+  data: Footer;
 }

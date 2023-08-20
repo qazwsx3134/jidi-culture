@@ -2,11 +2,11 @@ import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
 import { initSwiper } from "~/components/carousel";
 import StylingTitle from "~/components/stylingTitle";
-import { useProductLoader } from "~/routes/layout";
+import { useLimitedProductsLoader } from "~/routes/layout";
 import FrontPageCard from "./frontPageCard";
 
 export default component$(() => {
-  const products = useProductLoader();
+  const products = useLimitedProductsLoader();
 
   if ("errorMessage" in products.value) {
     products.value.errorMessage;
@@ -33,7 +33,7 @@ export default component$(() => {
       // breakpoints
       breakpoints: {
         // mobile
-        300:{
+        300: {
           slidesPerView: 1.2,
           spaceBetween: 10,
           centeredSlides: true,
@@ -71,6 +71,14 @@ export default component$(() => {
         {/* Additional required wrapper */}
         <div class="swiper-wrapper rounded-md h-full">
           {/* Slides */}
+          {products.value.map((product) => (
+            <div
+              class="swiper-slide w-[95%] md:w-[45.4%] lg:w-[30.3%] h-[550px] flex items-center justify-center"
+              key={product.attributes.slug}
+            >
+              <FrontPageCard {...product.attributes} />
+            </div>
+          ))}
           {products.value.map((product) => (
             <div
               class="swiper-slide w-[95%] md:w-[45.4%] lg:w-[30.3%] h-[550px] flex items-center justify-center"

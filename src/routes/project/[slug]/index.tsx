@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
 import LeftSection from "~/components/project/leftSection";
 
@@ -8,40 +8,33 @@ import type { ProjectAPI } from "~/api/type";
 import Ckeditor from "~/components/ckeditor";
 
 // test url `http://127.0.0.1:1337/api/projects/${params.slug}`
-export const useProjectLoader = routeLoader$(
-  async ({ params, status, env, fail }) => {
-    const res = await api<ProjectAPI>(
-      `${env.get("API_URL")}/api/projects/${params.slug}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `bearer ${env.get("BACKEND_TOKEN")}`,
-        },
-      }
-    ).catch((error: any) => {
-      return {
-        error: error,
-        status: error?.response?.data?.error?.status,
-        name: error?.response?.data?.error?.name,
-        errorMessage: error?.response?.data?.error?.message,
-      };
+export const useProjectLoader = routeLoader$(async ({ params, env, fail }) => {
+  const res = await api<ProjectAPI>(
+    `${env.get("API_URL")}/api/projects/${params.slug}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `bearer ${env.get("PRODUCTION_TOKEN")}`,
+      },
+    }
+  ).catch((error: any) => {
+    return {
+      error: error,
+      status: error?.response?.data?.error?.status,
+      name: error?.response?.data?.error?.name,
+      errorMessage: error?.response?.data?.error?.message,
+    };
+  });
+
+  if ("error" in res) {
+    return fail(404, {
+      errorMessage: res.error.message,
     });
-
-    if ("error" in res) {
-      return fail(res.error.status, {
-        errorMessage: res.error.message,
-      });
-    }
-    if (!res.data) {
-      // Product data was not found
-      // Set the status code to 404
-      status(404);
-    }
-
-    // return the data (which may be null)
-    return res.data;
   }
-);
+
+  // return the data (which may be null)
+  return res.data;
+});
 
 export default component$(() => {
   const project = useProjectLoader();
@@ -85,10 +78,10 @@ export default component$(() => {
         <div>
           <img
             class="hero object-cover max-h-[90vh] h-auto w-full mx-auto"
-            src={heroImage.data?.attributes.url}
+            src={heroImage.data?.attributes?.url}
             alt=""
-            height={heroImage.data?.attributes.height}
-            width={heroImage.data?.attributes.width}
+            height={heroImage.data?.attributes?.height}
+            width={heroImage.data?.attributes?.width}
           />
         </div>
 
@@ -238,3 +231,73 @@ export default component$(() => {
     </div>
   );
 });
+
+export const head: DocumentHead = ({ resolveValue }) => {
+  const projectPage = resolveValue(useProjectLoader);
+  if (
+    !projectPage ||
+    "errorMessage" in projectPage ||
+    !projectPage.attributes.seo
+  ) {
+    return {
+      title: "基地文化",
+      meta: [
+        {
+          name: "description",
+          content: "基地文化",
+        },
+        // Open graph
+        {
+          property: "og:title",
+          content: "基地文化",
+        },
+        {
+          property: "og:description",
+          content: "基地文化",
+        },
+      ],
+      links: [
+        {
+          rel: "canonical",
+          href: "https://jidiculture.com/",
+        },
+      ],
+    };
+  }
+
+  const { metaTitle, metaDescription, metaRobots, keywords } =
+    projectPage.attributes.seo;
+
+  return {
+    title: metaTitle,
+    meta: [
+      {
+        name: "description",
+        content: metaDescription,
+      },
+      {
+        name: "robots",
+        content: metaRobots,
+      },
+      {
+        name: "keywords",
+        content: keywords,
+      },
+      // Open graph
+      {
+        property: "og:title",
+        content: metaTitle,
+      },
+      {
+        property: "og:description",
+        content: metaDescription,
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://jidiculture.com/",
+      },
+    ],
+  };
+};

@@ -1,5 +1,5 @@
 import { component$, useVisibleTask$, useSignal } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
+import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 
 import Lenis from "@studio-freight/lenis";
 import gsap from "gsap";
@@ -18,7 +18,38 @@ import Team from "~/components/section/team";
 import imagesLoaded from "imagesloaded";
 import BookMobile from "~/components/section/bookMobile";
 
+import { api } from "~/api";
+
 import FrontPageCarousel from "~/components/section/carousel/frontPageCarousel";
+
+import type { HomePageAPI } from "~/api/type";
+
+export const useHomePage = routeLoader$(async ({ env, fail }) => {
+  const res = await api<HomePageAPI>(
+    `${env.get("API_URL")}/api/home-page?populate[0]=seo&populate[1]=seo.metaSocial.image`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `bearer ${env.get("PRODUCTION_TOKEN")}`,
+      },
+    }
+  ).catch((error: any) => {
+    return {
+      error: error,
+      status: error?.response?.data?.error?.status,
+      name: error?.response?.data?.error?.name,
+      errorMessage: error?.response?.data?.error?.message,
+    };
+  });
+  if ("error" in res) {
+    return fail(404, {
+      errorMessage: res.error.message,
+    });
+  }
+
+  // return the data (which may be null)
+  return res.data;
+});
 
 export default component$(() => {
   const onDone = useSignal(false);
@@ -102,12 +133,68 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: "Welcome to Qwik",
-  meta: [
-    {
-      name: "description",
-      content: "Qwik site description",
-    },
-  ],
+export const head: DocumentHead = ({ resolveValue }) => {
+  const homePage = resolveValue(useHomePage);
+  if ("errorMessage" in homePage || !homePage.attributes.seo) {
+    return {
+      title: "基地文化",
+      meta: [
+        {
+          name: "description",
+          content: "基地文化",
+        },
+        // Open graph
+        {
+          property: "og:title",
+          content: "基地文化",
+        },
+        {
+          property: "og:description",
+          content: "基地文化",
+        },
+      ],
+      links: [
+        {
+          rel: "canonical",
+          href: "https://jidiculture.com/",
+        },
+      ],
+    };
+  }
+
+  const { metaTitle, metaDescription, metaRobots, keywords } =
+    homePage.attributes.seo;
+
+  return {
+    title: metaTitle,
+    meta: [
+      {
+        name: "description",
+        content: metaDescription,
+      },
+      {
+        name: "robots",
+        content: metaRobots,
+      },
+      {
+        name: "keywords",
+        content: keywords,
+      },
+      // Open graph
+      {
+        property: "og:title",
+        content: metaTitle,
+      },
+      {
+        property: "og:description",
+        content: metaDescription,
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://jidiculture.com/",
+      },
+    ],
+  };
 };

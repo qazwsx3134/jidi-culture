@@ -27,7 +27,7 @@ export interface ProjectAttributes {
   project_types?: {
     data: ProjectTypes[];
   };
-  seo: SEO[];
+  seo: SEO | null;
 }
 
 export interface ProjectTypes {

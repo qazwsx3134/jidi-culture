@@ -1,5 +1,6 @@
 import type { Category } from "./category";
 import type { Image } from "./image";
+import type { SEO } from "./seo";
 import type { Timestamp } from "./timestamp";
 
 export interface ProductAttributes {
@@ -20,6 +21,7 @@ export interface ProductAttributes {
   categories?: {
     data?: Category[];
   };
+  seo: SEO | null;
 }
 
 export interface Product {

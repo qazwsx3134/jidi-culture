@@ -1,6 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { v4 as uuidv4 } from "uuid";
 import { ArrowDownIcon } from "../icon/arrowDown";
+import { Link } from "@builder.io/qwik-city";
 
 const showcaseDimentions = [
   {
@@ -40,37 +41,45 @@ const showcaseDimentions = [
 const showcaseTopArray = showcaseDimentions
   .slice(0, 4)
   .map((item, outerIndex) => {
-    return Array(4)
-      .fill(0)
-      .map((_, innerIndex) => ({
-        id: `${outerIndex + 1}-${innerIndex + 1}`,
-        key: `${outerIndex + 1}-${innerIndex + 1}`,
-        alt: `${outerIndex + 1}-${innerIndex + 1}`,
-        src: `/images/showcase/${outerIndex + 1}/${innerIndex + 1}.webp`,
-        height: item.height,
-        width: item.width,
-      }))
-      .reverse();
+    return {
+      project: outerIndex + 1,
+      item: Array(4)
+        .fill(0)
+        .map((_, innerIndex) => ({
+          project: outerIndex + 1,
+          id: `${outerIndex + 1}-${innerIndex + 1}`,
+          key: `${outerIndex + 1}-${innerIndex + 1}`,
+          alt: `${outerIndex + 1}-${innerIndex + 1}`,
+          src: `/images/showcase/${outerIndex + 1}/${innerIndex + 1}.webp`,
+          height: item.height,
+          width: item.width,
+        }))
+        .reverse(),
+    };
   });
 
 const showcaseBottomArray = showcaseDimentions
   .slice(4, 8)
   .map((item, outerIndex) => {
-    return Array(4)
-      .fill(0)
-      .map((_, innerIndex) => ({
-        id: `${outerIndex + 5}-${innerIndex + 1}`,
-        key: `${outerIndex + 5}-${innerIndex + 1}`,
-        alt: `${outerIndex + 5}-${innerIndex + 1}`,
-        src: `/images/showcase/${outerIndex + 5}/${innerIndex + 1}.webp`,
-        height: item.height,
-        width: item.width,
-      }))
-      .reverse();
+    return {
+      project: outerIndex + 5,
+      item: Array(4)
+        .fill(0)
+        .map((_, innerIndex) => ({
+          project: outerIndex + 5,
+          id: `${outerIndex + 5}-${innerIndex + 1}`,
+          key: `${outerIndex + 5}-${innerIndex + 1}`,
+          alt: `${outerIndex + 5}-${innerIndex + 1}`,
+          src: `/images/showcase/${outerIndex + 5}/${innerIndex + 1}.webp`,
+          height: item.height,
+          width: item.width,
+        }))
+        .reverse(),
+    };
   });
 
 // Move the first item to the last
-const moveElement = (arr: any[], from: number, to: number) => {
+const moveElement = <T,>(arr: T[], from: number, to: number) => {
   const copy = [...arr];
   const [removed] = copy.splice(from, 1);
   copy.splice(to, 0, removed);
@@ -80,12 +89,18 @@ const moveElement = (arr: any[], from: number, to: number) => {
 const showcaseTop = [
   showcaseTopArray[2],
   ...showcaseTopArray,
-  moveElement(showcaseTopArray[0], 2, 3),
+  {
+    project: showcaseTopArray[0].project,
+    item: moveElement(showcaseTopArray[0].item, 2, 3),
+  },
 ];
 
 const showCaseBottom = [
   ...showcaseBottomArray,
-  moveElement(showcaseBottomArray[0], 2, 3),
+  {
+    project: showcaseBottomArray[0].project,
+    item: moveElement(showcaseBottomArray[0].item, 2, 3),
+  },
 ];
 
 const imageTranslateClass = [
@@ -114,34 +129,44 @@ export default component$(() => {
       </div>
       <div class="flex md:hidden flex-col gap-12">
         {showcaseTopArray.map((item) => (
-          <div key={uuidv4()} class="stack mx-4">
-            {[...item].reverse().map((innerItem) => (
-              <div key={innerItem.key} class="flex items-center justify-center">
-                <img
-                  class="rounded"
-                  src={innerItem.src}
-                  width={innerItem.width}
-                  height={innerItem.height}
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
+          <Link href={`/project/${item.project}`} key={uuidv4()}>
+            <div class="stack mx-4">
+              {[...item.item].reverse().map((innerItem) => (
+                <div
+                  key={innerItem.key}
+                  class="flex items-center justify-center"
+                >
+                  <img
+                    class="rounded"
+                    src={innerItem.src}
+                    width={innerItem.width}
+                    height={innerItem.height}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+          </Link>
         ))}
         {showcaseBottomArray.map((item) => (
-          <div key={uuidv4()} class="stack mx-4">
-            {[...item].reverse().map((innerItem) => (
-              <div key={innerItem.key} class="flex items-center justify-center">
-                <img
-                  class="rounded"
-                  src={innerItem.src}
-                  width={innerItem.width}
-                  height={innerItem.height}
-                  alt=""
-                />
-              </div>
-            ))}
-          </div>
+          <Link href={`/project/${item.project}`} key={uuidv4()}>
+            <div key={uuidv4()} class="stack mx-4">
+              {[...item.item].reverse().map((innerItem) => (
+                <div
+                  key={innerItem.key}
+                  class="flex items-center justify-center"
+                >
+                  <img
+                    class="rounded"
+                    src={innerItem.src}
+                    width={innerItem.width}
+                    height={innerItem.height}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+          </Link>
         ))}
       </div>
 
@@ -157,9 +182,13 @@ export default component$(() => {
         {/* First Row */}
         <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg-blue.png')] bg-contain rounded-lg shadow-lg -translate-x-[400px] mb-32 flex">
           {showcaseTop.map((item) => (
-            <div key={uuidv4()} class="h-full w-[342px] cursor-pointer">
+            <Link
+              href={`/project/${item.project}`}
+              key={uuidv4()}
+              class="h-full w-[342px] cursor-pointer"
+            >
               <div class="relative w-full h-full flex justify-end items-center group hover:animate-simplePulse">
-                {item.map((innerItem, innerIndex) => (
+                {item.item.map((innerItem, innerIndex) => (
                   <div
                     key={innerItem.key}
                     class={imageTranslateClass[innerIndex]}
@@ -174,30 +203,36 @@ export default component$(() => {
                   </div>
                 ))}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         {/* Second Row */}
         <div class=" bg-white w-[2600px] h-[400px] bg-[url('/images/showcase/showcase-bg.png')] flex bg-contain rounded-lg shadow-lg translate-x-[100px]">
           {showCaseBottom.map((item) => (
-            <div key={uuidv4()} class="h-full w-[342px] cursor-pointer">
-              <div class="relative w-full h-full flex justify-end items-center group hover:animate-simplePulse">
-                {item.map((innerItem, innerIndex) => (
-                  <div
-                    key={innerItem.key}
-                    class={imageTranslateClass[innerIndex]}
-                  >
-                    <img
-                      class="rounded-lg shadow-md max-w-[300px]"
-                      src={innerItem.src}
-                      alt={innerItem.alt}
-                      height={innerItem.height}
-                      width={innerItem.width}
-                    />
-                  </div>
-                ))}
+            <Link
+              href={`/project/${item.project}`}
+              key={uuidv4()}
+              class="h-full w-[342px] cursor-pointer"
+            >
+              <div class="h-full w-[342px] cursor-pointer">
+                <div class="relative w-full h-full flex justify-end items-center group hover:animate-simplePulse">
+                  {item.item.map((innerItem, innerIndex) => (
+                    <div
+                      key={innerItem.key}
+                      class={imageTranslateClass[innerIndex]}
+                    >
+                      <img
+                        class="rounded-lg shadow-md max-w-[300px]"
+                        src={innerItem.src}
+                        alt={innerItem.alt}
+                        height={innerItem.height}
+                        width={innerItem.width}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

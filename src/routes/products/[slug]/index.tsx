@@ -6,7 +6,7 @@ import {
   useComputed$,
   useVisibleTask$,
 } from "@builder.io/qwik";
-import { Link, routeLoader$ } from "@builder.io/qwik-city";
+import { type DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
 
 import Swiper from "swiper";
 import { Pagination, Thumbs } from "swiper/modules";
@@ -30,7 +30,6 @@ export const useProductLoader = routeLoader$(
   async ({ params, status, fail, env }) => {
     // Example database call using the id param
     // The database could return null if the product is not found
-
     const res = await api<ProductAPI>(
       `${env.get("API_URL")}/api/products/${params.slug}`,
       {
@@ -49,7 +48,7 @@ export const useProductLoader = routeLoader$(
     });
 
     if ("error" in res) {
-      return fail(res.error.status, {
+      return fail(404, {
         errorMessage: res.error.message,
       });
     }
@@ -439,3 +438,73 @@ export default component$(() => {
     </>
   );
 });
+
+export const head: DocumentHead = ({ resolveValue }) => {
+  const productPage = resolveValue(useProductLoader);
+  if (
+    !productPage ||
+    "errorMessage" in productPage ||
+    !productPage.attributes.seo
+  ) {
+    return {
+      title: "基地文化",
+      meta: [
+        {
+          name: "description",
+          content: "基地文化",
+        },
+        // Open graph
+        {
+          property: "og:title",
+          content: "基地文化",
+        },
+        {
+          property: "og:description",
+          content: "基地文化",
+        },
+      ],
+      links: [
+        {
+          rel: "canonical",
+          href: "https://jidiculture.com/",
+        },
+      ],
+    };
+  }
+
+  const { metaTitle, metaDescription, metaRobots, keywords } =
+    productPage.attributes.seo;
+
+  return {
+    title: metaTitle,
+    meta: [
+      {
+        name: "description",
+        content: metaDescription,
+      },
+      {
+        name: "robots",
+        content: metaRobots,
+      },
+      {
+        name: "keywords",
+        content: keywords,
+      },
+      // Open graph
+      {
+        property: "og:title",
+        content: metaTitle,
+      },
+      {
+        property: "og:description",
+        content: metaDescription,
+      },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://jidiculture.com/",
+      },
+    ],
+  };
+};
