@@ -400,7 +400,7 @@ export default component$<Props>((props) => {
 
         <div class="flex flex-col w-full justify-start md:items-start items-center my-8">
           <p class="text-2xl font-medium my-6">付款方式</p>
-          <div class="flex lg:flex-row md:flex-col">
+          <div class="flex lg:flex-row md:flex-col ">
             <button
               class={[
                 "bg-gray-100",
@@ -430,9 +430,9 @@ export default component$<Props>((props) => {
 
         {/* Fourth Step */}
 
-        <div class="flex flex-col w-full max-w-[240px] justify-start items-start form-control">
+        <div class="flex flex-col w-full max-w-[200px] justify-start form-control mx-auto md:m-0">
           <button
-            class="btn btn-block rounded-full bg-bgGray-900 hover:bg-bgWhite-700"
+            class="btn btn-block rounded-full bg-bgGray-900 hover:bg-bgWhite-700 "
             type="submit"
             disabled={orderForm.submitting}
             onClick$={checkFormErrorOnSubmit}

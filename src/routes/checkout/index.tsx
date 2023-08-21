@@ -224,7 +224,7 @@ export default component$(() => {
                 <div class="flex flex-col">
                   {cartCtx.items.map((item) => (
                     <div
-                      class="flex flex-col md:flex-row py-6 border-b border-gray-300"
+                      class="flex flex-col md:flex-row py-6 border-b border-gray-300 items-center md:items-stretch"
                       key={item.slug}
                     >
                       <div class="lg:max-w-[240px] w-full">
@@ -233,10 +233,10 @@ export default component$(() => {
                           alt=""
                           width={item.thumbnail?.width}
                           height={item.thumbnail?.height}
-                          class="object-cover object-center rounded"
+                          class="object-cover object-center rounded mx-auto"
                         />
                       </div>
-                      <div class="flex-grow flex flex-col justify-between my-4 md:mx-4 md:my-0">
+                      <div class="flex-grow flex flex-col items-center md:items-start justify-between my-4 md:mx-4 md:my-0">
                         <div class="flex flex-col gap-2">
                           <p class="text-2xl text-gray-900 font-medium tracking-widest">
                             {item.name}

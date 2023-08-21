@@ -40,7 +40,7 @@ export default component$(() => {
         </div>
         <div class="mr-2 flex-none md:hidden">
           <Link href="/checkout">
-            <div class="indicator p-1">
+            <div class="indicator p-1 z-[1]">
               <span class="indicator-item badge badge-accent">
                 {cartCtx.items.length}
               </span>
@@ -85,7 +85,7 @@ export default component$(() => {
         </div>
       </div>
 
-      <div class="drawer-side">
+      <div class="drawer-side z-10">
         <ul class="menu p-4 w-full h-full bg-bgWhite-800 text-bgWhite-500 z-40 gap-2">
           <li class="flex items-end p-4 mb-4">
             <label for="my-drawer" class="text-2xl">
