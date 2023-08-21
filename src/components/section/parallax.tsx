@@ -11,8 +11,8 @@ export default component$(() => {
       yPercent: -100,
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "top top",
-        end: "10% top",
+        start: "-50 top",
+        end: "5% top",
         scrub: 1,
       },
     });
@@ -25,90 +25,92 @@ export default component$(() => {
         scrub: 1,
       },
     });
-
-    gsap.set(".snake-div", {
-      scale: 0.5,
-      opacity: 0.7,
-      transformOrigin: "top center",
-    });
-    gsap.set(".mountain-div", { scale: 0.5, transformOrigin: "bottom left" });
-    gsap.set(".woman-div", {
-      scale: 0.7,
-      y: -80,
-      transformOrigin: "bottom right",
-    });
-    gsap.set(".butterfly-div", {
-      scale: 0.5,
-      x: 100,
-      y: -200,
-      transformOrigin: "center center",
-    });
-
-    tl.to(".snake-div", {
-      opacity: 1,
-      scale: 1,
-      y: 30,
+    tl.to(".parallax-bg", {
+      scale: 1.1,
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "-90 top",
-        end: "50% top",
+        start: "top top",
+        end: "450 top",
         scrub: 1,
       },
     });
-    tl.to(
-      ".mountain-div",
-      {
-        scale: 0.6,
-        y: 20,
-      },
-      "<"
-    );
 
     tl.to(
-      ".woman-div",
+      ".right-div",
       {
-        scale: 0.8,
-        y: 60,
-      },
-      "<"
-    );
-
-    tl.fromTo(
-      ".butterfly-div",
-      {
-        scale: 0.5,
-        x: 100,
-        y: -200,
-      },
-      {
-        rotation: 270,
-        scale: 1.2,
-        x: 50,
-        y: 300,
+        x: "50%",
+        y: "50%",
+        opacity: 0,
+        scale: 1.8,
         scrollTrigger: {
           trigger: ".wrapper",
-          start: "top top",
-          end: "50% top",
+          start: "-30 top",
+          end: "450 top",
           scrub: 1,
         },
-      }
+      },
+      "<"
     );
+
+    tl.to(".left-div", {
+      opacity: 0,
+      scale: 1.8,
+      x: "-50%",
+      y: "50%",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "-20 top",
+        end: "450 top",
+        scrub: 1,
+      },
+    });
+
+    tl.to(
+      ".up-div",
+      {
+        opacity: 0,
+        scale: 0.3,
+        x: "-50%",
+        y: "-50%",
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "0 top",
+          end: "450 top",
+          scrub: 1,
+        },
+      },
+      "<"
+    );
+
+    tl.to(".rightUp-div", {
+      opacity: 0.9,
+      scale: 0.3,
+      x: "50%",
+      y: "-20%",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "0 top",
+        end: "450 top",
+        scrub: 1,
+      },
+    });
   });
   return (
-    <div class="flex-col bg-bgGray-500 sticky top-0 hidden lg:block z-[1]">
-      <div class="wrapper w-screen h-[950px] mx-auto my-0 overflow-hidden shadow-2xl relative z-0 aspect-video bg-[url('/images/background.webp')] bg-[size:110%] bg-no-repeat">
-        <h1 class="absolute w-full z-10 text-6xl text-center m-0 p-0 top-1/2 -translate-y-1/2 overflow-hidden mix-blend-color-burn">
-          <span class="text-mask block font-bold text-red-900">
-            歡迎來到Alang edaan 故事部落
-          </span>
+    <div class="flex-col bg-bgGray-500 sticky top-0 z-[1]">
+      <div class="parallax-bg wrapper w-full h-[950px] mx-auto my-0 overflow-hidden shadow-2xl relative z-0 aspect-video bg-[url('/images/parallax/background.webp')] bg-no-repeat bg-cover bg-top md:bg-center">
+        <h1 class="absolute w-full text-4xl md:text-6xl m-0 p-0 translate-y-[400px] md:top-1/2 md:-translate-y-1/2 overflow-hidden mix-blend-color-burn z-[3]">
+          <div class="text-mask flex flex-col md:flex-row font-bold text-red-900 items-center justify-center">
+            <span>歡迎來到</span>
+            <span>Alang edaan</span>
+            <span>故事部落</span>
+          </div>
         </h1>
         {/* background image */}
-        <div class="mountain-div w-full h-full absolute origin-center bg-[url('/images/mountain.webp')] bg-no-repeat z-[1] "></div>
-        <div class="butterfly-div w-full h-full absolute origin-center bg-[url('/images/butterfly.webp')] bg-no-repeat z-[2] "></div>
-        <div class="snake-div w-full h-full absolute origin-center bg-[url('/images/snake.webp')] z-[3] bg-no-repeat "></div>
-        <div class="woman-div w-full h-full right-0 absolute origin-center bg-[url('/images/woman.webp')] bg-right bg-no-repeat z-[4] "></div>
+        <div class="rightUp-div w-full h-full absolute origin-center bg-[url('/images/parallax/rightUp.webp')] bg-no-repeat z-[2] bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="up-div w-full h-full absolute origin-center bg-[url('/images/parallax/up.webp')] bg-no-repeat z-[3] bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="left-div w-full h-full absolute origin-center bg-[url('/images/parallax/left.webp')] z-[4] bg-no-repeat bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="right-div w-full h-full absolute origin-center bg-[url('/images/parallax/right.webp')] bg-no-repeat z-[5] bg-contain bg-[center_top_300px] md:bg-center"></div>
       </div>
-      <div class="stipples h-[100px] w-full bg-[url('/images/stipples-bg.webp')] bg-contain bg-no-repeat bg-top -mt-1 z-[1]" />
     </div>
   );
 });
