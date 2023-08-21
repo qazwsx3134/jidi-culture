@@ -137,7 +137,16 @@ export default component$(() => {
   if (!product.value || "errorMessage" in product.value) {
     // no product data found
     // so render our own custom product 404
-    return <p>Sorry, looks like we don't have this product.</p>;
+    return (
+      <div class="w-full bg-bgWhite-500">
+        <div class="w-full flex flex-col items-center justify-center gap-4 p-12">
+          <h1 class="text-6xl tracking-widest font-bold my-6">404</h1>
+          <h2 class="text-4xl tracking-widest font-bold my-6">
+            抱歉此頁面不存在
+          </h2>
+        </div>
+      </div>
+    );
   }
 
   const {

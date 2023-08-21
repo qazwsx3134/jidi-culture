@@ -79,14 +79,6 @@ export default component$(() => {
               <FrontPageCard {...product.attributes} />
             </div>
           ))}
-          {products.value.map((product) => (
-            <div
-              class="swiper-slide w-[95%] md:w-[45.4%] lg:w-[30.3%] h-[550px] flex items-center justify-center"
-              key={product.attributes.slug}
-            >
-              <FrontPageCard {...product.attributes} />
-            </div>
-          ))}
         </div>
         {/* <!-- If we need pagination --> */}
         <div class="swiper-pagination"></div>
