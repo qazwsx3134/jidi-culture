@@ -26,7 +26,9 @@ import type { HomePageAPI } from "~/api/type";
 
 export const useHomePage = routeLoader$(async ({ env, fail }) => {
   const res = await api<HomePageAPI>(
-    `${env.get("API_URL")}/api/home-page?populate[0]=seo&populate[1]=seo.metaSocial.image`,
+    `${env.get(
+      "API_URL"
+    )}/api/home-page?populate[0]=seo&populate[1]=seo.metaSocial.image`,
     {
       method: "GET",
       headers: {
@@ -70,6 +72,11 @@ export default component$(() => {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    ScrollTrigger.normalizeScroll({
+      allowNestedScroll: true,
+      type: "touch,wheel,pointer",
+    });
+
     lenis.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
@@ -78,6 +85,7 @@ export default component$(() => {
 
     gsap.ticker.lagSmoothing(0);
 
+    window.gsap = gsap;
     const imgLoad = imagesLoaded("#bodyContainer", { background: true });
 
     const start = Date.now();

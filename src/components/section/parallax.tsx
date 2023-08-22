@@ -1,18 +1,15 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
 export default component$(() => {
   useVisibleTask$(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    const gsap = window.gsap;
 
     gsap.from(".text-mask", {
       yPercent: -100,
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "-50 top",
-        end: "5% top",
+        start: "0 top",
+        end: "15% top",
         scrub: 1,
       },
     });
@@ -26,7 +23,6 @@ export default component$(() => {
       },
     });
     tl.to(".parallax-bg", {
-      scale: 1.1,
       scrollTrigger: {
         trigger: ".wrapper",
         start: "top top",
@@ -40,12 +36,11 @@ export default component$(() => {
       {
         x: "50%",
         y: "50%",
-        opacity: 0,
         scale: 1.8,
         scrollTrigger: {
           trigger: ".wrapper",
-          start: "-30 top",
-          end: "450 top",
+          start: "top top",
+          end: "350 top",
           scrub: 1,
         },
       },
@@ -53,14 +48,13 @@ export default component$(() => {
     );
 
     tl.to(".left-div", {
-      opacity: 0,
       scale: 1.8,
       x: "-50%",
       y: "50%",
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "-20 top",
-        end: "450 top",
+        start: "top top",
+        end: "350 top",
         scrub: 1,
       },
     });
@@ -68,14 +62,13 @@ export default component$(() => {
     tl.to(
       ".up-div",
       {
-        opacity: 0,
         scale: 0.3,
         x: "-50%",
         y: "-50%",
         scrollTrigger: {
           trigger: ".wrapper",
-          start: "0 top",
-          end: "450 top",
+          start: "top top",
+          end: "350 top",
           scrub: 1,
         },
       },
@@ -83,14 +76,13 @@ export default component$(() => {
     );
 
     tl.to(".rightUp-div", {
-      opacity: 0.9,
       scale: 0.3,
       x: "50%",
       y: "-20%",
       scrollTrigger: {
         trigger: ".wrapper",
-        start: "0 top",
-        end: "450 top",
+        start: "top top",
+        end: "350 top",
         scrub: 1,
       },
     });
@@ -98,7 +90,7 @@ export default component$(() => {
   return (
     <div class="flex-col bg-bgGray-500 sticky top-0 z-[1]">
       <div class="parallax-bg wrapper w-full h-[950px] mx-auto my-0 overflow-hidden shadow-2xl relative z-0 aspect-video bg-[url('/images/parallax/background.webp')] bg-no-repeat bg-cover bg-top md:bg-center">
-        <h1 class="absolute w-full text-4xl md:text-6xl m-0 p-0 translate-y-[400px] md:top-1/2 md:-translate-y-1/2 overflow-hidden mix-blend-color-burn z-[3]">
+        <h1 class="absolute w-full text-4xl md:text-6xl m-0 p-0 translate-y-[400px] md:top-1/2 md:-translate-y-1/2 overflow-hidden z-[3]">
           <div class="text-mask flex flex-col md:flex-row font-bold text-red-900 items-center justify-center">
             <span>歡迎來到</span>
             <span>Alang edaan</span>
