@@ -72,10 +72,7 @@ export default component$(() => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.normalizeScroll({
-      allowNestedScroll: true,
-      type: "touch,wheel,pointer",
-    });
+    ScrollTrigger.normalizeScroll(true);
 
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -83,7 +80,7 @@ export default component$(() => {
       lenis.raf(time * 1000);
     });
 
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     window.gsap = gsap;
     const imgLoad = imagesLoaded("#bodyContainer", { background: true });
