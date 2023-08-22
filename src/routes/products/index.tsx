@@ -10,7 +10,9 @@ import { useProductsLoader } from "~/routes/layout";
 
 export const useProductPage = routeLoader$(async ({ env, fail }) => {
   const res = await api<ShopPageAPI>(
-    `${env.get("API_URL")}/api/shop-page?populate[0]=seo&populate[1]=seo.metaSocial.image&populate[2]=firstBlock&populate[3]=secondBlock&populate[4]=thirdBlock`,
+    `${env.get(
+      "API_URL"
+    )}/api/shop-page?populate[0]=seo&populate[1]=seo.metaSocial.image&populate[2]=firstBlock&populate[3]=secondBlock&populate[4]=thirdBlock`,
     {
       method: "GET",
       headers: {

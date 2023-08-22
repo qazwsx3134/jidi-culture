@@ -67,16 +67,13 @@ export default component$(() => {
           <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             基地文化
           </h1>
-          <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
-            測試文字
-          </p>
         </div>
         <div class="flex flex-col text-left lg:w-2/3 mx-auto justify-center mb-12 bg-bgWhite-600 rounded-md p-4">
           <h4 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
             訂單資訊
           </h4>
           <h5 class="sm:text-xl text-lg font-normal title-font mb-4 text-gray-700">
-            謝謝您的訂購，我們將盡快為您處理訂單
+            謝謝您的訂購，已經將訂購成功資訊寄到您的信箱，我們將盡快為您處理訂單
           </h5>
           <div class="leading-relaxed text-base">
             <p>訂單編號 : {confirm.value.orderId}</p>
