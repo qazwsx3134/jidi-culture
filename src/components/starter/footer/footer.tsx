@@ -55,7 +55,7 @@ export default component$(() => {
   }
 
   return (
-    <footer class="footer p-10 bg-bgGray-500 flex items-center justify-evenly md:flex-row flex-col-reverse ">
+    <footer class="footer p-10 bg-bgGray-500 flex items-center justify-evenly md:flex-row flex-col ">
       <div class="font-light text-gray-500 min-w-[200px]">
         {footer.value.attributes.image.data ? (
           <img
