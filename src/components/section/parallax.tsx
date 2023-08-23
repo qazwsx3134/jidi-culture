@@ -1,9 +1,14 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 export default component$(() => {
   useVisibleTask$(
     () => {
-      const gsap = window.gsap;
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.normalizeScroll(true);
 
       gsap.from(".text-mask", {
         yPercent: -100,
