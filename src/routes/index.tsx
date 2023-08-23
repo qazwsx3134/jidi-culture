@@ -96,7 +96,6 @@ export default component$(() => {
           window.lenis.scrollTo(0, 0);
         }, delay);
       });
-      console.log("index");
     },
     {
       strategy: "document-ready",

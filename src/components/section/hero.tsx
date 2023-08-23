@@ -1,42 +1,47 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
 export default component$(() => {
-  useVisibleTask$(() => {
-    // initialize Lenis and register it as a global variable
+  useVisibleTask$(
+    () => {
+      // initialize Lenis and register it as a global variable
 
-    const gsap = window.gsap;
+      const gsap = window.gsap;
 
-    gsap.fromTo(
-      ["#s2Text", "#s2Blob"],
-      {
-        yPercent: -100,
-      },
-      {
-        yPercent: 60,
-        scrollTrigger: {
-          trigger: "#s2Wrapper",
-          scrub: true,
-          start: "-100% top",
-          end: "200% bottom",
+      gsap.fromTo(
+        ["#s2Text", "#s2Blob"],
+        {
+          yPercent: -100,
         },
-      }
-    );
+        {
+          yPercent: 60,
+          scrollTrigger: {
+            trigger: "#s2Wrapper",
+            scrub: true,
+            start: "-100% top",
+            end: "200% bottom",
+          },
+        }
+      );
 
-    gsap.fromTo(
-      [".text-Title", ".text-subTitle", ".text-content"],
-      {
-        yPercent: -100,
-      },
-      {
-        yPercent: 0,
-        scrollTrigger: {
-          trigger: "#s2Wrapper",
-          start: "-30% top",
-          end: "bottom bottom",
+      gsap.fromTo(
+        [".text-Title", ".text-subTitle", ".text-content"],
+        {
+          yPercent: -100,
         },
-      }
-    );
-  });
+        {
+          yPercent: 0,
+          scrollTrigger: {
+            trigger: "#s2Wrapper",
+            start: "-30% top",
+            end: "bottom bottom",
+          },
+        }
+      );
+    },
+    {
+      strategy: "intersection-observer",
+    }
+  );
   return (
     <div class="flex flex-col mb-10 sticky z-[2] top-0">
       <div id="s2Wrapper" class="relative overflow-hidden">

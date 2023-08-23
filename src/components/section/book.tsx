@@ -1,46 +1,51 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
 export default component$(() => {
-  useVisibleTask$(() => {
-    // initialize Lenis and register it as a global variable
+  useVisibleTask$(
+    () => {
+      // initialize Lenis and register it as a global variable
 
-    const gsap = window.gsap;
+      const gsap = window.gsap;
 
-    // book flip animation
-    gsap.set("#bookCover", {
-      transformStyle: "preserve-3d",
-      perspective: 1024,
-      webkitBackfaceVisibility: "hidden",
-      backfaceVisibility: "hidden",
-    });
+      // book flip animation
+      gsap.set("#bookCover", {
+        transformStyle: "preserve-3d",
+        perspective: 1024,
+        webkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+      });
 
-    // 讓頁面翻轉時，頁面的背面不會顯示出來
-    gsap.set([".page-3d"], {
-      transformStyle: "preserve-3d",
-      perspective: 1024,
-      webkitBackfaceVisibility: "hidden",
-      backfaceVisibility: "hidden",
-    });
+      // 讓頁面翻轉時，頁面的背面不會顯示出來
+      gsap.set([".page-3d"], {
+        transformStyle: "preserve-3d",
+        perspective: 1024,
+        webkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+      });
 
-    // 提前翻轉頁面，讓頁面翻轉時，頁面成為正面
-    gsap.set([".back-page"], {
-      rotateY: 180,
-    });
+      // 提前翻轉頁面，讓頁面翻轉時，頁面成為正面
+      gsap.set([".back-page"], {
+        rotateY: 180,
+      });
 
-    gsap.to(".page-animation", {
-      scrollTrigger: {
-        trigger: "#bookSection",
-        start: "-20% top",
-        end: "bottom bottom",
-        scrub: 1,
-      },
-      duration: 1,
-      translateX: -5,
-      rotationY: 180,
-      transformOrigin: "left center",
-      ease: "none",
-    });
-  });
+      gsap.to(".page-animation", {
+        scrollTrigger: {
+          trigger: "#bookSection",
+          start: "-20% top",
+          end: "bottom bottom",
+          scrub: 1,
+        },
+        duration: 1,
+        translateX: -5,
+        rotationY: 180,
+        transformOrigin: "left center",
+        ease: "none",
+      });
+    },
+    {
+      strategy: "intersection-observer",
+    }
+  );
   return (
     <div>
       <div class="text-6xl flex items-center justify-center mb-24">

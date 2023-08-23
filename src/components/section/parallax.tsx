@@ -3,7 +3,6 @@ import { component$, useVisibleTask$ } from "@builder.io/qwik";
 export default component$(() => {
   useVisibleTask$(
     () => {
-      console.log("parallax");
       const gsap = window.gsap;
 
       gsap.from(".text-mask", {
