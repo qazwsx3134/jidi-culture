@@ -1,11 +1,14 @@
 import { component$, useVisibleTask$ } from "@builder.io/qwik";
 
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 export default component$(() => {
   useVisibleTask$(
     () => {
       // initialize Lenis and register it as a global variable
-
-      const gsap = window.gsap;
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.normalizeScroll(true);
 
       // book flip animation
       gsap.set("#bookCover", {
