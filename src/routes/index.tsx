@@ -95,6 +95,7 @@ export default component$(() => {
         window.lenis.scrollTo(0, 0);
       }, delay);
     });
+    console.log("index")
   });
   return (
     <div id="bodyContainer" class="">
