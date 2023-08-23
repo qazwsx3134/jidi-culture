@@ -10,8 +10,9 @@ export default component$<ProductAttributes>((props) => {
           <img
             class="h-72 object-cover rounded-xl"
             src={
-              props.image?.data.attributes.formats?.small?.url ||
-              props.image?.data.attributes.url
+              props.image?.data?.attributes?.formats?.small?.url ||
+              props.image?.data?.attributes?.url ||
+              "https://dummyimage.com/300x288"
             }
             width={320}
             height={288}
@@ -32,7 +33,9 @@ export default component$<ProductAttributes>((props) => {
           </p>
 
           <div class="flex items-end justify-between my-4">
-            <div class="text-xl text-gray-500 font-light tracking-wide">NT${props.price}</div>
+            <div class="text-xl text-gray-500 font-light tracking-wide">
+              NT${props.price}
+            </div>
             <div class="card-actions">
               <button class="btn btn-accent btn-md">購買</button>
             </div>

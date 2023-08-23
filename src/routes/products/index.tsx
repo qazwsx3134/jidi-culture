@@ -104,22 +104,22 @@ export default component$(() => {
           <div class="stats stats-vertical sm:stats-horizontal shadow">
             <div class="stat">
               <div class="stat-title">
-                {productPage.value.attributes.firstBlock.title}
+                {productPage.value?.attributes?.firstBlock?.title}
               </div>
               <div class="stat-value">
-                {productPage.value.attributes.firstBlock.number}
+                {productPage.value?.attributes?.firstBlock?.number}
               </div>
               <div class="stat-desc">
-                {productPage.value.attributes.firstBlock.description}
+                {productPage.value?.attributes?.firstBlock?.description}
               </div>
             </div>
 
             <div class="stat">
               <div class="stat-title">
-                {productPage.value.attributes.secondBlock.title}
+                {productPage.value?.attributes?.secondBlock?.title}
               </div>
               <div class="stat-value">
-                {productPage.value.attributes.secondBlock.number}
+                {productPage.value?.attributes?.secondBlock?.number}
               </div>
               <div class="stat-desc">
                 {productPage.value.attributes.secondBlock.description}
@@ -128,13 +128,13 @@ export default component$(() => {
 
             <div class="stat">
               <div class="stat-title">
-                {productPage.value.attributes.thirdBlock.title}
+                {productPage.value?.attributes?.thirdBlock?.title}
               </div>
               <div class="stat-value">
-                {productPage.value.attributes.thirdBlock.number}
+                {productPage.value?.attributes?.thirdBlock?.number}
               </div>
               <div class="stat-desc">
-                {productPage.value.attributes.thirdBlock.description}
+                {productPage.value?.attributes?.thirdBlock?.description}
               </div>
             </div>
           </div>

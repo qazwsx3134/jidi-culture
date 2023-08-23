@@ -229,10 +229,10 @@ export default component$(() => {
                     >
                       <div class="lg:max-w-[240px] w-full">
                         <img
-                          src={item.thumbnail?.url}
+                          src={item.thumbnail?.url || "https://dummyimage.com/240x240"}
                           alt=""
-                          width={item.thumbnail?.width}
-                          height={item.thumbnail?.height}
+                          width={item.thumbnail?.width || 240}
+                          height={item.thumbnail?.height || 240}
                           class="object-cover object-center rounded mx-auto"
                         />
                       </div>
