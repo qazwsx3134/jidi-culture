@@ -56,47 +56,52 @@ export const useHomePage = routeLoader$(async ({ env, fail }) => {
 export default component$(() => {
   const onDone = useSignal(false);
 
-  useVisibleTask$(() => {
-    // initialize Lenis and register it as a global variable
-    const lenis = new Lenis({
-      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
-    });
-    window.lenis = lenis;
+  useVisibleTask$(
+    () => {
+      // initialize Lenis and register it as a global variable
+      const lenis = new Lenis({
+        easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
+      });
+      window.lenis = lenis;
 
-    function raf(time: any) {
-      lenis.raf(time);
+      function raf(time: any) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
       requestAnimationFrame(raf);
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.normalizeScroll(true);
+
+      lenis.on("scroll", ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(500, 33);
+
+      window.gsap = gsap;
+      const imgLoad = imagesLoaded("#bodyContainer", { background: true });
+
+      const start = Date.now();
+      imgLoad.on("always", function () {
+        const end = Date.now();
+        const duration = end - start;
+        const delay = duration < 2000 ? 2000 - duration : 0;
+        setTimeout(() => {
+          onDone.value = true;
+          window.lenis.scrollTo(0, 0);
+        }, delay);
+      });
+      console.log("index");
+    },
+    {
+      strategy: "document-ready",
     }
-
-    requestAnimationFrame(raf);
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    ScrollTrigger.normalizeScroll(true);
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(500, 33);
-
-    window.gsap = gsap;
-    const imgLoad = imagesLoaded("#bodyContainer", { background: true });
-
-    const start = Date.now();
-    imgLoad.on("always", function () {
-      const end = Date.now();
-      const duration = end - start;
-      const delay = duration < 2000 ? 2000 - duration : 0;
-      setTimeout(() => {
-        onDone.value = true;
-        window.lenis.scrollTo(0, 0);
-      }, delay);
-    });
-    console.log("index")
-  });
+  );
   return (
     <div id="bodyContainer" class="">
       <PageBackground onDone={onDone}>
