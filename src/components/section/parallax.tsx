@@ -87,9 +87,10 @@ export default component$(() => {
           scrub: 1,
         },
       });
+      console.log("parallax");
     },
     {
-      strategy: "document-idle",
+      strategy: "intersection-observer",
     }
   );
   return (

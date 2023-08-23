@@ -96,9 +96,10 @@ export default component$(() => {
           window.lenis.scrollTo(0, 0);
         }, delay);
       });
+      console.log("imgLoad");
     },
     {
-      strategy: "document-ready",
+      strategy: "intersection-observer",
     }
   );
   return (
