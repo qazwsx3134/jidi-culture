@@ -4,9 +4,11 @@ import { initSwiper } from "~/components/carousel";
 import StylingTitle from "~/components/stylingTitle";
 import { useLimitedProductsLoader } from "~/routes/layout";
 import FrontPageCard from "./frontPageCard";
+import { useHomePage } from "~/routes";
 
 export default component$(() => {
   const products = useLimitedProductsLoader();
+  const homePage = useHomePage();
 
   if ("errorMessage" in products.value) {
     products.value.errorMessage;
@@ -59,10 +61,9 @@ export default component$(() => {
         <div class="flex flex-wrap w-full mb-20">
           <StylingTitle title="故事商店" />
           <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify, subway tile poke farm-to-table. Franzen you probably
-            haven't heard of them man bun deep jianbing selfies heirloom prism
-            food truck ugh squid celiac humblebrag.
+            {"errorMessage" in homePage.value
+              ? "Jidi Culture publishing house"
+              : homePage.value.attributes.shopText}
           </p>
         </div>
       </div>

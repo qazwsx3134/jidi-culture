@@ -42,7 +42,7 @@ export default component$(() => {
       );
     },
     {
-      strategy: "intersection-observer",
+      strategy: "document-ready",
     }
   );
   return (
@@ -72,24 +72,25 @@ export default component$(() => {
         </div>
         <div
           id="s2Text"
-          class="absolute top-0 left-1/2 -translate-x-1/2 w-full lg:w-[50vw] h-full flex justify-center z-[1] text-black"
+          class="absolute top-20 left-1/2 -translate-x-1/2 w-full lg:w-[50vw] h-full flex justify-center z-[1] text-black"
         >
-          <div class="absolute top-0 w-full p-4 lg:p-0 lg:h-[830px] lg:w-[900px] flex flex-col items-center text-center text-bgWhite-500 py-12 gap-10">
+          <div class="absolute top-0 w-full p-4 lg:p-0 lg:h-[830px] lg:w-[900px] flex flex-col items-center text-center text-bgWhite-400 py-12 gap-10">
             <div class="overflow-hidden my-12">
-              <h2 class="text-6xl text-Title">基地</h2>
+              <h2 class="text-6xl text-Title">基地文化</h2>
             </div>
 
             <div class="overflow-hidden my-2">
               <h3 class="text-4xl text-subTitle">
-                為了讓更多族群議題能夠在台灣社會發酵
+                作為一道安全通往民族文化世界的橋樑
               </h3>
             </div>
 
             <div class="overflow-hidden my-2">
-              <h4 class="text-2xl text-bgWhite-600 text-content">
+              <h4 class="text-2xl text-content">
                 <p>透過藝術創作</p>
                 <p>我們得以與不同的學術社群及原住民族社區合作</p>
                 <p>走在這條祖靈看守的道路上</p>
+                <p>我們十分珍惜與大家的相遇。</p>
               </h4>
             </div>
           </div>

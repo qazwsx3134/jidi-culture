@@ -94,7 +94,7 @@ export default component$(() => {
       });
     },
     {
-      strategy: "intersection-observer",
+      strategy: "document-ready",
     }
   );
   return (

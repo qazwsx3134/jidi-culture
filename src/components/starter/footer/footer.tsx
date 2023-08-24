@@ -81,22 +81,22 @@ export default component$(() => {
 
         <div class="flex w-full my-1 justify-between gap-4">
           <p>Time</p>
-          <p>{footer.value.attributes.workingHours}</p>
+          <p class="font-semibold tracking-wide">{footer.value.attributes.workingHours}</p>
         </div>
         <div class="flex w-full my-1 justify-between gap-4">
           <p>Email</p>
-          <p>{footer.value.attributes.contactEmail}</p>
+          <p class="font-semibold tracking-wide">{footer.value.attributes.contactEmail}</p>
         </div>
         <div class="flex w-full my-1 justify-between gap-4">
           <p>TEL</p>
-          <p>{footer.value.attributes.contactPhoneNo}</p>
+          <p class="font-semibold tracking-wide">{footer.value.attributes.contactPhoneNo}</p>
         </div>
       </div>
-      <div class="items-center justify-center tracking-wide font-light text-gray-500">
+      <div class="flex flex-col items-center self-end justify-end tracking-wide font-light text-gray-500">
         <p>{footer.value.attributes.companyName}</p>
         <p>{footer.value.attributes.description}</p>
       </div>
-      <div class="flex flex-col items-end justify-between">
+      <div class="flex flex-col items-center md:items-end justify-between">
         <div>
           <span class="footer-title ">Social</span>
           <div class="grid grid-flow-col gap-6 mt-5">
@@ -125,7 +125,7 @@ export default component$(() => {
           </div>
         </div>
 
-        <div class="flex flex-col gap-3 items-end text-xs leading-none mt-8">
+        <div class="flex flex-col gap-3 items-center md:items-end text-xs leading-none mt-8">
           <a
             href="mailto:qazwsx3134@gmail.com"
             class="flex items-baseline gap-1"
