@@ -10,15 +10,12 @@
 
 ## TODO
 
-1. 申請Domain 然後把前後端都上上去 連上
-2. footer api
-3. SEO
-4. Check RWD
-5. 首頁 carousel 放四個product
-6. Project page API
-7. 後端的備份系統
-8. 手機版的Header + 手機checkout 按鈕
-9. 首頁的parallax
+
+驗證寄信Email
+訂單完成用jidiculture@gmail.com傳到yurining2018@gmail.com
+
+寄給訂貨人的確認信時候用jidiculture@gmail.com 寄給訂貨人
+
 
 ## Done
 
@@ -32,6 +29,27 @@
 8. checkout page PC, Mobile, Tablet
 9. checkout confirm page PC, Mobile, Tablet
 10. product page dynamic html renderer
+11. 申請Domain 然後把前後端都上上去 連上
+12. Check RWD
+13. Project page API
+14. 圓體font
+15. 基地文化 改為 基地文化出版有限公司（出版有限公司小字）
+16. favicon
+17. 首頁的team那邊 縮小 要加族名
+柯Yuri Yuko, 黃Away Huang, 林Lowking Lin, 郭Walis Jiyung
+18. 成為兩個世界的橋樑改成：歡迎來到Alang edaan 故事部
+19. Project hero image 縮小
+20. 首頁Project 咖啡色改成第二張 夢想基地改成第二張
+21. Loading
+22. Logo改抖動
+23. 葉子往上飛
+24. 手機版的Header + 手機checkout 按鈕
+25. 加訂購人電話 Cart page 加 電話
+26. 要改商品頁的input default = 1
+27. footer api products page confirm page api
+28. 首頁 carousel 放8個product
+29. SEO
+30. 首頁的parallax
 
 API
 
@@ -42,6 +60,9 @@ API
 5. sending email api
 
 ## Project Structure
+
+前端: Cloud flare pages + Qwik
+後端: Digital Ocean + Strapi
 
 This project is using Qwik with [QwikCity](https://qwik.builder.io/qwikcity/overview/). QwikCity is just an extra set of tools on top of Qwik to make it easier to build a full site, including directory-based routing, layouts, and more.
 

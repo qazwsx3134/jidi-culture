@@ -98,7 +98,6 @@ export default component$(() => {
           <br />
           {footer.value.attributes.description}
         </p>
-        <p>{footer.value.attributes.copyRight}</p>
       </div>
       <div class="flex flex-col justify-between">
         <div>
@@ -141,6 +140,7 @@ export default component$(() => {
             <span>by</span>
             <span class="underline">Ronghao,Tsai</span>
           </a>
+          <p>{footer.value.attributes.copyRight}</p>
         </div>
       </div>
     </footer>
