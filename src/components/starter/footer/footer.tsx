@@ -56,7 +56,7 @@ export default component$(() => {
 
   return (
     <footer class="footer p-10 bg-bgGray-500 flex items-center justify-evenly md:flex-row flex-col ">
-      <div class="font-light text-gray-500 min-w-[200px]">
+      <div class="font-light text-gray-500 min-w-[200px] max-w-xs md:max-w-md">
         {footer.value.attributes.image.data ? (
           <img
             class="w-[100px] h-[100px] object-contain"
@@ -81,15 +81,25 @@ export default component$(() => {
 
         <div class="flex w-full my-1 justify-between gap-4">
           <p>Time</p>
-          <p class="font-semibold tracking-wide">{footer.value.attributes.workingHours}</p>
+          <p class="font-semibold tracking-wide">
+            {footer.value.attributes.workingHours}
+          </p>
         </div>
         <div class="flex w-full my-1 justify-between gap-4">
           <p>Email</p>
-          <p class="font-semibold tracking-wide">{footer.value.attributes.contactEmail}</p>
+          <p class="font-semibold tracking-wide">
+            {footer.value.attributes.contactEmail}
+          </p>
         </div>
         <div class="flex w-full my-1 justify-between gap-4">
           <p>TEL</p>
-          <p class="font-semibold tracking-wide">{footer.value.attributes.contactPhoneNo}</p>
+          <div class="font-semibold tracking-wide flex flex-col">
+            {footer.value.attributes.contactPhoneNo
+              .split(",")
+              .map((phoneNo) => (
+                <p key={phoneNo}>{phoneNo}</p>
+              ))}
+          </div>
         </div>
       </div>
       <div class="flex flex-col items-center self-end justify-end tracking-wide font-light text-gray-500">
