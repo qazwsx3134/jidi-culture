@@ -4,99 +4,95 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default component$(() => {
-  useVisibleTask$(
-    () => {
-      gsap.registerPlugin(ScrollTrigger);
+  useVisibleTask$(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-      ScrollTrigger.normalizeScroll(true);
+    ScrollTrigger.normalizeScroll(true);
 
-      gsap.from(".text-mask", {
-        yPercent: -100,
-        scrollTrigger: {
-          trigger: ".wrapper",
-          start: "0 top",
-          end: "15% top",
-          scrub: 1,
-        },
-      });
+    gsap.from(".text-mask", {
+      yPercent: -100,
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "0 top",
+        end: "15% top",
+        scrub: 1,
+      },
+    });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".wrapper",
-          start: "top top",
-          end: "50% top",
-          scrub: 1,
-        },
-      });
-      tl.to(".parallax-bg", {
-        scrollTrigger: {
-          trigger: ".wrapper",
-          start: "top top",
-          end: "450 top",
-          scrub: 1,
-        },
-      });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top top",
+        end: "50% top",
+        scrub: 1,
+      },
+    });
+    tl.to(".parallax-bg", {
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top top",
+        end: "450 top",
+        scrub: 1,
+      },
+    });
 
-      tl.to(
-        ".right-div",
-        {
-          x: "50%",
-          y: "50%",
-          scale: 1.8,
-          scrollTrigger: {
-            trigger: ".wrapper",
-            start: "top top",
-            end: "350 top",
-            scrub: 1,
-          },
-        },
-        "<"
-      );
-
-      tl.to(".left-div", {
-        scale: 1.8,
-        x: "-50%",
-        y: "50%",
-        scrollTrigger: {
-          trigger: ".wrapper",
-          start: "top top",
-          end: "350 top",
-          scrub: 1,
-        },
-      });
-
-      tl.to(
-        ".up-div",
-        {
-          scale: 0.3,
-          x: "-50%",
-          y: "-50%",
-          scrollTrigger: {
-            trigger: ".wrapper",
-            start: "top top",
-            end: "350 top",
-            scrub: 1,
-          },
-        },
-        "<"
-      );
-
-      tl.to(".rightUp-div", {
-        scale: 0.3,
+    tl.to(
+      ".right-div",
+      {
         x: "50%",
-        y: "-20%",
+        y: "50%",
+        scale: 1.8,
         scrollTrigger: {
           trigger: ".wrapper",
           start: "top top",
           end: "350 top",
           scrub: 1,
         },
-      });
-    },
-    {
-      strategy: "document-ready",
-    }
-  );
+      },
+      "<"
+    );
+
+    tl.to(".left-div", {
+      scale: 1.8,
+      x: "-50%",
+      y: "50%",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top top",
+        end: "350 top",
+        scrub: 1,
+      },
+    });
+
+    tl.to(
+      ".up-div",
+      {
+        scale: 0.3,
+        x: "-50%",
+        y: "-50%",
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top top",
+          end: "350 top",
+          scrub: 1,
+        },
+      },
+      "<"
+    );
+
+    tl.to(".rightUp-div", {
+      scale: 0.3,
+      x: "50%",
+      y: "-20%",
+      scrollTrigger: {
+        trigger: ".wrapper",
+        start: "top top",
+        end: "350 top",
+        scrub: 1,
+      },
+    });
+
+  });
   return (
     <div class="flex-col bg-bgGray-500 sticky top-0 z-[1]">
       <div class="parallax-bg wrapper w-full h-[950px] mx-auto my-0 overflow-hidden shadow-2xl relative z-0 aspect-video bg-[url('/images/parallax/background.webp')] bg-no-repeat bg-cover bg-top md:bg-center">
