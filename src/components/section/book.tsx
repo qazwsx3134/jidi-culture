@@ -44,9 +44,6 @@ export default component$(() => {
         transformOrigin: "left center",
         ease: "none",
       });
-    },
-    {
-      strategy: "document-ready",
     }
   );
   return (
