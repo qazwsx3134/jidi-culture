@@ -80,7 +80,7 @@ export default component$(() => {
       lenis.raf(time * 1000);
     });
 
-    gsap.ticker.lagSmoothing(300, 16);
+    gsap.ticker.lagSmoothing(0);
 
     window.gsap = gsap;
     const imgLoad = imagesLoaded("#bodyContainer", { background: true });
