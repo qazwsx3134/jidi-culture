@@ -72,15 +72,13 @@ export default component$(() => {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.normalizeScroll(true);
-
     lenis.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
+      lenis.raf(time * 300);
     });
 
-    gsap.ticker.lagSmoothing(500, 33);
+    gsap.ticker.lagSmoothing(300, 16);
 
     window.gsap = gsap;
     const imgLoad = imagesLoaded("#bodyContainer", { background: true });

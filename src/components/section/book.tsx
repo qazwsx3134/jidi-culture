@@ -8,7 +8,6 @@ export default component$(() => {
     () => {
       // initialize Lenis and register it as a global variable
       gsap.registerPlugin(ScrollTrigger);
-      ScrollTrigger.normalizeScroll(true);
 
       // book flip animation
       gsap.set("#bookCover", {

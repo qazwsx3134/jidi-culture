@@ -7,7 +7,6 @@ export default component$(() => {
   useVisibleTask$(() => {
     // initialize Lenis and register it as a global variable
     gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.normalizeScroll(true);
 
     gsap.fromTo(
       ["#s2Text", "#s2Blob"],
