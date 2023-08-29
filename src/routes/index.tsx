@@ -87,15 +87,19 @@ export default component$(() => {
     const imgLoad = imagesLoaded("#bodyContainer", { background: true });
 
     const start = Date.now();
+    // Maximum wait image load 4 seconds or use setTimeout
     imgLoad.on("always", function () {
       const end = Date.now();
       const duration = end - start;
       const delay = duration < 2000 ? 2000 - duration : 0;
       setTimeout(() => {
         onDone.value = true;
-        window.lenis.scrollTo(0, 0);
       }, delay);
     });
+
+    setTimeout(() => {
+      onDone.value = true;
+    }, 4000);
   });
   return (
     <div id="bodyContainer" class="">
