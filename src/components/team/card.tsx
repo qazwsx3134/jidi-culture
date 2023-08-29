@@ -24,6 +24,7 @@ export default component$<Props>((props) => {
             alt={props.image.alt}
             width={props.image.width}
             height={props.image.height}
+            loading="lazy"
           />
         </div>
       </figure>

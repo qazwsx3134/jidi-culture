@@ -142,6 +142,7 @@ export default component$(() => {
                     width={innerItem.width}
                     height={innerItem.height}
                     alt=""
+                    loading="lazy"
                   />
                 </div>
               ))}
@@ -162,6 +163,7 @@ export default component$(() => {
                     width={innerItem.width}
                     height={innerItem.height}
                     alt=""
+                    loading="lazy"
                   />
                 </div>
               ))}
@@ -199,6 +201,7 @@ export default component$(() => {
                       alt={innerItem.alt}
                       height={innerItem.height}
                       width={innerItem.width}
+                      loading="lazy"
                     />
                   </div>
                 ))}
@@ -227,6 +230,7 @@ export default component$(() => {
                         alt={innerItem.alt}
                         height={innerItem.height}
                         width={innerItem.width}
+                        loading="lazy"
                       />
                     </div>
                   ))}
