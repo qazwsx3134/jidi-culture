@@ -84,7 +84,12 @@ export default component$(() => {
     gsap.ticker.lagSmoothing(0);
 
     window.gsap = gsap;
-    const imgLoad = imagesLoaded("#bodyContainer", { background: true });
+
+    setTimeout(() => {
+      onDone.value = true;
+    }, 4000);
+
+    const imgLoad = imagesLoaded("#bodyContainer");
 
     const start = Date.now();
     // Maximum wait image load 4 seconds or use setTimeout
@@ -96,10 +101,6 @@ export default component$(() => {
         onDone.value = true;
       }, delay);
     });
-
-    setTimeout(() => {
-      onDone.value = true;
-    }, 4000);
   });
   return (
     <div id="bodyContainer" class="">
