@@ -49,6 +49,7 @@ export default component$(() => {
             width={1920}
             height={1280}
             class="w-[1920px] h-[1280px] lg:w-full lg:aspect-video object-cover"
+            loading="lazy"
           />
         </div>
 
@@ -62,6 +63,7 @@ export default component$(() => {
             height={1120}
             width={1024}
             class="absolute top-0 w-[900px] opacity-50 lg:opacity-100"
+            loading="lazy"
           />
         </div>
         <div

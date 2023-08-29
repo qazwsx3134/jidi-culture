@@ -17,6 +17,7 @@ export default component$<ProductAttributes>((props) => {
             width={320}
             height={288}
             alt="Shoes"
+            loading="lazy"
           />
         </figure>
         <div class="card-body card-compact pl-6 pr-4 pt-6 pb-4">

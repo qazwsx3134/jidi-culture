@@ -20,6 +20,7 @@ export default component$<Props>((props) => {
         alt=""
         width={1440}
         height={162}
+        loading="lazy"
       />
     </>
   );

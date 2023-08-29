@@ -64,6 +64,7 @@ export default component$(() => {
             height={footer.value.attributes.image.data.attributes.height}
             width={footer.value.attributes.image.data.attributes.width}
             alt=""
+            loading="lazy"
           />
         ) : (
           <svg

@@ -28,6 +28,7 @@ export default component$<ProductAttributes>((props) => {
             }
             width={320}
             height={384}
+            loading="lazy"
           />
         </div>
         <div class="divider m-0 rounded"></div>

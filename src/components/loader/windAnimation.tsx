@@ -189,6 +189,7 @@ export default component$(() => {
         class="invisible"
         width={80}
         height={60}
+        loading="lazy"
       />
       <img
         id="leaf2"
@@ -197,6 +198,7 @@ export default component$(() => {
         class="invisible"
         width={80}
         height={60}
+        loading="lazy"
       />
       <img
         id="leaf3"
@@ -205,6 +207,7 @@ export default component$(() => {
         class="invisible"
         width={80}
         height={60}
+        loading="lazy"
       />
       <img
         id="leaf4"
@@ -213,6 +216,7 @@ export default component$(() => {
         class="invisible"
         width={80}
         height={60}
+        loading="lazy"
       />
       <img
         id="leaf5"
@@ -221,6 +225,7 @@ export default component$(() => {
         class="invisible"
         width={80}
         height={60}
+        loading="lazy"
       />
 
       <WindSvgLg class="absolute top-0 h-[100vh] hidden md:block" />
