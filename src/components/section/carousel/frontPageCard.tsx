@@ -28,7 +28,7 @@ export default component$<ProductAttributes>((props) => {
             ))}
           </div>
           <h2 class="card-title text-2xl my-4">{props.name}</h2>
-          <p class="line-clamp-2 text-gray-400 break-all my-2">
+          <p class="line-clamp-2 text-gray-300 break-all my-2">
             {props.description}
           </p>
 
@@ -36,7 +36,7 @@ export default component$<ProductAttributes>((props) => {
             <div class="text-xl text-gray-500 font-light tracking-wide">
               NT${props.price}
             </div>
-            <div class="card-actions">
+            <div class="card-actions font-light text-white">
               <button class="btn btn-accent btn-md">購買</button>
             </div>
           </div>
