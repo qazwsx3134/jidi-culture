@@ -10,18 +10,11 @@
 
 ## TODO
 
-
-驗證寄信Email
-訂單完成用jidiculture@gmail.com傳到yurining2018@gmail.com
-
-寄給訂貨人的確認信時候用jidiculture@gmail.com 寄給訂貨人
-
-
 ## Done
 
 1. 首頁 Hero Image PC, Mobile, Tablet
 2. 繪本展示頁面 PC, Mobile, Tablet
-3. 繪本商店carousel PC, Mobile, Tablet => 連到product page
+3. 繪本商店 carousel PC, Mobile, Tablet => 連到 product page
 4. project page
 5. 團隊介紹頁面 PC, Mobile, Tablet
 6. Loading animation
@@ -29,27 +22,31 @@
 8. checkout page PC, Mobile, Tablet
 9. checkout confirm page PC, Mobile, Tablet
 10. product page dynamic html renderer
-11. 申請Domain 然後把前後端都上上去 連上
+11. 申請 Domain 然後把前後端都上上去 連上
 12. Check RWD
 13. Project page API
-14. 圓體font
+14. 圓體 font
 15. 基地文化 改為 基地文化出版有限公司（出版有限公司小字）
 16. favicon
-17. 首頁的team那邊 縮小 要加族名
-柯Yuri Yuko, 黃Away Huang, 林Lowking Lin, 郭Walis Jiyung
-18. 成為兩個世界的橋樑改成：歡迎來到Alang edaan 故事部
+17. 首頁的 team 那邊 縮小 要加族名
+    柯 Yuri Yuko, 黃 Away Huang, 林 Lowking Lin, 郭 Walis Jiyung
+18. 成為兩個世界的橋樑改成：歡迎來到 Alang edaan 故事部
 19. Project hero image 縮小
-20. 首頁Project 咖啡色改成第二張 夢想基地改成第二張
+20. 首頁 Project 咖啡色改成第二張 夢想基地改成第二張
 21. Loading
-22. Logo改抖動
+22. Logo 改抖動
 23. 葉子往上飛
-24. 手機版的Header + 手機checkout 按鈕
+24. 手機版的 Header + 手機 checkout 按鈕
 25. 加訂購人電話 Cart page 加 電話
-26. 要改商品頁的input default = 1
+26. 要改商品頁的 input default = 1
 27. footer api products page confirm page api
-28. 首頁 carousel 放8個product
+28. 首頁 carousel 放 8 個 product
 29. SEO
-30. 首頁的parallax
+30. 首頁的 parallax
+31. 驗證寄信 Email
+32. 訂單完成用jidiculture@gmail.com傳到yurining2018@gmail.com
+
+33. 寄給訂貨人的確認信時候用jidiculture@gmail.com 寄給訂貨人
 
 API
 

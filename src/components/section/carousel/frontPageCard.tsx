@@ -29,7 +29,7 @@ export default component$<ProductAttributes>((props) => {
             ))}
           </div>
           <h2 class="card-title text-2xl my-4">{props.name}</h2>
-          <p class="line-clamp-2 text-gray-300 break-all my-2">
+          <p class="line-clamp-2 text-gray-500 break-all my-2">
             {props.description}
           </p>
 

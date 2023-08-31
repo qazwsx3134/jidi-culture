@@ -25,6 +25,8 @@ import type { ProductAPI } from "~/api/type";
 import "swiper/css";
 import "swiper/css/pagination";
 import "~/components/carousel/productCarousel.css";
+import Collapse from "~/components/collapse";
+import RefundDescription from "~/components/refundDescription";
 
 export const useProductLoader = routeLoader$(
   async ({ params, status, fail, env }) => {
@@ -430,6 +432,19 @@ export default component$(() => {
                         "加入購物車"}
                     </p>
                   </button>
+
+                  <Collapse
+                    styles="w-full md:max-w-xs border-gray-500 text-bgGray-700 border-[0.5px]"
+                    title="大量訂購 或 無法使用Linepay等問題"
+                  >
+                    <div q:slot="content">
+                      <p>大量訂購、沒有Linepay等問題</p>
+                      <p>
+                        請直接電洽03-8315502或寄信至jidiculture2018@gmail.com下訂，
+                      </p>
+                      <p>由專人為您服務</p>
+                    </div>
+                  </Collapse>
                 </div>
 
                 <div class="flex max-w-xs mt-6"></div>
@@ -441,6 +456,9 @@ export default component$(() => {
         <div class="w-full bg-bgWhite-500 min-h-screen">
           <div class="container mx-auto p-12">
             <Ckeditor html={detail} />
+          </div>
+          <div class="container mx-auto p-12">
+            <RefundDescription />
           </div>
         </div>
       </section>

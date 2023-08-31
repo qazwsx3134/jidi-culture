@@ -36,7 +36,7 @@ export default component$<ProductAttributes>((props) => {
           <h2 class="text-gray-900 group-hover:text-bgRed-500 title-font text-2xl font-medium my-4">
             {props.name}
           </h2>
-          <p class="line-clamp-2 break-words text-gray-300 text-base font-light">
+          <p class="line-clamp-2 break-words text-gray-500 text-base font-light">
             {props.description}
           </p>
           <p class="my-4 tracking-wider text-gray-500 text-lg">NT${props.price}</p>
