@@ -28,7 +28,7 @@ export const useHomePage = routeLoader$(async ({ env, fail }) => {
   const res = await api<HomePageAPI>(
     `${env.get(
       "API_URL"
-    )}/api/home-page?populate[0]=seo&populate[1]=seo.metaSocial.image`,
+    )}/api/home-page?populate[0]=seo&populate[1]=seo.metaSocial.image&populate[2]=seo.metaImage`,
     {
       method: "GET",
       headers: {
@@ -85,18 +85,13 @@ export default component$(() => {
 
     window.gsap = gsap;
 
-    setTimeout(() => {
-      onDone.value = true;
-    }, 4000);
-
-    const imgLoad = imagesLoaded("#bodyContainer");
+    const imgLoad = imagesLoaded("#imagesLoadedContainer");
 
     const start = Date.now();
-    // Maximum wait image load 4 seconds or use setTimeout
     imgLoad.on("always", function () {
       const end = Date.now();
       const duration = end - start;
-      const delay = duration < 2000 ? 2000 - duration : 0;
+      const delay = duration < 1500 ? 1500 - duration : 0;
       setTimeout(() => {
         onDone.value = true;
       }, delay);
@@ -115,7 +110,7 @@ export default component$(() => {
           loading="lazy"
         />
       </PageBackground>
-      <div class=" bg-black w-screen">
+      <div id="imagesLoadedContainer" class=" bg-black w-screen">
         <Parallax />
         <Hero />
       </div>
@@ -174,7 +169,7 @@ export const head: DocumentHead = ({ resolveValue }) => {
     };
   }
 
-  const { metaTitle, metaDescription, metaRobots, keywords } =
+  const { metaTitle, metaDescription, metaRobots, keywords, metaImage } =
     homePage.attributes.seo;
 
   return {
@@ -200,6 +195,10 @@ export const head: DocumentHead = ({ resolveValue }) => {
       {
         property: "og:description",
         content: metaDescription,
+      },
+      {
+        property: "og:image",
+        content: metaImage?.data?.attributes.url,
       },
     ],
     links: [

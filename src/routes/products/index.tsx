@@ -179,7 +179,7 @@ export const head: DocumentHead = ({ resolveValue }) => {
     };
   }
 
-  const { metaTitle, metaDescription, metaRobots, keywords } =
+  const { metaTitle, metaDescription, metaRobots, keywords, metaImage } =
     productPage.attributes.seo;
 
   return {
@@ -205,6 +205,10 @@ export const head: DocumentHead = ({ resolveValue }) => {
       {
         property: "og:description",
         content: metaDescription,
+      },
+      {
+        property: "og:image",
+        content: metaImage?.data?.attributes.url,
       },
     ],
     links: [

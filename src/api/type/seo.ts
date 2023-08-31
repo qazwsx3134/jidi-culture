@@ -7,6 +7,9 @@ export interface SEO {
   metaRobots?: string;
   structuredData?: string;
   canonicalURL?: string;
+  metaImage?: {
+    data: Image | null;
+  };
   metaSocial?: MetaSocial[];
 }
 

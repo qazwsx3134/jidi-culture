@@ -85,8 +85,8 @@ export default component$(() => {
           />
         </div>
 
-        <div class="m-auto container flex xl:flex-row flex-col p-4 pt-12">
-          <div class="flex flex-wrap flex-1 gap-10 mx-3 my-6 xl:flex-col xl:my-0">
+        <div class="m-auto container flex lg:flex-row flex-col p-4 pt-12">
+          <div class="flex flex-wrap flex-1 gap-10 mx-3 my-6 lg:flex-col lg:my-0 lg:min-w-max">
             <div>
               <div class="text-2xl font-bold mb-4">專案類型</div>
               <div class="flex flex-wrap gap-4">
@@ -265,7 +265,7 @@ export const head: DocumentHead = ({ resolveValue }) => {
     };
   }
 
-  const { metaTitle, metaDescription, metaRobots, keywords } =
+  const { metaTitle, metaDescription, metaRobots, keywords, metaImage } =
     projectPage.attributes.seo;
 
   return {
@@ -291,6 +291,10 @@ export const head: DocumentHead = ({ resolveValue }) => {
       {
         property: "og:description",
         content: metaDescription,
+      },
+      {
+        property: "og:image",
+        content: metaImage?.data?.attributes.url,
       },
     ],
     links: [
