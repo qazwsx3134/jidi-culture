@@ -107,7 +107,7 @@ export default component$(() => {
           width={200}
           height={200}
           class="w-[200px] aspect-square z-1 bg-white mask mask-squircle animate-wiggle"
-          loading="lazy"
+          loading="eager"
         />
       </PageBackground>
       <div id="imagesLoadedContainer" class=" bg-black w-screen">
