@@ -62,7 +62,6 @@ export default component$(() => {
     // initialize Lenis and register it as a global variable
     const lenis = new Lenis({
       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
-      smoothTouch: true,
     });
     window.lenis = lenis;
 
