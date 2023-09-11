@@ -61,26 +61,26 @@ export default component$(() => {
 
     // initialize Lenis and register it as a global variable
     const lenis = new Lenis({
+      duration: 1.2,
       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
     });
     window.lenis = lenis;
 
-    // function raf(time: any) {
-    //   lenis.raf(time);
-    //   requestAnimationFrame(raf);
-    // }
+    function raf(time: any) {
+      lenis.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    }
 
-    // requestAnimationFrame(raf);
+    requestAnimationFrame(raf);
 
     gsap.registerPlugin(ScrollTrigger);
-
-    lenis.on("scroll", ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
 
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(200, 16);
 
     window.gsap = gsap;
 
