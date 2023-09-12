@@ -63,8 +63,10 @@ export default component$(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
-      smoothTouch: true,
-      touchMultiplier: 1.5,
+      smoothTouch: false,
+      touchMultiplier: 1,
+      syncTouch: true,
+      syncTouchLerp: 0.1,
     });
     window.lenis = lenis;
 
