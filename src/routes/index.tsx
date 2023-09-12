@@ -23,6 +23,7 @@ import { api } from "~/api";
 import FrontPageCarousel from "~/components/section/carousel/frontPageCarousel";
 
 import type { HomePageAPI } from "~/api/type";
+import { isMobile } from "~/utils/environment";
 
 export const useHomePage = routeLoader$(async ({ env, fail }) => {
   const res = await api<HomePageAPI>(
@@ -58,7 +59,6 @@ export default component$(() => {
 
   useVisibleTask$(() => {
     window.scrollTo(0, 0);
-
     // initialize Lenis and register it as a global variable
     const lenis = new Lenis({
       duration: 1.2,
@@ -68,23 +68,25 @@ export default component$(() => {
       syncTouch: true,
       syncTouchLerp: 0.1,
     });
-    window.lenis = lenis;
+    if (!isMobile) {
+      window.lenis = lenis;
+      requestAnimationFrame(raf);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(200, 16);
+    }
 
     function raf(time: any) {
       lenis.raf(time);
+
       ScrollTrigger.update();
       requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
-
     gsap.registerPlugin(ScrollTrigger);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(200, 16);
 
     window.gsap = gsap;
 
