@@ -9,89 +9,159 @@ export default component$(() => {
 
     ScrollTrigger.normalizeScroll(true);
 
-    gsap.from(".text-mask", {
-      yPercent: -100,
-      scrollTrigger: {
-        trigger: ".wrapper",
-        start: "0 top",
-        end: "15% top",
-        scrub: 1,
-      },
-    });
+    const mm = gsap.matchMedia();
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".wrapper",
-        start: "top top",
-        end: "50% top",
-        scrub: 1,
-      },
-    });
-    tl.to(".parallax-bg", {
-      scrollTrigger: {
-        trigger: ".wrapper",
-        start: "top top",
-        end: "450 top",
-        scrub: 1,
-      },
-    });
+    mm.add("(min-width: 800px)", () => {
+      // desktop setup code here...
+      gsap.from(".text-mask", {
+        yPercent: -100,
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "0 top",
+          end: "15% top",
+          scrub: 1,
+        },
+      });
 
-    tl.to(
-      ".right-div",
-      {
-        x: "50%",
-        y: "50%",
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top top",
+          end: "50% top",
+          scrub: 1,
+        },
+      });
+      tl.to(".parallax-bg", {
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top top",
+          end: "450 top",
+          scrub: 1,
+        },
+      });
+
+      tl.to(
+        ".right-div",
+        {
+          x: "50%",
+          y: "50%",
+          scale: 1.8,
+          scrollTrigger: {
+            trigger: ".wrapper",
+            start: "top top",
+            end: "350 top",
+            scrub: 1,
+          },
+        },
+        "<"
+      );
+
+      tl.to(".left-div", {
         scale: 1.8,
-        scrollTrigger: {
-          trigger: ".wrapper",
-          start: "top top",
-          end: "350 top",
-          scrub: 1,
-        },
-      },
-      "<"
-    );
-
-    tl.to(".left-div", {
-      scale: 1.8,
-      x: "-50%",
-      y: "50%",
-      scrollTrigger: {
-        trigger: ".wrapper",
-        start: "top top",
-        end: "350 top",
-        scrub: 1,
-      },
-    });
-
-    tl.to(
-      ".up-div",
-      {
-        scale: 0.3,
         x: "-50%",
-        y: "-50%",
+        y: "50%",
         scrollTrigger: {
           trigger: ".wrapper",
           start: "top top",
           end: "350 top",
           scrub: 1,
         },
-      },
-      "<"
-    );
+      });
 
-    tl.to(".rightUp-div", {
-      scale: 0.3,
-      x: "50%",
-      y: "-20%",
-      scrollTrigger: {
-        trigger: ".wrapper",
-        start: "top top",
-        end: "350 top",
-        scrub: 1,
-      },
+      tl.to(
+        ".up-div",
+        {
+          scale: 0.3,
+          x: "-50%",
+          y: "-50%",
+          scrollTrigger: {
+            trigger: ".wrapper",
+            start: "top top",
+            end: "350 top",
+            scrub: 1,
+          },
+        },
+        "<"
+      );
+
+      tl.to(".rightUp-div", {
+        scale: 0.3,
+        x: "50%",
+        y: "-20%",
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top top",
+          end: "350 top",
+          scrub: 1,
+        },
+      });
     });
 
+    mm.add("(max-width: 799px)", () => {
+      // mobile setup code here...
+      gsap.from(".text-mask", {
+        yPercent: -100,
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "5% top",
+          end: "15% top",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "5% top",
+          end: "50% top",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      tl.to(
+        ".right-div",
+        {
+          x: "50%",
+          y: "50%",
+          scale: 1.8,
+          duration: 1,
+        },
+        "<"
+      );
+
+      tl.to(
+        ".left-div",
+        {
+          scale: 1.8,
+          x: "-50%",
+          y: "50%",
+          duration: 1,
+        },
+        "<"
+      );
+
+      tl.to(
+        ".up-div",
+        {
+          scale: 0.3,
+          x: "-50%",
+          y: "-50%",
+          duration: 1,
+        },
+        "<"
+      );
+
+      tl.to(
+        ".rightUp-div",
+        {
+          scale: 0.3,
+          x: "50%",
+          y: "-20%",
+          duration: 1,
+        },
+        "<"
+      );
+    });
   });
   return (
     <div class="flex-col bg-bgGray-500 sticky top-0 z-[1]">
