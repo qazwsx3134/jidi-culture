@@ -117,7 +117,7 @@ export default component$(() => {
           loading="eager"
         />
       </PageBackground>
-      <div id="imagesLoadedContainer" class=" bg-black w-screen">
+      <div id="imagesLoadedContainer" class=" bg-black w-screen pointer-events-none">
         <Parallax />
         <Hero />
       </div>
