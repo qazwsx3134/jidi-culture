@@ -131,7 +131,8 @@ export default component$(() => {
         {showcaseTopArray.map((item) => (
           <Link href={`/project/${item.project}`} key={uuidv4()}>
             <div class="stack mx-4">
-              {[...item.item].reverse().map((innerItem) => (
+              {/* Only print one */}
+              {[...item.item].reverse().slice(0,1).map((innerItem) => (
                 <div
                   key={innerItem.key}
                   class="flex items-center justify-center"
@@ -152,7 +153,7 @@ export default component$(() => {
         {showcaseBottomArray.map((item) => (
           <Link href={`/project/${item.project}`} key={uuidv4()}>
             <div key={uuidv4()} class="stack mx-4">
-              {[...item.item].reverse().map((innerItem) => (
+              {[...item.item].reverse().slice(0,1).map((innerItem) => (
                 <div
                   key={innerItem.key}
                   class="flex items-center justify-center"
