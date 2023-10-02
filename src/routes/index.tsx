@@ -60,27 +60,29 @@ export default component$(() => {
   useVisibleTask$(() => {
     window.scrollTo(0, 0);
     // initialize Lenis and register it as a global variable
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
-      smoothTouch: false,
-      touchMultiplier: 1,
-      syncTouch: true,
-      syncTouchLerp: 0.1,
-    });
+    let lenis: Lenis | null = null;
+
     if (!isMobile) {
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)), // https://easings.net
+        smoothTouch: false,
+        touchMultiplier: 1,
+        syncTouch: true,
+        syncTouchLerp: 0.1,
+      });
       window.lenis = lenis;
       requestAnimationFrame(raf);
 
       gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
+        lenis && lenis.raf(time * 1000);
       });
 
       gsap.ticker.lagSmoothing(200, 16);
     }
 
     function raf(time: any) {
-      lenis.raf(time);
+      lenis && lenis.raf(time);
 
       ScrollTrigger.update();
       requestAnimationFrame(raf);
@@ -103,7 +105,7 @@ export default component$(() => {
     });
   });
   return (
-    <div id="bodyContainer" class="">
+    <div id="bodyContainer" class="scroll-smooth md:scroll-auto">
       <PageBackground onDone={onDone}>
         <img
           q:slot="icon"
