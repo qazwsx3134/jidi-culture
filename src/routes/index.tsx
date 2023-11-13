@@ -23,7 +23,7 @@ import { api } from "~/api";
 import FrontPageCarousel from "~/components/section/carousel/frontPageCarousel";
 
 import type { HomePageAPI } from "~/api/type";
-import { isMobile } from "~/utils/environment";
+// import { isMobile } from "~/utils/environment";
 
 export const useHomePage = routeLoader$(async ({ env, fail }) => {
   const res = await api<HomePageAPI>(
