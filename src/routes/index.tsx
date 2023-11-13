@@ -11,8 +11,8 @@ import RedBGCurveDown from "~/components/curveDivider/redBGCurveDown";
 import RedBGCurveUp from "~/components/curveDivider/redBGCurveUp";
 import WhiteBGCurveUp from "~/components/curveDivider/whiteBGCurveUp";
 import Book from "~/components/section/book";
-import Hero from "~/components/section/hero";
-import Parallax from "~/components/section/parallax";
+// import Hero from "~/components/section/hero";
+// import Parallax from "~/components/section/parallax";
 import Showcase from "~/components/section/showcase";
 import Team from "~/components/section/team";
 import imagesLoaded from "imagesloaded";
@@ -118,8 +118,8 @@ export default component$(() => {
         />
       </PageBackground>
       <div id="imagesLoadedContainer" class=" bg-black w-screen pointer-events-none">
-        <Parallax />
-        <Hero />
+        {/* <Parallax />
+        <Hero /> */}
       </div>
       <GrayBGCurveUp bgColor="bg-bgWhite-500" />
       <div
