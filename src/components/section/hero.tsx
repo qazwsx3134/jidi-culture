@@ -10,36 +10,41 @@ export default component$(() => {
 
     ScrollTrigger.normalizeScroll(true);
 
-    gsap.fromTo(
-      ["#s2Text", "#s2Blob"],
-      {
-        yPercent: -100,
-      },
-      {
-        yPercent: 60,
-        scrollTrigger: {
-          trigger: "#s2Wrapper",
-          scrub: true,
-          start: "-100% top",
-          end: "200% bottom",
-        },
-      }
-    );
+    const matchMedia = gsap.matchMedia()
 
-    gsap.fromTo(
-      [".text-Title", ".text-subTitle", ".text-content"],
-      {
-        yPercent: -100,
-      },
-      {
-        yPercent: 0,
-        scrollTrigger: {
-          trigger: "#s2Wrapper",
-          start: "-30% top",
-          end: "bottom bottom",
+    matchMedia.add("(min-width: 820px)", ()=> {
+      gsap.fromTo(
+        ["#s2Text", "#s2Blob"],
+        {
+          yPercent: -100,
         },
-      }
-    );
+        {
+          yPercent: 60,
+          scrollTrigger: {
+            trigger: "#s2Wrapper",
+            scrub: true,
+            start: "-100% top",
+            end: "200% bottom",
+          },
+        }
+      );
+
+      gsap.fromTo(
+        [".text-Title", ".text-subTitle", ".text-content"],
+        {
+          yPercent: -100,
+        },
+        {
+          yPercent: 0,
+          scrollTrigger: {
+            trigger: "#s2Wrapper",
+            start: "-30% top",
+            end: "bottom bottom",
+          },
+        }
+      );
+    })
+
   });
   return (
     <div class="flex flex-col mb-10 sticky z-[2] top-0">

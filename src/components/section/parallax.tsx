@@ -121,8 +121,7 @@ export default component$(() => {
       tl.to(
         ".right-div",
         {
-          x: "50%",
-          y: "50%",
+          opacity: 0,
           scale: 1.8,
           duration: 1,
         },
@@ -133,8 +132,7 @@ export default component$(() => {
         ".left-div",
         {
           scale: 1.8,
-          x: "-50%",
-          y: "50%",
+          opacity: 0,
           duration: 1,
         },
         "<"
@@ -144,8 +142,7 @@ export default component$(() => {
         ".up-div",
         {
           scale: 0.3,
-          x: "-50%",
-          y: "-50%",
+          opacity: 0,
           duration: 1,
         },
         "<"
@@ -155,8 +152,7 @@ export default component$(() => {
         ".rightUp-div",
         {
           scale: 0.3,
-          x: "50%",
-          y: "-20%",
+          opacity: 0,
           duration: 1,
         },
         "<"
