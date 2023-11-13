@@ -170,10 +170,10 @@ export default component$(() => {
           </div>
         </h1>
         {/* background image */}
-        <div class="rightUp-div w-full h-full absolute origin-center bg-[url('/images/parallax/rightUp.webp')] bg-no-repeat z-[2] bg-contain bg-[center_top_300px] md:bg-center"></div>
-        <div class="up-div w-full h-full absolute origin-center bg-[url('/images/parallax/up.webp')] bg-no-repeat z-[3] bg-contain bg-[center_top_300px] md:bg-center"></div>
-        <div class="left-div w-full h-full absolute origin-center bg-[url('/images/parallax/left.webp')] z-[4] bg-no-repeat bg-contain bg-[center_top_300px] md:bg-center"></div>
-        <div class="right-div w-full h-full absolute origin-center bg-[url('/images/parallax/right.webp')] bg-no-repeat z-[5] bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="rightUp-div hidden md:block w-full h-full absolute origin-center bg-[url('/images/parallax/rightUp.webp')] bg-no-repeat z-[2] bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="up-div hidden md:block w-full h-full absolute origin-center bg-[url('/images/parallax/up.webp')] bg-no-repeat z-[3] bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="left-div hidden md:block w-full h-full absolute origin-center bg-[url('/images/parallax/left.webp')] z-[4] bg-no-repeat bg-contain bg-[center_top_300px] md:bg-center"></div>
+        <div class="right-div hidden md:block w-full h-full absolute origin-center bg-[url('/images/parallax/right.webp')] bg-no-repeat z-[5] bg-contain bg-[center_top_300px] md:bg-center"></div>
       </div>
     </div>
   );
